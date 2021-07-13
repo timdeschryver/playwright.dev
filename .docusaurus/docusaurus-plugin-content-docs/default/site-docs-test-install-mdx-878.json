@@ -1,0 +1,16 @@
+{
+  "unversionedId": "test-install",
+  "id": "test-install",
+  "isDocsHomePage": false,
+  "title": "Advanced: installing browsers",
+  "description": "- Installing browser binaries",
+  "source": "@site/docs/test-install.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-install",
+  "permalink": "/dotnet/docs/next/test-install",
+  "version": "current",
+  "frontMatter": {
+    "id": "test-install",
+    "title": "Advanced: installing browsers"
+  }
+}
