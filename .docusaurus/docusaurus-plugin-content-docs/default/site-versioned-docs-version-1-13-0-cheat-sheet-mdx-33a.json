@@ -1,0 +1,16 @@
+{
+  "unversionedId": "cheat-sheet",
+  "id": "version-1.13.0/cheat-sheet",
+  "isDocsHomePage": false,
+  "title": "Cheat Sheet",
+  "description": "- Download & Upload",
+  "source": "@site/versioned_docs/version-1.13.0/cheat-sheet.mdx",
+  "sourceDirName": ".",
+  "slug": "/cheat-sheet",
+  "permalink": "/dotnet/docs/cheat-sheet",
+  "version": "1.13.0",
+  "frontMatter": {
+    "id": "cheat-sheet",
+    "title": "Cheat Sheet"
+  }
+}

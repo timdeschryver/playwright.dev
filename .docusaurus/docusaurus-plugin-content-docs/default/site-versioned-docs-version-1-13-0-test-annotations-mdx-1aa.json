@@ -1,0 +1,16 @@
+{
+  "unversionedId": "test-annotations",
+  "id": "version-1.13.0/test-annotations",
+  "isDocsHomePage": false,
+  "title": "Annotations",
+  "description": "- Annotations",
+  "source": "@site/versioned_docs/version-1.13.0/test-annotations.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-annotations",
+  "permalink": "/dotnet/docs/test-annotations",
+  "version": "1.13.0",
+  "frontMatter": {
+    "id": "test-annotations",
+    "title": "Annotations"
+  }
+}
