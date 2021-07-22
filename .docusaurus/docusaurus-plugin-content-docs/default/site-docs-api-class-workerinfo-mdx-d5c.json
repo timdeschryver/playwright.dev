@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-workerinfo",
+  "id": "api/class-workerinfo",
+  "isDocsHomePage": false,
+  "title": "WorkerInfo",
+  "description": "WorkerInfo contains information about the worker that is running tests. It is available to test.beforeAll(hookFunction) and test.afterAll(hookFunction) hooks and worker-scoped fixtures.",
+  "source": "@site/docs/api/class-workerinfo.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-workerinfo",
+  "permalink": "/docs/next/api/class-workerinfo",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-workerinfo",
+    "title": "WorkerInfo"
+  },
+  "sidebar": "api",
+  "previous": {
+    "title": "Worker",
+    "permalink": "/docs/next/api/class-worker"
+  },
+  "next": {
+    "title": "Android",
+    "permalink": "/docs/next/api/class-android"
+  }
+}
