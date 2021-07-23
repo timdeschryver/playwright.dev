@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-location",
+  "id": "api/class-location",
+  "isDocsHomePage": false,
+  "title": "Location",
+  "description": "Represents a location in the source code where [TestCase] or [Suite] is defined.",
+  "source": "@site/docs/api/class-location.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-location",
+  "permalink": "/docs/next/api/class-location",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-location",
+    "title": "Location"
+  },
+  "sidebar": "api",
+  "previous": {
+    "title": "WorkerInfo",
+    "permalink": "/docs/next/api/class-workerinfo"
+  },
+  "next": {
+    "title": "Reporter",
+    "permalink": "/docs/next/api/class-reporter"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-testresult",
+  "id": "api/class-testresult",
+  "isDocsHomePage": false,
+  "title": "TestResult",
+  "description": "A result of a single [TestCase] run.",
+  "source": "@site/docs/api/class-testresult.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-testresult",
+  "permalink": "/docs/next/api/class-testresult",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-testresult",
+    "title": "TestResult"
+  },
+  "sidebar": "api",
+  "previous": {
+    "title": "TestCase",
+    "permalink": "/docs/next/api/class-testcase"
+  },
+  "next": {
+    "title": "Android",
+    "permalink": "/docs/next/api/class-android"
+  }
+}
