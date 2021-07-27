@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-locator",
+  "id": "api/class-locator",
+  "isDocsHomePage": false,
+  "title": "Locator",
+  "description": "Locator represents a view to the element(s) on the page. It captures the logic sufficient to retrieve the element at any given moment. Locator can be created with the Page.Locator(selector) method.",
+  "source": "@site/docs/api/class-locator.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-locator",
+  "permalink": "/dotnet/docs/next/api/class-locator",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-locator",
+    "title": "Locator"
+  },
+  "sidebar": "api",
+  "previous": {
+    "title": "Keyboard",
+    "permalink": "/dotnet/docs/next/api/class-keyboard"
+  },
+  "next": {
+    "title": "Mouse",
+    "permalink": "/dotnet/docs/next/api/class-mouse"
+  }
+}
