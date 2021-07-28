@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>Playwright Java Blog</title>
-        <link>https://playwright.dev/blog</link>
+        <link>https://playwright.dev/java/blog</link>
         <description>Playwright Java Blog</description>
         <lastBuildDate>Wed, 29 May 2019 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
