@@ -1,0 +1,16 @@
+{
+  "unversionedId": "api/class-teststep",
+  "id": "api/class-teststep",
+  "isDocsHomePage": false,
+  "title": "TestStep",
+  "description": "Represents a step in the [TestRun].",
+  "source": "@site/docs/api/class-teststep.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-teststep",
+  "permalink": "/docs/next/api/class-teststep",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-teststep",
+    "title": "TestStep"
+  }
+}
