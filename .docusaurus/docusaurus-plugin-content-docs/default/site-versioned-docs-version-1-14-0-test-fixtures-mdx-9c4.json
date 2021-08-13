@@ -1,0 +1,25 @@
+{
+  "unversionedId": "test-fixtures",
+  "id": "version-1.14.0/test-fixtures",
+  "isDocsHomePage": false,
+  "title": "Advanced: fixtures",
+  "description": "- Introduction to fixtures",
+  "source": "@site/versioned_docs/version-1.14.0/test-fixtures.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-fixtures",
+  "permalink": "/docs/test-fixtures",
+  "version": "1.14.0",
+  "frontMatter": {
+    "id": "test-fixtures",
+    "title": "Advanced: fixtures"
+  },
+  "sidebar": "version-1.14.0/docs",
+  "previous": {
+    "title": "Advanced: configuration",
+    "permalink": "/docs/test-advanced"
+  },
+  "next": {
+    "title": "Auto-waiting",
+    "permalink": "/docs/actionability"
+  }
+}

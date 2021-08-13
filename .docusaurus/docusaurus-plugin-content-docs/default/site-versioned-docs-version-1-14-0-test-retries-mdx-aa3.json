@@ -1,0 +1,25 @@
+{
+  "unversionedId": "test-retries",
+  "id": "version-1.14.0/test-retries",
+  "isDocsHomePage": false,
+  "title": "Test retry",
+  "description": "Playwright Test will retry tests if they failed. Pass the maximum number of retries when running the tests, or set them in the configuration file.",
+  "source": "@site/versioned_docs/version-1.14.0/test-retries.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-retries",
+  "permalink": "/docs/test-retries",
+  "version": "1.14.0",
+  "frontMatter": {
+    "id": "test-retries",
+    "title": "Test retry"
+  },
+  "sidebar": "version-1.14.0/docs",
+  "previous": {
+    "title": "Reporters",
+    "permalink": "/docs/test-reporters"
+  },
+  "next": {
+    "title": "Visual comparisons",
+    "permalink": "/docs/test-snapshots"
+  }
+}

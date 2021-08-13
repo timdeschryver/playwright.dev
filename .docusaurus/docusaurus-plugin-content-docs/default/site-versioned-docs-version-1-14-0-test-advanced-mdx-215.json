@@ -1,0 +1,25 @@
+{
+  "unversionedId": "test-advanced",
+  "id": "version-1.14.0/test-advanced",
+  "isDocsHomePage": false,
+  "title": "Advanced: configuration",
+  "description": "- Configuration object",
+  "source": "@site/versioned_docs/version-1.14.0/test-advanced.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-advanced",
+  "permalink": "/docs/test-advanced",
+  "version": "1.14.0",
+  "frontMatter": {
+    "id": "test-advanced",
+    "title": "Advanced: configuration"
+  },
+  "sidebar": "version-1.14.0/docs",
+  "previous": {
+    "title": "Advanced: command line",
+    "permalink": "/docs/test-cli"
+  },
+  "next": {
+    "title": "Advanced: fixtures",
+    "permalink": "/docs/test-fixtures"
+  }
+}

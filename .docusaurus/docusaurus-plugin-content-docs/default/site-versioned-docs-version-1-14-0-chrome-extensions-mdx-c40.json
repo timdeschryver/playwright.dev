@@ -1,0 +1,25 @@
+{
+  "unversionedId": "chrome-extensions",
+  "id": "version-1.14.0/chrome-extensions",
+  "isDocsHomePage": false,
+  "title": "Chrome Extensions",
+  "description": "Extensions only work in Chrome / Chromium in non-headless mode.",
+  "source": "@site/versioned_docs/version-1.14.0/chrome-extensions.mdx",
+  "sourceDirName": ".",
+  "slug": "/chrome-extensions",
+  "permalink": "/python/docs/chrome-extensions",
+  "version": "1.14.0",
+  "frontMatter": {
+    "id": "chrome-extensions",
+    "title": "Chrome Extensions"
+  },
+  "sidebar": "version-1.14.0/docs",
+  "previous": {
+    "title": "Browsers",
+    "permalink": "/python/docs/browsers"
+  },
+  "next": {
+    "title": "Core concepts",
+    "permalink": "/python/docs/core-concepts"
+  }
+}
