@@ -1,0 +1,25 @@
+{
+  "unversionedId": "test-typescript",
+  "id": "test-typescript",
+  "isDocsHomePage": false,
+  "title": "Advanced: TypeScript",
+  "description": "Manually compile tests with TypeScript",
+  "source": "@site/docs/test-typescript.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-typescript",
+  "permalink": "/docs/next/test-typescript",
+  "version": "current",
+  "frontMatter": {
+    "id": "test-typescript",
+    "title": "Advanced: TypeScript"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Advanced: fixtures",
+    "permalink": "/docs/next/test-fixtures"
+  },
+  "next": {
+    "title": "Auto-waiting",
+    "permalink": "/docs/next/actionability"
+  }
+}
