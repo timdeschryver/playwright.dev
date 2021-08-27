@@ -1,0 +1,25 @@
+{
+  "unversionedId": "intro",
+  "id": "version-1.14/intro",
+  "isDocsHomePage": false,
+  "title": "Getting Started",
+  "description": "- Installation",
+  "source": "@site/versioned_docs/version-1.14/intro.mdx",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/dotnet/docs/intro",
+  "version": "1.14",
+  "frontMatter": {
+    "id": "intro",
+    "title": "Getting Started"
+  },
+  "sidebar": "version-1.14/docs",
+  "previous": {
+    "title": "Why Playwright?",
+    "permalink": "/dotnet/docs/why-playwright"
+  },
+  "next": {
+    "title": "Debugging tools",
+    "permalink": "/dotnet/docs/debug"
+  }
+}

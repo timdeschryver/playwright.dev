@@ -1,0 +1,25 @@
+{
+  "unversionedId": "installation",
+  "id": "version-1.13/installation",
+  "isDocsHomePage": false,
+  "title": "Installation",
+  "description": "This is a browser installation guide for Playwright Library. If you are using Playwright Test, please refer to installing browsers test guide.",
+  "source": "@site/versioned_docs/version-1.13/installation.mdx",
+  "sourceDirName": ".",
+  "slug": "/installation",
+  "permalink": "/dotnet/docs/1.13/installation",
+  "version": "1.13",
+  "frontMatter": {
+    "id": "installation",
+    "title": "Installation"
+  },
+  "sidebar": "version-1.13/docs",
+  "previous": {
+    "title": "Inspector",
+    "permalink": "/dotnet/docs/1.13/inspector"
+  },
+  "next": {
+    "title": "Multi-page scenarios",
+    "permalink": "/dotnet/docs/1.13/multi-pages"
+  }
+}

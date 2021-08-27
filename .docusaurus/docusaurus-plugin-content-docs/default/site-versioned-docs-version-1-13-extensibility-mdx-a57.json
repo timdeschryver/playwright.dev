@@ -1,0 +1,25 @@
+{
+  "unversionedId": "extensibility",
+  "id": "version-1.13/extensibility",
+  "isDocsHomePage": false,
+  "title": "Extensibility",
+  "description": "- Custom selector engines",
+  "source": "@site/versioned_docs/version-1.13/extensibility.mdx",
+  "sourceDirName": ".",
+  "slug": "/extensibility",
+  "permalink": "/dotnet/docs/1.13/extensibility",
+  "version": "1.13",
+  "frontMatter": {
+    "id": "extensibility",
+    "title": "Extensibility"
+  },
+  "sidebar": "version-1.13/docs",
+  "previous": {
+    "title": "Events",
+    "permalink": "/dotnet/docs/1.13/events"
+  },
+  "next": {
+    "title": "Handles",
+    "permalink": "/dotnet/docs/1.13/handles"
+  }
+}

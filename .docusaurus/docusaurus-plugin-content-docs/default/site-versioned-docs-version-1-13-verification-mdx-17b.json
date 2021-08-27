@@ -1,0 +1,25 @@
+{
+  "unversionedId": "verification",
+  "id": "version-1.13/verification",
+  "isDocsHomePage": false,
+  "title": "Verification",
+  "description": "- Console logs",
+  "source": "@site/versioned_docs/version-1.13/verification.mdx",
+  "sourceDirName": ".",
+  "slug": "/verification",
+  "permalink": "/dotnet/docs/1.13/verification",
+  "version": "1.13",
+  "frontMatter": {
+    "id": "verification",
+    "title": "Verification"
+  },
+  "sidebar": "version-1.13/docs",
+  "previous": {
+    "title": "Trace Viewer",
+    "permalink": "/dotnet/docs/1.13/trace-viewer"
+  },
+  "next": {
+    "title": "Videos",
+    "permalink": "/dotnet/docs/1.13/videos"
+  }
+}

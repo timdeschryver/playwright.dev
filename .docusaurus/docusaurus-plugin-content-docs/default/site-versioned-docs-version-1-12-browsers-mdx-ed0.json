@@ -1,0 +1,25 @@
+{
+  "unversionedId": "browsers",
+  "id": "version-1.12/browsers",
+  "isDocsHomePage": false,
+  "title": "Browsers",
+  "description": "Each version of Playwright needs specific versions of browser binaries to operate. By default Playwright downloads Chromium, WebKit and Firefox browser versions that it supports. With every release, Playwright updates the versions of the browsers it supports, so that the latest Playwright would support the latest browsers at any moment.",
+  "source": "@site/versioned_docs/version-1.12/browsers.mdx",
+  "sourceDirName": ".",
+  "slug": "/browsers",
+  "permalink": "/dotnet/docs/1.12/browsers",
+  "version": "1.12",
+  "frontMatter": {
+    "id": "browsers",
+    "title": "Browsers"
+  },
+  "sidebar": "version-1.12/docs",
+  "previous": {
+    "title": "Authentication",
+    "permalink": "/dotnet/docs/1.12/auth"
+  },
+  "next": {
+    "title": "Dialogs",
+    "permalink": "/dotnet/docs/1.12/dialogs"
+  }
+}

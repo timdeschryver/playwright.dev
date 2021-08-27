@@ -1,0 +1,25 @@
+{
+  "unversionedId": "handles",
+  "id": "version-1.13/handles",
+  "isDocsHomePage": false,
+  "title": "Handles",
+  "description": "Playwright can create handles to the page DOM elements or any other objects inside the page. These handles live in the Playwright process, whereas the actual objects live in the browser. There are two types of handles:",
+  "source": "@site/versioned_docs/version-1.13/handles.mdx",
+  "sourceDirName": ".",
+  "slug": "/handles",
+  "permalink": "/dotnet/docs/1.13/handles",
+  "version": "1.13",
+  "frontMatter": {
+    "id": "handles",
+    "title": "Handles"
+  },
+  "sidebar": "version-1.13/docs",
+  "previous": {
+    "title": "Extensibility",
+    "permalink": "/dotnet/docs/1.13/extensibility"
+  },
+  "next": {
+    "title": "Input",
+    "permalink": "/dotnet/docs/1.13/input"
+  }
+}

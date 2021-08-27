@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-suite",
+  "id": "version-1.13/api/class-suite",
+  "isDocsHomePage": false,
+  "title": "Suite",
+  "description": "Suite is a group of tests. All tests in Playwright Test form the following hierarchy:",
+  "source": "@site/versioned_docs/version-1.13/api/class-suite.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-suite",
+  "permalink": "/docs/1.13/api/class-suite",
+  "version": "1.13",
+  "frontMatter": {
+    "id": "class-suite",
+    "title": "Suite"
+  },
+  "sidebar": "version-1.13/api",
+  "previous": {
+    "title": "Reporter",
+    "permalink": "/docs/1.13/api/class-reporter"
+  },
+  "next": {
+    "title": "TestCase",
+    "permalink": "/docs/1.13/api/class-testcase"
+  }
+}

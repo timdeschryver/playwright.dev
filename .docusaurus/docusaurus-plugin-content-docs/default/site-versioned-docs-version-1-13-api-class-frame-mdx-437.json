@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-frame",
+  "id": "version-1.13/api/class-frame",
+  "isDocsHomePage": false,
+  "title": "Frame",
+  "description": "At every point of time, page exposes its current frame tree via the Page.MainFrame and Frame.ChildFrames methods.",
+  "source": "@site/versioned_docs/version-1.13/api/class-frame.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-frame",
+  "permalink": "/dotnet/docs/1.13/api/class-frame",
+  "version": "1.13",
+  "frontMatter": {
+    "id": "class-frame",
+    "title": "Frame"
+  },
+  "sidebar": "version-1.13/api",
+  "previous": {
+    "title": "FileChooser",
+    "permalink": "/dotnet/docs/1.13/api/class-filechooser"
+  },
+  "next": {
+    "title": "JSHandle",
+    "permalink": "/dotnet/docs/1.13/api/class-jshandle"
+  }
+}

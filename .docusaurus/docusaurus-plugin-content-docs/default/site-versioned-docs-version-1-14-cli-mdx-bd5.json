@@ -1,0 +1,25 @@
+{
+  "unversionedId": "cli",
+  "id": "version-1.14/cli",
+  "isDocsHomePage": false,
+  "title": "Command line tools",
+  "description": "Playwright comes with the command line tools.",
+  "source": "@site/versioned_docs/version-1.14/cli.mdx",
+  "sourceDirName": ".",
+  "slug": "/cli",
+  "permalink": "/dotnet/docs/cli",
+  "version": "1.14",
+  "frontMatter": {
+    "id": "cli",
+    "title": "Command line tools"
+  },
+  "sidebar": "version-1.14/docs",
+  "previous": {
+    "title": "Debugging tools",
+    "permalink": "/dotnet/docs/debug"
+  },
+  "next": {
+    "title": "Supported languages",
+    "permalink": "/dotnet/docs/languages"
+  }
+}

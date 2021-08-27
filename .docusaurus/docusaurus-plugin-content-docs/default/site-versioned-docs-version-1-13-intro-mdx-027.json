@@ -1,0 +1,25 @@
+{
+  "unversionedId": "intro",
+  "id": "version-1.13/intro",
+  "isDocsHomePage": false,
+  "title": "Getting Started",
+  "description": "- Installation",
+  "source": "@site/versioned_docs/version-1.13/intro.mdx",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/dotnet/docs/1.13/intro",
+  "version": "1.13",
+  "frontMatter": {
+    "id": "intro",
+    "title": "Getting Started"
+  },
+  "sidebar": "version-1.13/docs",
+  "previous": {
+    "title": "Why Playwright?",
+    "permalink": "/dotnet/docs/1.13/why-playwright"
+  },
+  "next": {
+    "title": "Core concepts",
+    "permalink": "/dotnet/docs/1.13/core-concepts"
+  }
+}

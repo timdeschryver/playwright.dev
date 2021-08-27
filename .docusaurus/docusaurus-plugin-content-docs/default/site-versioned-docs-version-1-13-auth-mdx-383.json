@@ -1,0 +1,25 @@
+{
+  "unversionedId": "auth",
+  "id": "version-1.13/auth",
+  "isDocsHomePage": false,
+  "title": "Authentication",
+  "description": "Playwright can be used to automate scenarios that require authentication.",
+  "source": "@site/versioned_docs/version-1.13/auth.mdx",
+  "sourceDirName": ".",
+  "slug": "/auth",
+  "permalink": "/dotnet/docs/1.13/auth",
+  "version": "1.13",
+  "frontMatter": {
+    "id": "auth",
+    "title": "Authentication"
+  },
+  "sidebar": "version-1.13/docs",
+  "previous": {
+    "title": "Assertions",
+    "permalink": "/dotnet/docs/1.13/assertions"
+  },
+  "next": {
+    "title": "Browsers",
+    "permalink": "/dotnet/docs/1.13/browsers"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "unversionedId": "languages",
+  "id": "version-1.12/languages",
+  "isDocsHomePage": false,
+  "title": "Supported languages",
+  "description": "The Playwright API is available in multiple languages.",
+  "source": "@site/versioned_docs/version-1.12/languages.mdx",
+  "sourceDirName": ".",
+  "slug": "/languages",
+  "permalink": "/dotnet/docs/1.12/languages",
+  "version": "1.12",
+  "frontMatter": {
+    "id": "languages",
+    "title": "Supported languages"
+  },
+  "sidebar": "version-1.12/docs",
+  "previous": {
+    "title": "Debugging tools",
+    "permalink": "/dotnet/docs/1.12/debug"
+  },
+  "next": {
+    "title": "Release notes",
+    "permalink": "/dotnet/docs/1.12/release-notes"
+  }
+}
