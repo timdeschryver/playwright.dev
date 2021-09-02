@@ -1,0 +1,16 @@
+{
+  "unversionedId": "api/class-headers",
+  "id": "api/class-headers",
+  "isDocsHomePage": false,
+  "title": "Headers",
+  "description": "HTTP request and response raw headers collection.",
+  "source": "@site/docs/api/class-headers.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-headers",
+  "permalink": "/dotnet/docs/next/api/class-headers",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-headers",
+    "title": "Headers"
+  }
+}
