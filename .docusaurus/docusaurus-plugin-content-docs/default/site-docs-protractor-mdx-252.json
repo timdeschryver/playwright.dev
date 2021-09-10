@@ -1,0 +1,25 @@
+{
+  "unversionedId": "protractor-js",
+  "id": "protractor-js",
+  "isDocsHomePage": false,
+  "title": "Migrating from Protractor",
+  "description": "- Migration Principes",
+  "source": "@site/docs/protractor.mdx",
+  "sourceDirName": ".",
+  "slug": "/protractor-js",
+  "permalink": "/docs/next/protractor-js",
+  "version": "current",
+  "frontMatter": {
+    "id": "protractor-js",
+    "title": "Migrating from Protractor"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Videos",
+    "permalink": "/docs/next/videos"
+  },
+  "next": {
+    "title": "Playwright Library",
+    "permalink": "/docs/next/library"
+  }
+}
