@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-fetchresponse",
+  "id": "api/class-fetchresponse",
+  "isDocsHomePage": false,
+  "title": "FetchResponse",
+  "description": "FetchResponse] class represents responses received from [BrowserContext.FetchAsync(urlOrRequest, options) and Page.FetchAsync(urlOrRequest, options) methods.",
+  "source": "@site/docs/api/class-fetchresponse.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-fetchresponse",
+  "permalink": "/dotnet/docs/next/api/class-fetchresponse",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-fetchresponse",
+    "title": "FetchResponse"
+  },
+  "sidebar": "api",
+  "previous": {
+    "title": "ElementHandle",
+    "permalink": "/dotnet/docs/next/api/class-elementhandle"
+  },
+  "next": {
+    "title": "FileChooser",
+    "permalink": "/dotnet/docs/next/api/class-filechooser"
+  }
+}
