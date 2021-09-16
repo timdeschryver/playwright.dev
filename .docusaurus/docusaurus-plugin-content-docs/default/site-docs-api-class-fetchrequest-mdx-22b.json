@@ -1,0 +1,16 @@
+{
+  "unversionedId": "api/class-fetchrequest",
+  "id": "api/class-fetchrequest",
+  "isDocsHomePage": false,
+  "title": "FetchRequest",
+  "description": "This API is used for Web API testing. You can use it to trigger API endpoints, configure micro-services, prepare environment or the service to your e2e test. When used on [Page] or a [BrowserContext], this API will automatically use the cookies from the corresponding [BrowserContext]. This means that if you log in using this API, your e2e test will be logged in and vice versa.",
+  "source": "@site/docs/api/class-fetchrequest.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-fetchrequest",
+  "permalink": "/docs/next/api/class-fetchrequest",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-fetchrequest",
+    "title": "FetchRequest"
+  }
+}
