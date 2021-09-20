@@ -1,0 +1,25 @@
+{
+  "unversionedId": "test-annotations",
+  "id": "version-1.15/test-annotations",
+  "isDocsHomePage": false,
+  "title": "Annotations",
+  "description": "- Annotations",
+  "source": "@site/versioned_docs/version-1.15/test-annotations.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-annotations",
+  "permalink": "/docs/test-annotations",
+  "version": "1.15",
+  "frontMatter": {
+    "id": "test-annotations",
+    "title": "Annotations"
+  },
+  "sidebar": "version-1.15/docs",
+  "previous": {
+    "title": "Release notes",
+    "permalink": "/docs/release-notes"
+  },
+  "next": {
+    "title": "Assertions",
+    "permalink": "/docs/test-assertions"
+  }
+}

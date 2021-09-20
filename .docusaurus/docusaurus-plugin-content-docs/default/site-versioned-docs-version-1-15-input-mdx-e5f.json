@@ -1,0 +1,25 @@
+{
+  "unversionedId": "input",
+  "id": "version-1.15/input",
+  "isDocsHomePage": false,
+  "title": "Input",
+  "description": "- Text input",
+  "source": "@site/versioned_docs/version-1.15/input.mdx",
+  "sourceDirName": ".",
+  "slug": "/input",
+  "permalink": "/dotnet/docs/input",
+  "version": "1.15",
+  "frontMatter": {
+    "id": "input",
+    "title": "Input"
+  },
+  "sidebar": "version-1.15/docs",
+  "previous": {
+    "title": "Handles",
+    "permalink": "/dotnet/docs/handles"
+  },
+  "next": {
+    "title": "Inspector",
+    "permalink": "/dotnet/docs/inspector"
+  }
+}

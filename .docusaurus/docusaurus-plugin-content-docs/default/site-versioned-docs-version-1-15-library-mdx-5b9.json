@@ -1,0 +1,25 @@
+{
+  "unversionedId": "library",
+  "id": "version-1.15/library",
+  "isDocsHomePage": false,
+  "title": "Playwright Library",
+  "description": "Playwright can either be used as a part of the Playwright Test, or as a Playwright Library (this guide). If you are working on an application that utilizes Playwright capabilities or you are using Playwright with another test runner, read on.",
+  "source": "@site/versioned_docs/version-1.15/library.mdx",
+  "sourceDirName": ".",
+  "slug": "/library",
+  "permalink": "/docs/library",
+  "version": "1.15",
+  "frontMatter": {
+    "id": "library",
+    "title": "Playwright Library"
+  },
+  "sidebar": "version-1.15/docs",
+  "previous": {
+    "title": "Migrating from Protractor",
+    "permalink": "/docs/protractor"
+  },
+  "next": {
+    "title": "Docker",
+    "permalink": "/docs/docker"
+  }
+}

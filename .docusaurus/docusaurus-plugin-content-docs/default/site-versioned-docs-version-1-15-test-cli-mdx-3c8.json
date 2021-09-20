@@ -1,0 +1,25 @@
+{
+  "unversionedId": "test-cli",
+  "id": "version-1.15/test-cli",
+  "isDocsHomePage": false,
+  "title": "Command line",
+  "description": "- Examples",
+  "source": "@site/versioned_docs/version-1.15/test-cli.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-cli",
+  "permalink": "/docs/test-cli",
+  "version": "1.15",
+  "frontMatter": {
+    "id": "test-cli",
+    "title": "Command line"
+  },
+  "sidebar": "version-1.15/docs",
+  "previous": {
+    "title": "Assertions",
+    "permalink": "/docs/test-assertions"
+  },
+  "next": {
+    "title": "Configuration",
+    "permalink": "/docs/test-configuration"
+  }
+}

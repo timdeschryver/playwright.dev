@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-fetchresponse",
+  "id": "version-1.15/api/class-fetchresponse",
+  "isDocsHomePage": false,
+  "title": "FetchResponse",
+  "description": "FetchResponse] class represents responses received from [fetchRequest.fetch(urlOrRequest[, options]).",
+  "source": "@site/versioned_docs/version-1.15/api/class-fetchresponse.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-fetchresponse",
+  "permalink": "/docs/api/class-fetchresponse",
+  "version": "1.15",
+  "frontMatter": {
+    "id": "class-fetchresponse",
+    "title": "FetchResponse"
+  },
+  "sidebar": "version-1.15/api",
+  "previous": {
+    "title": "ElementHandle",
+    "permalink": "/docs/api/class-elementhandle"
+  },
+  "next": {
+    "title": "FileChooser",
+    "permalink": "/docs/api/class-filechooser"
+  }
+}
