@@ -1,0 +1,25 @@
+{
+  "unversionedId": "codegen",
+  "id": "codegen",
+  "isDocsHomePage": false,
+  "title": "Test Generator",
+  "description": "Playwright comes with the ability to generate tests out of the box.",
+  "source": "@site/docs/codegen.mdx",
+  "sourceDirName": ".",
+  "slug": "/codegen",
+  "permalink": "/dotnet/docs/next/codegen",
+  "version": "current",
+  "frontMatter": {
+    "id": "codegen",
+    "title": "Test Generator"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Trace Viewer",
+    "permalink": "/dotnet/docs/next/trace-viewer"
+  },
+  "next": {
+    "title": "Debugging tools",
+    "permalink": "/dotnet/docs/next/debug"
+  }
+}
