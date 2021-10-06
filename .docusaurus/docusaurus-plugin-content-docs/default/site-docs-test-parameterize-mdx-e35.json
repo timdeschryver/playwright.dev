@@ -1,0 +1,25 @@
+{
+  "unversionedId": "test-parameterize",
+  "id": "test-parameterize",
+  "isDocsHomePage": false,
+  "title": "Parameterize tests",
+  "description": "You can either parameterize tests on a test level or on a project level.",
+  "source": "@site/docs/test-parameterize.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-parameterize",
+  "permalink": "/docs/next/test-parameterize",
+  "version": "current",
+  "frontMatter": {
+    "id": "test-parameterize",
+    "title": "Parameterize tests"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Test retry",
+    "permalink": "/docs/next/test-retries"
+  },
+  "next": {
+    "title": "Visual comparisons",
+    "permalink": "/docs/next/test-snapshots"
+  }
+}

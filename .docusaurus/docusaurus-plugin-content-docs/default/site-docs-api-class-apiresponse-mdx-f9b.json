@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-apiresponse",
+  "id": "api/class-apiresponse",
+  "isDocsHomePage": false,
+  "title": "ApiResponse",
+  "description": "ApiResponse] class represents responses received from [apiRequestContext.fetch(urlOrRequest[, options]).",
+  "source": "@site/docs/api/class-apiresponse.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-apiresponse",
+  "permalink": "/docs/next/api/class-apiresponse",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-apiresponse",
+    "title": "ApiResponse"
+  },
+  "sidebar": "api",
+  "previous": {
+    "title": "ApiRequestContext",
+    "permalink": "/docs/next/api/class-apirequestcontext"
+  },
+  "next": {
+    "title": "Browser",
+    "permalink": "/docs/next/api/class-browser"
+  }
+}
