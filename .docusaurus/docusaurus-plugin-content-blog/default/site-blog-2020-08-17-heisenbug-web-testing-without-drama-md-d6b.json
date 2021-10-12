@@ -1,0 +1,25 @@
+{
+  "permalink": "/dotnet/blog/heisenbug-web-testing-without-drama",
+  "editUrl": "https://github.com/microsoft/playwright.dev/edit/master/blog/2020-08-17-heisenbug-web-testing-without-drama.md",
+  "source": "@site/blog/2020-08-17-heisenbug-web-testing-without-drama.md",
+  "title": "Heisenbug 2020: Web testing without drama",
+  "description": "",
+  "date": "2020-08-17T00:00:00.000Z",
+  "formattedDate": "August 17, 2020",
+  "tags": [
+    {
+      "label": "conference",
+      "permalink": "/dotnet/blog/tags/conference"
+    },
+    {
+      "label": "russian",
+      "permalink": "/dotnet/blog/tags/russian"
+    }
+  ],
+  "readingTime": 0.075,
+  "truncated": false,
+  "prevItem": {
+    "title": "A New Test Automation Framework for the Modern Web",
+    "permalink": "/dotnet/blog/a-new-test-automation-framework"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "permalink": "/dotnet/blog/whats-new-in-playwright-1-15",
+  "editUrl": "https://github.com/microsoft/playwright.dev/edit/master/blog/2021-10-04-whats-new-in-playwright-1-15.md",
+  "source": "@site/blog/2021-10-04-whats-new-in-playwright-1-15.md",
+  "title": "What's new in Playwright v1.15",
+  "description": "",
+  "date": "2021-10-04T00:00:00.000Z",
+  "formattedDate": "October 4, 2021",
+  "tags": [
+    {
+      "label": "release",
+      "permalink": "/dotnet/blog/tags/release"
+    }
+  ],
+  "readingTime": 0.075,
+  "truncated": false,
+  "prevItem": {
+    "title": "Four Futuristic Features",
+    "permalink": "/dotnet/blog/applitools-four-futuristic-features"
+  },
+  "nextItem": {
+    "title": "What's new in Playwright v1.14",
+    "permalink": "/dotnet/blog/whats-new-in-playwright-1-14"
+  }
+}

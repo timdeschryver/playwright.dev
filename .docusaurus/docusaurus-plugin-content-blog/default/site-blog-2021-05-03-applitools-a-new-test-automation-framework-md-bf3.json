@@ -1,0 +1,25 @@
+{
+  "permalink": "/dotnet/blog/a-new-test-automation-framework",
+  "editUrl": "https://github.com/microsoft/playwright.dev/edit/master/blog/2021-05-03-applitools-a-new-test-automation-framework.md",
+  "source": "@site/blog/2021-05-03-applitools-a-new-test-automation-framework.md",
+  "title": "A New Test Automation Framework for the Modern Web",
+  "description": "",
+  "date": "2021-05-03T00:00:00.000Z",
+  "formattedDate": "May 3, 2021",
+  "tags": [
+    {
+      "label": "conference",
+      "permalink": "/dotnet/blog/tags/conference"
+    }
+  ],
+  "readingTime": 0.075,
+  "truncated": false,
+  "prevItem": {
+    "title": "The multi-year quest for the best web test in the west",
+    "permalink": "/dotnet/blog/the-multi-year-quest-for-the-best-web-test-in-the-west"
+  },
+  "nextItem": {
+    "title": "Heisenbug 2020: Web testing without drama",
+    "permalink": "/dotnet/blog/heisenbug-web-testing-without-drama"
+  }
+}

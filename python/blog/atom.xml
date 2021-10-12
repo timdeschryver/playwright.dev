@@ -2,16 +2,46 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://playwright.dev/python/blog</id>
     <title>Playwright Python Blog</title>
-    <updated>2019-05-29T00:00:00.000Z</updated>
+    <updated>2021-10-06T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://playwright.dev/python/blog"/>
     <subtitle>Playwright Python Blog</subtitle>
     <icon>https://playwright.dev/python/img/playwright-logo.svg</icon>
     <entry>
-        <title type="html"><![CDATA[Playwright 1.6]]></title>
-        <id>hello-world</id>
-        <link href="https://playwright.dev/python/blog/hello-world"/>
-        <updated>2019-05-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Playwright 1.6 is available today, with improvements to network capabilities: inspect WebSocket connections, export network activity as HAR and access resource timing for network responses. This release also adds a new API for touchscreen taps. Like other input methods, touchscreen taps auto-wait for the underlying element to be ready, to improve the reliability of automation.]]></summary>
+        <title type="html"><![CDATA[Four Futuristic Features]]></title>
+        <id>applitools-four-futuristic-features</id>
+        <link href="https://playwright.dev/python/blog/applitools-four-futuristic-features"/>
+        <updated>2021-10-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[See here for the slides.]]></summary>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[What's new in Playwright v1.15]]></title>
+        <id>whats-new-in-playwright-1-15</id>
+        <link href="https://playwright.dev/python/blog/whats-new-in-playwright-1-15"/>
+        <updated>2021-10-04T00:00:00.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[What's new in Playwright v1.14]]></title>
+        <id>whats-new-in-playwright-1-14</id>
+        <link href="https://playwright.dev/python/blog/whats-new-in-playwright-1-14"/>
+        <updated>2021-08-24T00:00:00.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[The multi-year quest for the best web test in the west]]></title>
+        <id>the-multi-year-quest-for-the-best-web-test-in-the-west</id>
+        <link href="https://playwright.dev/python/blog/the-multi-year-quest-for-the-best-web-test-in-the-west"/>
+        <updated>2021-08-12T00:00:00.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[A New Test Automation Framework for the Modern Web]]></title>
+        <id>a-new-test-automation-framework</id>
+        <link href="https://playwright.dev/python/blog/a-new-test-automation-framework"/>
+        <updated>2021-05-03T00:00:00.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Heisenbug 2020: Web testing without drama]]></title>
+        <id>heisenbug-web-testing-without-drama</id>
+        <link href="https://playwright.dev/python/blog/heisenbug-web-testing-without-drama"/>
+        <updated>2020-08-17T00:00:00.000Z</updated>
     </entry>
 </feed>

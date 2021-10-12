@@ -4,15 +4,45 @@
         <title>Playwright .NET Blog</title>
         <link>https://playwright.dev/dotnet/blog</link>
         <description>Playwright .NET Blog</description>
-        <lastBuildDate>Wed, 29 May 2019 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 06 Oct 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
-            <title><![CDATA[Playwright 1.6]]></title>
-            <link>https://playwright.dev/dotnet/blog/hello-world</link>
-            <guid>hello-world</guid>
-            <pubDate>Wed, 29 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[Playwright 1.6 is available today, with improvements to network capabilities: inspect WebSocket connections, export network activity as HAR and access resource timing for network responses. This release also adds a new API for touchscreen taps. Like other input methods, touchscreen taps auto-wait for the underlying element to be ready, to improve the reliability of automation.]]></description>
+            <title><![CDATA[Four Futuristic Features]]></title>
+            <link>https://playwright.dev/dotnet/blog/applitools-four-futuristic-features</link>
+            <guid>applitools-four-futuristic-features</guid>
+            <pubDate>Wed, 06 Oct 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[See here for the slides.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[What's new in Playwright v1.15]]></title>
+            <link>https://playwright.dev/dotnet/blog/whats-new-in-playwright-1-15</link>
+            <guid>whats-new-in-playwright-1-15</guid>
+            <pubDate>Mon, 04 Oct 2021 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[What's new in Playwright v1.14]]></title>
+            <link>https://playwright.dev/dotnet/blog/whats-new-in-playwright-1-14</link>
+            <guid>whats-new-in-playwright-1-14</guid>
+            <pubDate>Tue, 24 Aug 2021 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[The multi-year quest for the best web test in the west]]></title>
+            <link>https://playwright.dev/dotnet/blog/the-multi-year-quest-for-the-best-web-test-in-the-west</link>
+            <guid>the-multi-year-quest-for-the-best-web-test-in-the-west</guid>
+            <pubDate>Thu, 12 Aug 2021 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[A New Test Automation Framework for the Modern Web]]></title>
+            <link>https://playwright.dev/dotnet/blog/a-new-test-automation-framework</link>
+            <guid>a-new-test-automation-framework</guid>
+            <pubDate>Mon, 03 May 2021 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Heisenbug 2020: Web testing without drama]]></title>
+            <link>https://playwright.dev/dotnet/blog/heisenbug-web-testing-without-drama</link>
+            <guid>heisenbug-web-testing-without-drama</guid>
+            <pubDate>Mon, 17 Aug 2020 00:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>

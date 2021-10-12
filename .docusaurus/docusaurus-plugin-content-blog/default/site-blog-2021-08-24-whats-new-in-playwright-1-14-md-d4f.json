@@ -1,0 +1,25 @@
+{
+  "permalink": "/dotnet/blog/whats-new-in-playwright-1-14",
+  "editUrl": "https://github.com/microsoft/playwright.dev/edit/master/blog/2021-08-24-whats-new-in-playwright-1-14.md",
+  "source": "@site/blog/2021-08-24-whats-new-in-playwright-1-14.md",
+  "title": "What's new in Playwright v1.14",
+  "description": "",
+  "date": "2021-08-24T00:00:00.000Z",
+  "formattedDate": "August 24, 2021",
+  "tags": [
+    {
+      "label": "release",
+      "permalink": "/dotnet/blog/tags/release"
+    }
+  ],
+  "readingTime": 0.075,
+  "truncated": false,
+  "prevItem": {
+    "title": "What's new in Playwright v1.15",
+    "permalink": "/dotnet/blog/whats-new-in-playwright-1-15"
+  },
+  "nextItem": {
+    "title": "The multi-year quest for the best web test in the west",
+    "permalink": "/dotnet/blog/the-multi-year-quest-for-the-best-web-test-in-the-west"
+  }
+}
