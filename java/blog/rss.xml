@@ -4,9 +4,15 @@
         <title>Playwright Java Blog</title>
         <link>https://playwright.dev/java/blog</link>
         <description>Playwright Java Blog</description>
-        <lastBuildDate>Wed, 06 Oct 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 19 Oct 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[Heisenbug 2021: Introducing Playwright test runner]]></title>
+            <link>https://playwright.dev/java/blog/heisenbug-introducing-playwright-test-runner</link>
+            <guid>heisenbug-introducing-playwright-test-runner</guid>
+            <pubDate>Tue, 19 Oct 2021 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Four Futuristic Features]]></title>
             <link>https://playwright.dev/java/blog/applitools-four-futuristic-features</link>
