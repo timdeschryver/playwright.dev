@@ -1,0 +1,16 @@
+{
+  "unversionedId": "selenium-grid",
+  "id": "selenium-grid",
+  "isDocsHomePage": false,
+  "title": "Selenium Grid",
+  "description": "Playwright can connect to Selenium Grid Hub to launch Chrome browser, instead of running browser on the local machine. To enable this mode, set SELENIUMREMOTEURL environment variable pointing to your Selenium Grid Hub.",
+  "source": "@site/docs/selenium-grid.mdx",
+  "sourceDirName": ".",
+  "slug": "/selenium-grid",
+  "permalink": "/dotnet/docs/next/selenium-grid",
+  "version": "current",
+  "frontMatter": {
+    "id": "selenium-grid",
+    "title": "Selenium Grid"
+  }
+}
