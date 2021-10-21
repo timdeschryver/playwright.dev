@@ -1,0 +1,25 @@
+{
+  "unversionedId": "verification",
+  "id": "version-1.16/verification",
+  "isDocsHomePage": false,
+  "title": "Verification",
+  "description": "- Console logs",
+  "source": "@site/versioned_docs/version-1.16/verification.mdx",
+  "sourceDirName": ".",
+  "slug": "/verification",
+  "permalink": "/dotnet/docs/verification",
+  "version": "1.16",
+  "frontMatter": {
+    "id": "verification",
+    "title": "Verification"
+  },
+  "sidebar": "version-1.16/docs",
+  "previous": {
+    "title": "Screenshots",
+    "permalink": "/dotnet/docs/screenshots"
+  },
+  "next": {
+    "title": "Videos",
+    "permalink": "/dotnet/docs/videos"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-apirequest",
+  "id": "version-1.16/api/class-apirequest",
+  "isDocsHomePage": false,
+  "title": "APIRequest",
+  "description": "Exposes API that can be used for the Web API testing.",
+  "source": "@site/versioned_docs/version-1.16/api/class-apirequest.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-apirequest",
+  "permalink": "/docs/api/class-apirequest",
+  "version": "1.16",
+  "frontMatter": {
+    "id": "class-apirequest",
+    "title": "APIRequest"
+  },
+  "sidebar": "version-1.16/api",
+  "previous": {
+    "title": "Playwright Library",
+    "permalink": "/docs/api/class-playwright"
+  },
+  "next": {
+    "title": "APIRequestContext",
+    "permalink": "/docs/api/class-apirequestcontext"
+  }
+}

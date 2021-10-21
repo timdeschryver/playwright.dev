@@ -1,0 +1,21 @@
+{
+  "unversionedId": "intro",
+  "id": "version-1.16/intro",
+  "isDocsHomePage": false,
+  "title": "Getting started",
+  "description": "- Installation",
+  "source": "@site/versioned_docs/version-1.16/intro.mdx",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/dotnet/docs/intro",
+  "version": "1.16",
+  "frontMatter": {
+    "id": "intro",
+    "title": "Getting started"
+  },
+  "sidebar": "version-1.16/docs",
+  "next": {
+    "title": "Inspector",
+    "permalink": "/dotnet/docs/inspector"
+  }
+}
