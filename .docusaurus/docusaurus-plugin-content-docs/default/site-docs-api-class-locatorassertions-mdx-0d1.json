@@ -1,0 +1,16 @@
+{
+  "unversionedId": "api/class-locatorassertions",
+  "id": "api/class-locatorassertions",
+  "isDocsHomePage": false,
+  "title": "LocatorAssertions",
+  "description": "The LocatorAssertions] class provides assertion methods that can be used to make assertions about the [Locator] state in the tests. A new instance of [LocatorAssertions] is created by calling [PlaywrightAssertions.assertThatLocator(locator).",
+  "source": "@site/docs/api/class-locatorassertions.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-locatorassertions",
+  "permalink": "/java/docs/next/api/class-locatorassertions",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-locatorassertions",
+    "title": "LocatorAssertions"
+  }
+}
