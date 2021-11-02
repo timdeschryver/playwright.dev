@@ -1,0 +1,21 @@
+{
+  "permalink": "/dotnet/blog/whats-new-in-playwright-1-16",
+  "editUrl": "https://github.com/microsoft/playwright.dev/edit/master/blog/2021-10-27-whats-new-in-playwright-1-16.md",
+  "source": "@site/blog/2021-10-27-whats-new-in-playwright-1-16.md",
+  "title": "What's new in Playwright v1.16",
+  "description": "",
+  "date": "2021-10-27T00:00:00.000Z",
+  "formattedDate": "October 27, 2021",
+  "tags": [
+    {
+      "label": "release",
+      "permalink": "/dotnet/blog/tags/release"
+    }
+  ],
+  "readingTime": 0.075,
+  "truncated": false,
+  "nextItem": {
+    "title": "Heisenbug 2021: Introducing Playwright test runner",
+    "permalink": "/dotnet/blog/heisenbug-introducing-playwright-test-runner"
+  }
+}

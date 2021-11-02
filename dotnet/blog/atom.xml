@@ -2,11 +2,17 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://playwright.dev/dotnet/blog</id>
     <title>Playwright .NET Blog</title>
-    <updated>2021-10-19T00:00:00.000Z</updated>
+    <updated>2021-10-27T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://playwright.dev/dotnet/blog"/>
     <subtitle>Playwright .NET Blog</subtitle>
     <icon>https://playwright.dev/dotnet/img/playwright-logo.svg</icon>
+    <entry>
+        <title type="html"><![CDATA[What's new in Playwright v1.16]]></title>
+        <id>whats-new-in-playwright-1-16</id>
+        <link href="https://playwright.dev/dotnet/blog/whats-new-in-playwright-1-16"/>
+        <updated>2021-10-27T00:00:00.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Heisenbug 2021: Introducing Playwright test runner]]></title>
         <id>heisenbug-introducing-playwright-test-runner</id>

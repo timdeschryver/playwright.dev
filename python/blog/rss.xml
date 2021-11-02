@@ -4,9 +4,15 @@
         <title>Playwright Python Blog</title>
         <link>https://playwright.dev/python/blog</link>
         <description>Playwright Python Blog</description>
-        <lastBuildDate>Tue, 19 Oct 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 27 Oct 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[What's new in Playwright v1.16]]></title>
+            <link>https://playwright.dev/python/blog/whats-new-in-playwright-1-16</link>
+            <guid>whats-new-in-playwright-1-16</guid>
+            <pubDate>Wed, 27 Oct 2021 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Heisenbug 2021: Introducing Playwright test runner]]></title>
             <link>https://playwright.dev/python/blog/heisenbug-introducing-playwright-test-runner</link>
