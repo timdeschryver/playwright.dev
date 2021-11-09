@@ -1,0 +1,16 @@
+{
+  "unversionedId": "api/class-framelocator",
+  "id": "api/class-framelocator",
+  "isDocsHomePage": false,
+  "title": "FrameLocator",
+  "description": "FrameLocator represents a view to the iframe on the page. It captures the logic sufficient to retrieve the iframe and locate elements in that iframe. FrameLocator can be created with either Page.FrameLocator(selector) or Locator.FrameLocator(selector) method.",
+  "source": "@site/docs/api/class-framelocator.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-framelocator",
+  "permalink": "/dotnet/docs/next/api/class-framelocator",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-framelocator",
+    "title": "FrameLocator"
+  }
+}
