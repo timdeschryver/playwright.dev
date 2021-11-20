@@ -1,0 +1,25 @@
+{
+  "unversionedId": "test-retries",
+  "id": "version-1.17/test-retries",
+  "isDocsHomePage": false,
+  "title": "Test retry",
+  "description": "- Failures",
+  "source": "@site/versioned_docs/version-1.17/test-retries.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-retries",
+  "permalink": "/docs/test-retries",
+  "version": "1.17",
+  "frontMatter": {
+    "id": "test-retries",
+    "title": "Test retry"
+  },
+  "sidebar": "version-1.17/docs",
+  "previous": {
+    "title": "Reporters",
+    "permalink": "/docs/test-reporters"
+  },
+  "next": {
+    "title": "Visual comparisons",
+    "permalink": "/docs/test-snapshots"
+  }
+}

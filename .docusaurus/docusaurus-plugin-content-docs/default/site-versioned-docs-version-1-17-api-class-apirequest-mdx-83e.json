@@ -1,0 +1,16 @@
+{
+  "unversionedId": "api/class-apirequest",
+  "id": "version-1.17/api/class-apirequest",
+  "isDocsHomePage": false,
+  "title": "APIRequest",
+  "description": "Exposes API that can be used for the Web API testing.",
+  "source": "@site/versioned_docs/version-1.17/api/class-apirequest.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-apirequest",
+  "permalink": "/java/docs/api/class-apirequest",
+  "version": "1.17",
+  "frontMatter": {
+    "id": "class-apirequest",
+    "title": "APIRequest"
+  }
+}

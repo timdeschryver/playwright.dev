@@ -1,0 +1,25 @@
+{
+  "unversionedId": "frames",
+  "id": "version-1.17/frames",
+  "isDocsHomePage": false,
+  "title": "Pages and frames",
+  "description": "- Frames",
+  "source": "@site/versioned_docs/version-1.17/frames.mdx",
+  "sourceDirName": ".",
+  "slug": "/frames",
+  "permalink": "/dotnet/docs/frames",
+  "version": "1.17",
+  "frontMatter": {
+    "id": "frames",
+    "title": "Pages and frames"
+  },
+  "sidebar": "version-1.17/docs",
+  "previous": {
+    "title": "Extensibility",
+    "permalink": "/dotnet/docs/extensibility"
+  },
+  "next": {
+    "title": "Handles",
+    "permalink": "/dotnet/docs/handles"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "unversionedId": "languages",
+  "id": "version-1.17/languages",
+  "isDocsHomePage": false,
+  "title": "Supported languages",
+  "description": "The Playwright API is available in multiple languages.",
+  "source": "@site/versioned_docs/version-1.17/languages.mdx",
+  "sourceDirName": ".",
+  "slug": "/languages",
+  "permalink": "/dotnet/docs/languages",
+  "version": "1.17",
+  "frontMatter": {
+    "id": "languages",
+    "title": "Supported languages"
+  },
+  "sidebar": "version-1.17/docs",
+  "previous": {
+    "title": "Continuous Integration",
+    "permalink": "/dotnet/docs/ci"
+  }
+}

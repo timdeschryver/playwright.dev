@@ -1,0 +1,25 @@
+{
+  "unversionedId": "emulation",
+  "id": "version-1.17/emulation",
+  "isDocsHomePage": false,
+  "title": "Emulation",
+  "description": "Playwright allows overriding various parameters of the device where the browser is running:",
+  "source": "@site/versioned_docs/version-1.17/emulation.mdx",
+  "sourceDirName": ".",
+  "slug": "/emulation",
+  "permalink": "/dotnet/docs/emulation",
+  "version": "1.17",
+  "frontMatter": {
+    "id": "emulation",
+    "title": "Emulation"
+  },
+  "sidebar": "version-1.17/docs",
+  "previous": {
+    "title": "Element selectors",
+    "permalink": "/dotnet/docs/selectors"
+  },
+  "next": {
+    "title": "Evaluating JavaScript",
+    "permalink": "/dotnet/docs/evaluating"
+  }
+}
