@@ -1,0 +1,16 @@
+{
+  "unversionedId": "api/class-formdata",
+  "id": "api/class-formdata",
+  "isDocsHomePage": false,
+  "title": "FormData",
+  "description": "The [FormData] is used create form data that is sent via [APIRequestContext].",
+  "source": "@site/docs/api/class-formdata.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-formdata",
+  "permalink": "/java/docs/next/api/class-formdata",
+  "version": "current",
+  "frontMatter": {
+    "id": "class-formdata",
+    "title": "FormData"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "unversionedId": "test-timeouts",
+  "id": "test-timeouts",
+  "isDocsHomePage": false,
+  "title": "Timeouts",
+  "description": "- Overview",
+  "source": "@site/docs/test-timeouts.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-timeouts",
+  "permalink": "/docs/next/test-timeouts",
+  "version": "current",
+  "frontMatter": {
+    "id": "test-timeouts",
+    "title": "Timeouts"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Visual comparisons",
+    "permalink": "/docs/next/test-snapshots"
+  },
+  "next": {
+    "title": "Advanced: configuration",
+    "permalink": "/docs/next/test-advanced"
+  }
+}
