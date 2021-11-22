@@ -1,0 +1,21 @@
+{
+  "permalink": "/dotnet/blog/whats-new-in-playwright-1-17",
+  "editUrl": "https://github.com/microsoft/playwright.dev/edit/master/blog/2021-11-18-whats-new-in-playwright-1-17.md",
+  "source": "@site/blog/2021-11-18-whats-new-in-playwright-1-17.md",
+  "title": "What's new in Playwright v1.17",
+  "description": "",
+  "date": "2021-11-18T00:00:00.000Z",
+  "formattedDate": "November 18, 2021",
+  "tags": [
+    {
+      "label": "release",
+      "permalink": "/dotnet/blog/tags/release"
+    }
+  ],
+  "readingTime": 0.075,
+  "truncated": false,
+  "nextItem": {
+    "title": "What's new in Playwright v1.16",
+    "permalink": "/dotnet/blog/whats-new-in-playwright-1-16"
+  }
+}

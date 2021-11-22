@@ -4,9 +4,15 @@
         <title>Playwright Java Blog</title>
         <link>https://playwright.dev/java/blog</link>
         <description>Playwright Java Blog</description>
-        <lastBuildDate>Wed, 27 Oct 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 18 Nov 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[What's new in Playwright v1.17]]></title>
+            <link>https://playwright.dev/java/blog/whats-new-in-playwright-1-17</link>
+            <guid>whats-new-in-playwright-1-17</guid>
+            <pubDate>Thu, 18 Nov 2021 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[What's new in Playwright v1.16]]></title>
             <link>https://playwright.dev/java/blog/whats-new-in-playwright-1-16</link>
