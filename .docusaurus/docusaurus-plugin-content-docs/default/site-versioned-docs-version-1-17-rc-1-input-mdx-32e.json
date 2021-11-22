@@ -1,0 +1,25 @@
+{
+  "unversionedId": "input",
+  "id": "version-1.17-rc.1/input",
+  "isDocsHomePage": false,
+  "title": "Input",
+  "description": "- Text input",
+  "source": "@site/versioned_docs/version-1.17-rc.1/input.mdx",
+  "sourceDirName": ".",
+  "slug": "/input",
+  "permalink": "/docs/input",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "input",
+    "title": "Input"
+  },
+  "sidebar": "version-1.17-rc.1/docs",
+  "previous": {
+    "title": "Handles",
+    "permalink": "/docs/handles"
+  },
+  "next": {
+    "title": "Navigations",
+    "permalink": "/docs/navigations"
+  }
+}

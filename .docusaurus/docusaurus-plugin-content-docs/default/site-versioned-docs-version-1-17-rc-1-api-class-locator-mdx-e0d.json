@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-locator",
+  "id": "version-1.17-rc.1/api/class-locator",
+  "isDocsHomePage": false,
+  "title": "Locator",
+  "description": "Locator represents a view to the element(s) on the page. It captures the logic sufficient to retrieve the element at any given moment. Locator can be created with the page.locator(selector) method.",
+  "source": "@site/versioned_docs/version-1.17-rc.1/api/class-locator.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-locator",
+  "permalink": "/docs/api/class-locator",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "class-locator",
+    "title": "Locator"
+  },
+  "sidebar": "version-1.17-rc.1/api",
+  "previous": {
+    "title": "Keyboard",
+    "permalink": "/docs/api/class-keyboard"
+  },
+  "next": {
+    "title": "Logger",
+    "permalink": "/docs/api/class-logger"
+  }
+}

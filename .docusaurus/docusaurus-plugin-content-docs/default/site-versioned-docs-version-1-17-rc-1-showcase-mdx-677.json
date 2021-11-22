@@ -1,0 +1,16 @@
+{
+  "unversionedId": "showcase",
+  "id": "version-1.17-rc.1/showcase",
+  "isDocsHomePage": false,
+  "title": "Community Showcase",
+  "description": "Users",
+  "source": "@site/versioned_docs/version-1.17-rc.1/showcase.mdx",
+  "sourceDirName": ".",
+  "slug": "/showcase",
+  "permalink": "/docs/showcase",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "showcase",
+    "title": "Community Showcase"
+  }
+}

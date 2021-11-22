@@ -1,0 +1,21 @@
+{
+  "unversionedId": "languages",
+  "id": "version-1.17-rc.1/languages",
+  "isDocsHomePage": false,
+  "title": "Supported languages",
+  "description": "The Playwright API is available in multiple languages.",
+  "source": "@site/versioned_docs/version-1.17-rc.1/languages.mdx",
+  "sourceDirName": ".",
+  "slug": "/languages",
+  "permalink": "/docs/languages",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "languages",
+    "title": "Supported languages"
+  },
+  "sidebar": "version-1.17-rc.1/docs",
+  "previous": {
+    "title": "Third party runners",
+    "permalink": "/docs/test-runners"
+  }
+}

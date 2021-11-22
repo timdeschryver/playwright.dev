@@ -1,0 +1,25 @@
+{
+  "unversionedId": "test-runners",
+  "id": "version-1.17-rc.1/test-runners",
+  "isDocsHomePage": false,
+  "title": "Third party runners",
+  "description": "With a few lines of code, you can hook up Playwright to your existing JavaScript test runner.",
+  "source": "@site/versioned_docs/version-1.17-rc.1/test-runners.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-runners",
+  "permalink": "/docs/test-runners",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "test-runners",
+    "title": "Third party runners"
+  },
+  "sidebar": "version-1.17-rc.1/docs",
+  "previous": {
+    "title": "Continuous Integration",
+    "permalink": "/docs/ci"
+  },
+  "next": {
+    "title": "Supported languages",
+    "permalink": "/docs/languages"
+  }
+}

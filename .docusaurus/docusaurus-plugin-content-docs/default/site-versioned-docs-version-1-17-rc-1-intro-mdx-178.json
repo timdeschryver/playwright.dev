@@ -1,0 +1,21 @@
+{
+  "unversionedId": "intro",
+  "id": "version-1.17-rc.1/intro",
+  "isDocsHomePage": false,
+  "title": "Getting started",
+  "description": "Playwright can either be used as a part of the Playwright Test test runner (this guide), or as a Playwright Library.",
+  "source": "@site/versioned_docs/version-1.17-rc.1/intro.mdx",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/docs/intro",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "intro",
+    "title": "Getting started"
+  },
+  "sidebar": "version-1.17-rc.1/docs",
+  "next": {
+    "title": "Inspector",
+    "permalink": "/docs/inspector"
+  }
+}

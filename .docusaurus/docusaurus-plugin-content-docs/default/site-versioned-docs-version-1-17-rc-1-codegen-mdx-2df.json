@@ -1,0 +1,25 @@
+{
+  "unversionedId": "codegen",
+  "id": "version-1.17-rc.1/codegen",
+  "isDocsHomePage": false,
+  "title": "Test Generator",
+  "description": "Playwright comes with the ability to generate tests out of the box.",
+  "source": "@site/versioned_docs/version-1.17-rc.1/codegen.mdx",
+  "sourceDirName": ".",
+  "slug": "/codegen",
+  "permalink": "/docs/codegen",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "codegen",
+    "title": "Test Generator"
+  },
+  "sidebar": "version-1.17-rc.1/docs",
+  "previous": {
+    "title": "Trace Viewer",
+    "permalink": "/docs/trace-viewer"
+  },
+  "next": {
+    "title": "Debugging tools",
+    "permalink": "/docs/debug"
+  }
+}

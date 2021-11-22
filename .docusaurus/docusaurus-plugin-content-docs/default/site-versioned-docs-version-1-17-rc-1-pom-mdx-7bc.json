@@ -1,0 +1,25 @@
+{
+  "unversionedId": "pom",
+  "id": "version-1.17-rc.1/pom",
+  "isDocsHomePage": false,
+  "title": "Page Object Models",
+  "description": "Large test suites can be structured to optimize ease of authoring and maintenance. Page object models are one such approach to structure your test suite.",
+  "source": "@site/versioned_docs/version-1.17-rc.1/pom.mdx",
+  "sourceDirName": ".",
+  "slug": "/pom",
+  "permalink": "/docs/pom",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "pom",
+    "title": "Page Object Models"
+  },
+  "sidebar": "version-1.17-rc.1/docs",
+  "previous": {
+    "title": "Pages",
+    "permalink": "/docs/pages"
+  },
+  "next": {
+    "title": "Screenshots",
+    "permalink": "/docs/screenshots"
+  }
+}

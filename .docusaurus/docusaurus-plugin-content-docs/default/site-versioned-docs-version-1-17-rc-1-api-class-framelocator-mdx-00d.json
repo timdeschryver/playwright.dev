@@ -1,0 +1,16 @@
+{
+  "unversionedId": "api/class-framelocator",
+  "id": "version-1.17-rc.1/api/class-framelocator",
+  "isDocsHomePage": false,
+  "title": "FrameLocator",
+  "description": "FrameLocator represents a view to the iframe on the page. It captures the logic sufficient to retrieve the iframe and locate elements in that iframe. FrameLocator can be created with either page.frameLocator(selector) or locator.frameLocator(selector) method.",
+  "source": "@site/versioned_docs/version-1.17-rc.1/api/class-framelocator.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-framelocator",
+  "permalink": "/docs/api/class-framelocator",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "class-framelocator",
+    "title": "FrameLocator"
+  }
+}

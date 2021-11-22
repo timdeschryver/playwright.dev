@@ -1,0 +1,25 @@
+{
+  "unversionedId": "test-reporters",
+  "id": "version-1.17-rc.1/test-reporters",
+  "isDocsHomePage": false,
+  "title": "Reporters",
+  "description": "- Using reporters",
+  "source": "@site/versioned_docs/version-1.17-rc.1/test-reporters.mdx",
+  "sourceDirName": ".",
+  "slug": "/test-reporters",
+  "permalink": "/docs/test-reporters",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "test-reporters",
+    "title": "Reporters"
+  },
+  "sidebar": "version-1.17-rc.1/docs",
+  "previous": {
+    "title": "Parameterize tests",
+    "permalink": "/docs/test-parameterize"
+  },
+  "next": {
+    "title": "Test retry",
+    "permalink": "/docs/test-retries"
+  }
+}

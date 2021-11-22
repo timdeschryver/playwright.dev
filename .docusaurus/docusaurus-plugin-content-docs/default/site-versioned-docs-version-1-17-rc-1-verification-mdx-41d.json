@@ -1,0 +1,25 @@
+{
+  "unversionedId": "verification",
+  "id": "version-1.17-rc.1/verification",
+  "isDocsHomePage": false,
+  "title": "Verification",
+  "description": "- Console logs",
+  "source": "@site/versioned_docs/version-1.17-rc.1/verification.mdx",
+  "sourceDirName": ".",
+  "slug": "/verification",
+  "permalink": "/docs/verification",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "verification",
+    "title": "Verification"
+  },
+  "sidebar": "version-1.17-rc.1/docs",
+  "previous": {
+    "title": "Screenshots",
+    "permalink": "/docs/screenshots"
+  },
+  "next": {
+    "title": "Videos",
+    "permalink": "/docs/videos"
+  }
+}

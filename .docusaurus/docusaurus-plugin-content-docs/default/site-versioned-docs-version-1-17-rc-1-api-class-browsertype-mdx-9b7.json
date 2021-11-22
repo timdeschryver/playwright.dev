@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-browsertype",
+  "id": "version-1.17-rc.1/api/class-browsertype",
+  "isDocsHomePage": false,
+  "title": "BrowserType",
+  "description": "BrowserType provides methods to launch a specific browser instance or connect to an existing one. The following is a typical example of using Playwright to drive automation:",
+  "source": "@site/versioned_docs/version-1.17-rc.1/api/class-browsertype.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-browsertype",
+  "permalink": "/docs/api/class-browsertype",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "class-browsertype",
+    "title": "BrowserType"
+  },
+  "sidebar": "version-1.17-rc.1/api",
+  "previous": {
+    "title": "BrowserServer",
+    "permalink": "/docs/api/class-browserserver"
+  },
+  "next": {
+    "title": "CDPSession",
+    "permalink": "/docs/api/class-cdpsession"
+  }
+}

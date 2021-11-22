@@ -1,0 +1,25 @@
+{
+  "unversionedId": "extensibility",
+  "id": "version-1.17-rc.1/extensibility",
+  "isDocsHomePage": false,
+  "title": "Extensibility",
+  "description": "- Custom selector engines",
+  "source": "@site/versioned_docs/version-1.17-rc.1/extensibility.mdx",
+  "sourceDirName": ".",
+  "slug": "/extensibility",
+  "permalink": "/docs/extensibility",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "extensibility",
+    "title": "Extensibility"
+  },
+  "sidebar": "version-1.17-rc.1/docs",
+  "previous": {
+    "title": "Events",
+    "permalink": "/docs/events"
+  },
+  "next": {
+    "title": "Pages and frames",
+    "permalink": "/docs/frames"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-elementhandle",
+  "id": "version-1.17-rc.1/api/class-elementhandle",
+  "isDocsHomePage": false,
+  "title": "ElementHandle",
+  "description": "* extends: [JSHandle]",
+  "source": "@site/versioned_docs/version-1.17-rc.1/api/class-elementhandle.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-elementhandle",
+  "permalink": "/docs/api/class-elementhandle",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "class-elementhandle",
+    "title": "ElementHandle"
+  },
+  "sidebar": "version-1.17-rc.1/api",
+  "previous": {
+    "title": "Download",
+    "permalink": "/docs/api/class-download"
+  },
+  "next": {
+    "title": "FileChooser",
+    "permalink": "/docs/api/class-filechooser"
+  }
+}

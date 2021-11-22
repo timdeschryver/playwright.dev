@@ -1,0 +1,25 @@
+{
+  "unversionedId": "api/class-browser",
+  "id": "version-1.17-rc.1/api/class-browser",
+  "isDocsHomePage": false,
+  "title": "Browser",
+  "description": "* extends: [EventEmitter]",
+  "source": "@site/versioned_docs/version-1.17-rc.1/api/class-browser.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-browser",
+  "permalink": "/docs/api/class-browser",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "class-browser",
+    "title": "Browser"
+  },
+  "sidebar": "version-1.17-rc.1/api",
+  "previous": {
+    "title": "APIResponse",
+    "permalink": "/docs/api/class-apiresponse"
+  },
+  "next": {
+    "title": "BrowserContext",
+    "permalink": "/docs/api/class-browsercontext"
+  }
+}

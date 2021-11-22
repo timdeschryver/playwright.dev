@@ -1,0 +1,25 @@
+{
+  "unversionedId": "cli",
+  "id": "version-1.17-rc.1/cli",
+  "isDocsHomePage": false,
+  "title": "Command line tools",
+  "description": "Playwright comes with the command line tools.",
+  "source": "@site/versioned_docs/version-1.17-rc.1/cli.mdx",
+  "sourceDirName": ".",
+  "slug": "/cli",
+  "permalink": "/docs/cli",
+  "version": "1.17-rc.1",
+  "frontMatter": {
+    "id": "cli",
+    "title": "Command line tools"
+  },
+  "sidebar": "version-1.17-rc.1/docs",
+  "previous": {
+    "title": "Chrome Extensions",
+    "permalink": "/docs/chrome-extensions"
+  },
+  "next": {
+    "title": "Dialogs",
+    "permalink": "/docs/dialogs"
+  }
+}
