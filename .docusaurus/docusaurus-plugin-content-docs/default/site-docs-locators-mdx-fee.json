@@ -1,0 +1,26 @@
+{
+  "unversionedId": "locators",
+  "id": "locators",
+  "isDocsHomePage": false,
+  "title": "Locators",
+  "description": "Locator]s are the central piece of Playwright's auto-waiting and retry-ability. In a nutshell, locators represent a way to find element(s) on the page at any moment. Locator can be created with the [Page.Locator(selector) method.",
+  "source": "@site/docs/locators.mdx",
+  "sourceDirName": ".",
+  "slug": "/locators",
+  "permalink": "/dotnet/docs/next/locators",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "locators",
+    "title": "Locators"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Handles",
+    "permalink": "/dotnet/docs/next/handles"
+  },
+  "next": {
+    "title": "Input",
+    "permalink": "/dotnet/docs/next/input"
+  }
+}
