@@ -1,0 +1,17 @@
+{
+  "unversionedId": "api/class-apiresponseassertions",
+  "id": "api/class-apiresponseassertions",
+  "isDocsHomePage": false,
+  "title": "APIResponseAssertions",
+  "description": "The APIResponseAssertions] class provides assertion methods that can be used to make assertions about the [APIResponse] in the tests. A new instance of [APIResponseAssertions] is created by calling [playwrightAssertions.expect(response):",
+  "source": "@site/docs/api/class-apiresponseassertions.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-apiresponseassertions",
+  "permalink": "/docs/next/api/class-apiresponseassertions",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "class-apiresponseassertions",
+    "title": "APIResponseAssertions"
+  }
+}
