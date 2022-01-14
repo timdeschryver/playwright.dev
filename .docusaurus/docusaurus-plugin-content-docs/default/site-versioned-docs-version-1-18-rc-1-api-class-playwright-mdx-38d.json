@@ -1,0 +1,26 @@
+{
+  "unversionedId": "api/class-playwright",
+  "id": "version-1.18-rc1/api/class-playwright",
+  "isDocsHomePage": false,
+  "title": "Playwright Library",
+  "description": "Playwright module provides a method to launch a browser instance. The following is a typical example of using Playwright to drive automation:",
+  "source": "@site/versioned_docs/version-1.18-rc1/api/class-playwright.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-playwright",
+  "permalink": "/docs/api/class-playwright",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "class-playwright",
+    "title": "Playwright Library"
+  },
+  "sidebar": "version-1.18-rc1/api",
+  "previous": {
+    "title": "Playwright Test",
+    "permalink": "/docs/api/class-test"
+  },
+  "next": {
+    "title": "APIRequest",
+    "permalink": "/docs/api/class-apirequest"
+  }
+}

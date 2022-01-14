@@ -1,0 +1,26 @@
+{
+  "unversionedId": "navigations",
+  "id": "version-1.18-rc1/navigations",
+  "isDocsHomePage": false,
+  "title": "Navigations",
+  "description": "Playwright can navigate to URLs and handle navigations caused by page interactions. This guide covers common scenarios to wait for page navigations and loading to complete.",
+  "source": "@site/versioned_docs/version-1.18-rc1/navigations.mdx",
+  "sourceDirName": ".",
+  "slug": "/navigations",
+  "permalink": "/docs/navigations",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "navigations",
+    "title": "Navigations"
+  },
+  "sidebar": "version-1.18-rc1/docs",
+  "previous": {
+    "title": "Locators",
+    "permalink": "/docs/locators"
+  },
+  "next": {
+    "title": "Network",
+    "permalink": "/docs/network"
+  }
+}

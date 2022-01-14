@@ -1,0 +1,26 @@
+{
+  "unversionedId": "api/class-timeouterror",
+  "id": "version-1.18-rc1/api/class-timeouterror",
+  "isDocsHomePage": false,
+  "title": "TimeoutError",
+  "description": "* extends: [Error]",
+  "source": "@site/versioned_docs/version-1.18-rc1/api/class-timeouterror.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-timeouterror",
+  "permalink": "/docs/api/class-timeouterror",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "class-timeouterror",
+    "title": "TimeoutError"
+  },
+  "sidebar": "version-1.18-rc1/api",
+  "previous": {
+    "title": "TestProject",
+    "permalink": "/docs/api/class-testproject"
+  },
+  "next": {
+    "title": "Location",
+    "permalink": "/docs/api/class-location"
+  }
+}

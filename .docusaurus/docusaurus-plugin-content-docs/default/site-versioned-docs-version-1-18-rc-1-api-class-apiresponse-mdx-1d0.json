@@ -1,0 +1,26 @@
+{
+  "unversionedId": "api/class-apiresponse",
+  "id": "version-1.18-rc1/api/class-apiresponse",
+  "isDocsHomePage": false,
+  "title": "APIResponse",
+  "description": "APIResponse] class represents responses returned by [apiRequestContext.get(url[, options]) and similar methods.",
+  "source": "@site/versioned_docs/version-1.18-rc1/api/class-apiresponse.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-apiresponse",
+  "permalink": "/docs/api/class-apiresponse",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "class-apiresponse",
+    "title": "APIResponse"
+  },
+  "sidebar": "version-1.18-rc1/api",
+  "previous": {
+    "title": "APIRequestContext",
+    "permalink": "/docs/api/class-apirequestcontext"
+  },
+  "next": {
+    "title": "APIResponseAssertions",
+    "permalink": "/docs/api/class-apiresponseassertions"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "unversionedId": "ci",
+  "id": "version-1.18-rc1/ci",
+  "isDocsHomePage": false,
+  "title": "Continuous Integration",
+  "description": "Playwright tests can be executed in CI environments. We have created sample configurations for common CI providers.",
+  "source": "@site/versioned_docs/version-1.18-rc1/ci.mdx",
+  "sourceDirName": ".",
+  "slug": "/ci",
+  "permalink": "/docs/ci",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "ci",
+    "title": "Continuous Integration"
+  },
+  "sidebar": "version-1.18-rc1/docs",
+  "previous": {
+    "title": "Docker",
+    "permalink": "/docs/docker"
+  },
+  "next": {
+    "title": "Third party runners",
+    "permalink": "/docs/test-runners"
+  }
+}

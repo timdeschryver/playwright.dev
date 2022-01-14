@@ -1,0 +1,26 @@
+{
+  "unversionedId": "locators",
+  "id": "version-1.18-rc1/locators",
+  "isDocsHomePage": false,
+  "title": "Locators",
+  "description": "Locator]s are the central piece of Playwright's auto-waiting and retry-ability. In a nutshell, locators represent a way to find element(s) on the page at any moment. Locator can be created with the [page.locator(selector[, options]) method.",
+  "source": "@site/versioned_docs/version-1.18-rc1/locators.mdx",
+  "sourceDirName": ".",
+  "slug": "/locators",
+  "permalink": "/docs/locators",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "locators",
+    "title": "Locators"
+  },
+  "sidebar": "version-1.18-rc1/docs",
+  "previous": {
+    "title": "Input",
+    "permalink": "/docs/input"
+  },
+  "next": {
+    "title": "Navigations",
+    "permalink": "/docs/navigations"
+  }
+}

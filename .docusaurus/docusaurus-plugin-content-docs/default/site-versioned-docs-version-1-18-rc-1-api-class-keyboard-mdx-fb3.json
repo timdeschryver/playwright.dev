@@ -1,0 +1,26 @@
+{
+  "unversionedId": "api/class-keyboard",
+  "id": "version-1.18-rc1/api/class-keyboard",
+  "isDocsHomePage": false,
+  "title": "Keyboard",
+  "description": "Keyboard provides an api for managing a virtual keyboard. The high level api is keyboard.type(text[, options]), which takes raw characters and generates proper keydown, keypress/input, and keyup events on your page.",
+  "source": "@site/versioned_docs/version-1.18-rc1/api/class-keyboard.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-keyboard",
+  "permalink": "/docs/api/class-keyboard",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "class-keyboard",
+    "title": "Keyboard"
+  },
+  "sidebar": "version-1.18-rc1/api",
+  "previous": {
+    "title": "JSHandle",
+    "permalink": "/docs/api/class-jshandle"
+  },
+  "next": {
+    "title": "Locator",
+    "permalink": "/docs/api/class-locator"
+  }
+}

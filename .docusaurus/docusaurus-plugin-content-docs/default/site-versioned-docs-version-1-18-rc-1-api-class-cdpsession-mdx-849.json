@@ -1,0 +1,26 @@
+{
+  "unversionedId": "api/class-cdpsession",
+  "id": "version-1.18-rc1/api/class-cdpsession",
+  "isDocsHomePage": false,
+  "title": "CDPSession",
+  "description": "* extends: [EventEmitter]",
+  "source": "@site/versioned_docs/version-1.18-rc1/api/class-cdpsession.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-cdpsession",
+  "permalink": "/docs/api/class-cdpsession",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "class-cdpsession",
+    "title": "CDPSession"
+  },
+  "sidebar": "version-1.18-rc1/api",
+  "previous": {
+    "title": "BrowserType",
+    "permalink": "/docs/api/class-browsertype"
+  },
+  "next": {
+    "title": "ConsoleMessage",
+    "permalink": "/docs/api/class-consolemessage"
+  }
+}

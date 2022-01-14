@@ -1,0 +1,26 @@
+{
+  "unversionedId": "release-notes",
+  "id": "version-1.18-rc1/release-notes",
+  "isDocsHomePage": false,
+  "title": "Release notes",
+  "description": "- Version 1.18",
+  "source": "@site/versioned_docs/version-1.18-rc1/release-notes.mdx",
+  "sourceDirName": ".",
+  "slug": "/release-notes",
+  "permalink": "/docs/release-notes",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "release-notes",
+    "title": "Release notes"
+  },
+  "sidebar": "version-1.18-rc1/docs",
+  "previous": {
+    "title": "Debugging tools",
+    "permalink": "/docs/debug"
+  },
+  "next": {
+    "title": "Annotations",
+    "permalink": "/docs/test-annotations"
+  }
+}

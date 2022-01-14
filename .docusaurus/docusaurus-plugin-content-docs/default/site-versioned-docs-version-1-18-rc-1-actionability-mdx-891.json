@@ -1,0 +1,26 @@
+{
+  "unversionedId": "actionability",
+  "id": "version-1.18-rc1/actionability",
+  "isDocsHomePage": false,
+  "title": "Auto-waiting",
+  "description": "Playwright performs a range of actionability checks on the elements before making actions to ensure these actions behave as expected. It auto-waits for all the relevant checks to pass and only then performs the requested action. If the required checks do not pass within the given timeout, action fails with the TimeoutError.",
+  "source": "@site/versioned_docs/version-1.18-rc1/actionability.mdx",
+  "sourceDirName": ".",
+  "slug": "/actionability",
+  "permalink": "/docs/actionability",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "actionability",
+    "title": "Auto-waiting"
+  },
+  "sidebar": "version-1.18-rc1/docs",
+  "previous": {
+    "title": "Library",
+    "permalink": "/docs/library"
+  },
+  "next": {
+    "title": "Assertions",
+    "permalink": "/docs/assertions"
+  }
+}

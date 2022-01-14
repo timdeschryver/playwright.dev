@@ -1,0 +1,26 @@
+{
+  "unversionedId": "api/class-consolemessage",
+  "id": "version-1.18-rc1/api/class-consolemessage",
+  "isDocsHomePage": false,
+  "title": "ConsoleMessage",
+  "description": "ConsoleMessage] objects are dispatched by page via the [page.on('console') event.",
+  "source": "@site/versioned_docs/version-1.18-rc1/api/class-consolemessage.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-consolemessage",
+  "permalink": "/docs/api/class-consolemessage",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "class-consolemessage",
+    "title": "ConsoleMessage"
+  },
+  "sidebar": "version-1.18-rc1/api",
+  "previous": {
+    "title": "CDPSession",
+    "permalink": "/docs/api/class-cdpsession"
+  },
+  "next": {
+    "title": "Coverage",
+    "permalink": "/docs/api/class-coverage"
+  }
+}

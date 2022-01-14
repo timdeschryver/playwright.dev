@@ -1,0 +1,26 @@
+{
+  "unversionedId": "pages",
+  "id": "version-1.18-rc1/pages",
+  "isDocsHomePage": false,
+  "title": "Pages",
+  "description": "- Pages",
+  "source": "@site/versioned_docs/version-1.18-rc1/pages.mdx",
+  "sourceDirName": ".",
+  "slug": "/pages",
+  "permalink": "/docs/pages",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "pages",
+    "title": "Pages"
+  },
+  "sidebar": "version-1.18-rc1/docs",
+  "previous": {
+    "title": "Network",
+    "permalink": "/docs/network"
+  },
+  "next": {
+    "title": "Page Object Models",
+    "permalink": "/docs/pom"
+  }
+}

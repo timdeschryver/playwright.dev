@@ -1,0 +1,26 @@
+{
+  "unversionedId": "selectors",
+  "id": "version-1.18-rc1/selectors",
+  "isDocsHomePage": false,
+  "title": "Selectors",
+  "description": "Selectors are strings that are used to create Locator]s. Locators are used to perform actions on the elements by means of methods such as [locator.click([options]), locator.fill(value[, options]) and alike.",
+  "source": "@site/versioned_docs/version-1.18-rc1/selectors.mdx",
+  "sourceDirName": ".",
+  "slug": "/selectors",
+  "permalink": "/docs/selectors",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "selectors",
+    "title": "Selectors"
+  },
+  "sidebar": "version-1.18-rc1/docs",
+  "previous": {
+    "title": "Screenshots",
+    "permalink": "/docs/screenshots"
+  },
+  "next": {
+    "title": "Verification",
+    "permalink": "/docs/verification"
+  }
+}

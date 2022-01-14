@@ -1,0 +1,26 @@
+{
+  "unversionedId": "api/class-selectors",
+  "id": "version-1.18-rc1/api/class-selectors",
+  "isDocsHomePage": false,
+  "title": "Selectors",
+  "description": "Selectors can be used to install custom selector engines. See Working with selectors for more information.",
+  "source": "@site/versioned_docs/version-1.18-rc1/api/class-selectors.mdx",
+  "sourceDirName": "api",
+  "slug": "/api/class-selectors",
+  "permalink": "/docs/api/class-selectors",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "class-selectors",
+    "title": "Selectors"
+  },
+  "sidebar": "version-1.18-rc1/api",
+  "previous": {
+    "title": "Route",
+    "permalink": "/docs/api/class-route"
+  },
+  "next": {
+    "title": "Touchscreen",
+    "permalink": "/docs/api/class-touchscreen"
+  }
+}

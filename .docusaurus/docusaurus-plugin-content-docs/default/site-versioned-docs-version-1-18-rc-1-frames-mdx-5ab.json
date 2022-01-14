@@ -1,0 +1,26 @@
+{
+  "unversionedId": "frames",
+  "id": "version-1.18-rc1/frames",
+  "isDocsHomePage": false,
+  "title": "Frames",
+  "description": "- Frames",
+  "source": "@site/versioned_docs/version-1.18-rc1/frames.mdx",
+  "sourceDirName": ".",
+  "slug": "/frames",
+  "permalink": "/docs/frames",
+  "tags": [],
+  "version": "1.18-rc1",
+  "frontMatter": {
+    "id": "frames",
+    "title": "Frames"
+  },
+  "sidebar": "version-1.18-rc1/docs",
+  "previous": {
+    "title": "Extensibility",
+    "permalink": "/docs/extensibility"
+  },
+  "next": {
+    "title": "Handles",
+    "permalink": "/docs/handles"
+  }
+}
