@@ -13,7 +13,7 @@ function parsePath(path: string): { path: string, language: string } {
 
 function sendPixelEvent() {
   const { path, language } = parsePath(window.location.pathname);
-  const hash = window.location.hash || '';
+  const hash = window.location.hash ? window.location.hash.substring(1) : '';
   const payload = new URLSearchParams({
     hash,
     path,
