@@ -1,0 +1,23 @@
+{
+  "unversionedId": "conference-videos",
+  "id": "conference-videos",
+  "title": "Conference Videos",
+  "description": "Component Testing with Playwright",
+  "source": "@site/community/1-conference-videos.mdx",
+  "sourceDirName": ".",
+  "slug": "/conference-videos",
+  "permalink": "/dotnet/community/conference-videos",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {},
+  "sidebar": "community",
+  "previous": {
+    "title": "Welcome",
+    "permalink": "/dotnet/community/welcome"
+  },
+  "next": {
+    "title": "Live Streams",
+    "permalink": "/dotnet/community/live-streams"
+  }
+}

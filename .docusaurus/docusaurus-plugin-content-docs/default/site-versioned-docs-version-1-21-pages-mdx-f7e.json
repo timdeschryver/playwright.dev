@@ -1,0 +1,25 @@
+{
+  "unversionedId": "pages",
+  "id": "version-1.21/pages",
+  "title": "Pages",
+  "description": "- Pages",
+  "source": "@site/versioned_docs/version-1.21/pages.mdx",
+  "sourceDirName": ".",
+  "slug": "/pages",
+  "permalink": "/dotnet/docs/1.21/pages",
+  "tags": [],
+  "version": "1.21",
+  "frontMatter": {
+    "id": "pages",
+    "title": "Pages"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Network",
+    "permalink": "/dotnet/docs/1.21/network"
+  },
+  "next": {
+    "title": "Page Object Models",
+    "permalink": "/dotnet/docs/1.21/pom"
+  }
+}

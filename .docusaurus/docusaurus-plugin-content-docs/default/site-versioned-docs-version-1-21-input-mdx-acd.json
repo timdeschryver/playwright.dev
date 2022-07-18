@@ -1,0 +1,25 @@
+{
+  "unversionedId": "input",
+  "id": "version-1.21/input",
+  "title": "Input",
+  "description": "- Text input",
+  "source": "@site/versioned_docs/version-1.21/input.mdx",
+  "sourceDirName": ".",
+  "slug": "/input",
+  "permalink": "/dotnet/docs/1.21/input",
+  "tags": [],
+  "version": "1.21",
+  "frontMatter": {
+    "id": "input",
+    "title": "Input"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Locators",
+    "permalink": "/dotnet/docs/1.21/locators"
+  },
+  "next": {
+    "title": "Navigations",
+    "permalink": "/dotnet/docs/1.21/navigations"
+  }
+}

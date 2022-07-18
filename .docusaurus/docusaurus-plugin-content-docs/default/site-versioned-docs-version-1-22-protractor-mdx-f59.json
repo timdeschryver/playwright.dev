@@ -1,0 +1,25 @@
+{
+  "unversionedId": "protractor",
+  "id": "version-1.22/protractor",
+  "title": "Migrating from Protractor",
+  "description": "- Migration Principles",
+  "source": "@site/versioned_docs/version-1.22/protractor.mdx",
+  "sourceDirName": ".",
+  "slug": "/protractor",
+  "permalink": "/docs/1.22/protractor",
+  "tags": [],
+  "version": "1.22",
+  "frontMatter": {
+    "id": "protractor",
+    "title": "Migrating from Protractor"
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Videos",
+    "permalink": "/docs/1.22/videos"
+  },
+  "next": {
+    "title": "Docker",
+    "permalink": "/docs/1.22/docker"
+  }
+}
