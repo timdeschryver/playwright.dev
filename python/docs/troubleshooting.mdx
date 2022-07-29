@@ -1,99 +1,41 @@
 ---
-id: downloads
-title: "Downloads"
+id: troubleshooting
+title: "Troubleshooting"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+## Browser dependencies
+
+Playwright does self-inspection every time it runs to make sure the browsers can be launched successfully. If there are missing dependencies, playwright will print instructions to acquire them.
+
+See also in the [Command line tools](./cli.mdx#install-system-dependencies) which has a command to install all necessary dependencies automatically for Ubuntu LTS releases.
+
+## Python requirements
+
+Playwright requires **Python 3.7** or newer.
+
+## System requirements
+
+The browser binaries for Chromium, Firefox and WebKit work across the 3 platforms (Windows, macOS, Linux):
+
+### Windows
+
+Works with Windows and Windows Subsystem for Linux (WSL).
+
+### macOS
+
+Requires 11 (Big Sur) or above.
+
+### Linux
+
+Depending on your Linux distribution, you might need to install additional dependencies to run the browsers.
+
 :::note
-For uploading files, see the [uploading files](./input.mdx#upload-files) section.
+Only Ubuntu 18.04, 20.04, and 22.04 are officially supported.
 :::
 
-For every attachment downloaded by the page, [page.on("download")](./api/class-page.mdx#page-event-download) event is emitted. All these attachments are going to be downloaded into a temporary folder. You can obtain the download url, file system path and payload stream using the [Download] object from the event.
-
-You can specify where to persist downloaded files using the `downloads_path` option in [browser_type.launch(**kwargs)](./api/class-browsertype.mdx#browser-type-launch).
-
-:::note
-Downloaded files are deleted when the browser context that produced them is closed.
-:::
-
-Here is the simplest way to handle the file download:
-
-<Tabs
-  groupId="python-flavor"
-  defaultValue="sync"
-  values={[
-    {label: 'Sync', value: 'sync'},
-    {label: 'Async', value: 'async'}
-  ]
-}>
-<TabItem value="sync">
-
-```py
-# Start waiting for the download
-with page.expect_download() as download_info:
-    # Perform the action that initiates download
-    page.locator("button#delayed-download").click()
-download = download_info.value
-# Wait for the download process to complete
-print(download.path())
-# Save downloaded file somewhere
-download.save_as("/path/to/save/download/at.txt")
-```
-
-</TabItem>
-<TabItem value="async">
-
-```py
-# Start waiting for the download
-async with page.expect_download() as download_info:
-    # Perform the action that initiates download
-    await page.locator("button#delayed-download").click()
-download = await download_info.value
-# Wait for the download process to complete
-print(await download.path())
-# Save downloaded file somewhere
-download.save_as("/path/to/save/download/at.txt")
-```
-
-</TabItem>
-</Tabs>
-
-#### Variations
-
-If you have no idea what initiates the download, you can still handle the event:
-
-<Tabs
-  groupId="python-flavor"
-  defaultValue="sync"
-  values={[
-    {label: 'Sync', value: 'sync'},
-    {label: 'Async', value: 'async'}
-  ]
-}>
-<TabItem value="sync">
-
-```py
-page.on("download", lambda download: print(download.path()))
-```
-
-</TabItem>
-<TabItem value="async">
-
-```py
-async def handle_download(download):
-    print(await download.path())
-page.on("download", handle_download)
-```
-
-</TabItem>
-</Tabs>
-
-Note that handling the event forks the control flow and makes script harder to follow. Your scenario might end while you are downloading a file since your main control flow is not awaiting for this operation to resolve.
-
-### API reference
-- [Download]
-- [page.on("download")](./api/class-page.mdx#page-event-download)
+See also in the [Command line tools](./cli.mdx#install-system-dependencies) which has a command to install all necessary dependencies automatically for Ubuntu LTS releases.
 
 [Accessibility]: ./api/class-accessibility.mdx "Accessibility"
 [APIRequest]: ./api/class-apirequest.mdx "APIRequest"

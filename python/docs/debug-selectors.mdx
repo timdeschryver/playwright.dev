@@ -1,99 +1,136 @@
 ---
-id: downloads
-title: "Downloads"
+id: debug-selectors
+title: "Debugging Selectors"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::note
-For uploading files, see the [uploading files](./input.mdx#upload-files) section.
-:::
+Playwright will throw a timeout exception like `locator.click: Timeout 30000ms exceeded` when an element does not exist on the page. There are multiple ways of debugging selectors:
+- [Playwright Inspector](#using-playwright-inspector) to step over each Playwright API call to inspect the page.
+- [Browser DevTools](#using-devtools) to inspect selectors with the DevTools element panel.
+- [Trace Viewer](./trace-viewer.mdx) to see what the page looked like during the test run.
+- [Verbose API logs](#verbose-api-logs) shows [actionability checks](./actionability.mdx) when locating the element.
 
-For every attachment downloaded by the page, [page.on("download")](./api/class-page.mdx#page-event-download) event is emitted. All these attachments are going to be downloaded into a temporary folder. You can obtain the download url, file system path and payload stream using the [Download] object from the event.
+## Using Playwright Inspector
 
-You can specify where to persist downloaded files using the `downloads_path` option in [browser_type.launch(**kwargs)](./api/class-browsertype.mdx#browser-type-launch).
+Open the [Playwright Inspector](./debug.mdx) and click the `Explore` button to hover over elements in the screen and click them to automatically generate selectors for those elements. To verify where selector points, paste it into the inspector input field:
 
-:::note
-Downloaded files are deleted when the browser context that produced them is closed.
-:::
+<img width="602" alt="Selectors toolbar" src="https://user-images.githubusercontent.com/883973/108614696-ad5eaa00-73b1-11eb-81f5-9eebe62543a2.png"></img>
 
-Here is the simplest way to handle the file download:
+## Using DevTools
+
+You can also use the following API inside the Developer Tools Console of any browser.
+
+When running in Debug Mode with `PWDEBUG=console`, a `playwright` object is available in Developer tools console.
+1. Run with `PWDEBUG=console`
+1. Setup a breakpoint to pause the execution
+1. Open the console panel in browser developer tools
+
+<img src="https://user-images.githubusercontent.com/284612/92536317-37dd9380-f1ee-11ea-875d-daf1b206dd56.png"></img>
+
+### playwright.$(selector)
+
+Query Playwright selector, using the actual Playwright query engine, for example:
+
+```txt
+> playwright.$('.auth-form >> text=Log in');
+
+<button>Log in</button>
+```
+
+### playwright.$$(selector)
+
+Same as `playwright.$`, but returns all matching elements.
+
+```txt
+> playwright.$$('li >> text=John')
+
+> [<li>, <li>, <li>, <li>]
+```
+
+### playwright.inspect(selector)
+
+Reveal element in the Elements panel (if DevTools of the respective browser supports it).
+
+```txt
+> playwright.inspect('text=Log in')
+```
+
+### playwright.locator(selector)
+
+Query Playwright element using the actual Playwright query engine, for example:
+
+```txt
+> playwright.locator('.auth-form', { hasText: 'Log in' });
+
+> Locator ()
+>   - element: button
+>   - elements: [button]
+```
+
+### playwright.highlight(selector)
+
+Highlight the first occurrence of the locator:
+
+```txt
+> playwright.hightlight('.auth-form');
+```
+
+### playwright.clear()
+
+```txt
+> playwright.clear()
+```
+
+Clear existing highlights.
+
+### playwright.selector(element)
+
+Generates selector for the given element.
+
+```txt
+> playwright.selector($0)
+
+"div[id="glow-ingress-block"] >> text=/.*Hello.*/"
+```
+
+## Verbose API logs
+
+Playwright supports verbose logging with the `DEBUG` environment variable.
 
 <Tabs
-  groupId="python-flavor"
-  defaultValue="sync"
+  groupId="bash-flavor"
+  defaultValue="bash"
   values={[
-    {label: 'Sync', value: 'sync'},
-    {label: 'Async', value: 'async'}
+    {label: 'Bash', value: 'bash'},
+    {label: 'PowerShell', value: 'powershell'},
+    {label: 'Batch', value: 'batch'}
   ]
 }>
-<TabItem value="sync">
+<TabItem value="bash">
 
-```py
-# Start waiting for the download
-with page.expect_download() as download_info:
-    # Perform the action that initiates download
-    page.locator("button#delayed-download").click()
-download = download_info.value
-# Wait for the download process to complete
-print(download.path())
-# Save downloaded file somewhere
-download.save_as("/path/to/save/download/at.txt")
+```bash
+DEBUG=pw:api pytest -s
 ```
 
 </TabItem>
-<TabItem value="async">
+<TabItem value="powershell">
 
-```py
-# Start waiting for the download
-async with page.expect_download() as download_info:
-    # Perform the action that initiates download
-    await page.locator("button#delayed-download").click()
-download = await download_info.value
-# Wait for the download process to complete
-print(await download.path())
-# Save downloaded file somewhere
-download.save_as("/path/to/save/download/at.txt")
+```powershell
+$env:DEBUG="pw:api"
+pytest -s
+```
+
+</TabItem>
+<TabItem value="batch">
+
+```batch
+set DEBUG=pw:api
+pytest -s
 ```
 
 </TabItem>
 </Tabs>
-
-#### Variations
-
-If you have no idea what initiates the download, you can still handle the event:
-
-<Tabs
-  groupId="python-flavor"
-  defaultValue="sync"
-  values={[
-    {label: 'Sync', value: 'sync'},
-    {label: 'Async', value: 'async'}
-  ]
-}>
-<TabItem value="sync">
-
-```py
-page.on("download", lambda download: print(download.path()))
-```
-
-</TabItem>
-<TabItem value="async">
-
-```py
-async def handle_download(download):
-    print(await download.path())
-page.on("download", handle_download)
-```
-
-</TabItem>
-</Tabs>
-
-Note that handling the event forks the control flow and makes script harder to follow. Your scenario might end while you are downloading a file since your main control flow is not awaiting for this operation to resolve.
-
-### API reference
-- [Download]
-- [page.on("download")](./api/class-page.mdx#page-event-download)
 
 [Accessibility]: ./api/class-accessibility.mdx "Accessibility"
 [APIRequest]: ./api/class-apirequest.mdx "APIRequest"

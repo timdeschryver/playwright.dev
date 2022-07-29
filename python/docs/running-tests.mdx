@@ -1,99 +1,100 @@
 ---
-id: downloads
-title: "Downloads"
+id: running-tests
+title: "Running Tests"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::note
-For uploading files, see the [uploading files](./input.mdx#upload-files) section.
-:::
+You can run a single test, a set of tests or all tests. Tests can be run on one browser or multiple browsers. By default tests are run in a headless manner meaning no browser window will be opened while running the tests and results will be seen in the terminal. If you prefer you can run your tests in headed mode by using the `--headed` flag.
+- Running tests on Chromium
 
-For every attachment downloaded by the page, [page.on("download")](./api/class-page.mdx#page-event-download) event is emitted. All these attachments are going to be downloaded into a temporary folder. You can obtain the download url, file system path and payload stream using the [Download] object from the event.
+  ```bash
+  pytest
+  ```
 
-You can specify where to persist downloaded files using the `downloads_path` option in [browser_type.launch(**kwargs)](./api/class-browsertype.mdx#browser-type-launch).
+- Running a single test file
 
-:::note
-Downloaded files are deleted when the browser context that produced them is closed.
-:::
+  ```bash
+  pytest test_login.py
+  ```
 
-Here is the simplest way to handle the file download:
+- Run a set of test files
+
+  ```bash
+  pytest tests/todo-page/ tests/landing-page/
+  ```
+
+- Run the test with the function name
+
+  ```bash
+  pytest -k "test_add_a_todo_item"
+  ```
+
+- Running tests in headed mode
+
+  ```bash
+  pytest --headed test_login.py
+  ```
+
+- Running Tests on specific browsers
+
+  ```bash
+  pytest test_login.py --browser webkit
+  ```
+
+- Running Tests on multiple browsers
+
+  ```bash
+  pytest test_login.py --browser webkit --browser firefox
+  ```
+
+For more information see [Playwright Pytest usage](./test-runners.mdx) or the Pytest documentation for [general CLI usage](https://docs.pytest.org/en/stable/usage.html).
+
+## Running Tests
+
+Since Playwright runs in Python, you can debug it with your debugger of choice with e.g. the [Python extension](https://code.visualstudio.com/docs/python/python-tutorial) in Visual Studio Code. Playwright comes with the Playwright Inspector which allows you to step through Playwright API calls, see their debug logs and explore [selectors](./selectors.mdx).
 
 <Tabs
-  groupId="python-flavor"
-  defaultValue="sync"
+  groupId="bash-flavor"
+  defaultValue="bash"
   values={[
-    {label: 'Sync', value: 'sync'},
-    {label: 'Async', value: 'async'}
+    {label: 'Bash', value: 'bash'},
+    {label: 'PowerShell', value: 'powershell'},
+    {label: 'Batch', value: 'batch'}
   ]
 }>
-<TabItem value="sync">
+<TabItem value="bash">
 
-```py
-# Start waiting for the download
-with page.expect_download() as download_info:
-    # Perform the action that initiates download
-    page.locator("button#delayed-download").click()
-download = download_info.value
-# Wait for the download process to complete
-print(download.path())
-# Save downloaded file somewhere
-download.save_as("/path/to/save/download/at.txt")
+```bash
+PWDEBUG=1 pytest -s
 ```
 
 </TabItem>
-<TabItem value="async">
+<TabItem value="powershell">
 
-```py
-# Start waiting for the download
-async with page.expect_download() as download_info:
-    # Perform the action that initiates download
-    await page.locator("button#delayed-download").click()
-download = await download_info.value
-# Wait for the download process to complete
-print(await download.path())
-# Save downloaded file somewhere
-download.save_as("/path/to/save/download/at.txt")
+```powershell
+$env:PWDEBUG=1
+pytest -s
+```
+
+</TabItem>
+<TabItem value="batch">
+
+```batch
+set PWDEBUG=1
+pytest -s
 ```
 
 </TabItem>
 </Tabs>
 
-#### Variations
+<img width="712" alt="Playwright Inspector" src="https://user-images.githubusercontent.com/883973/108614092-8c478a80-73ac-11eb-9597-67dfce110e00.png"></img>
 
-If you have no idea what initiates the download, you can still handle the event:
+Check out our [debugging guide](./debug.mdx) to learn more about the [Playwright Inspector](./debug.mdx#playwright-inspector) as well as debugging with [Browser Developer tools](./debug.mdx#browser-developer-tools).
 
-<Tabs
-  groupId="python-flavor"
-  defaultValue="sync"
-  values={[
-    {label: 'Sync', value: 'sync'},
-    {label: 'Async', value: 'async'}
-  ]
-}>
-<TabItem value="sync">
-
-```py
-page.on("download", lambda download: print(download.path()))
-```
-
-</TabItem>
-<TabItem value="async">
-
-```py
-async def handle_download(download):
-    print(await download.path())
-page.on("download", handle_download)
-```
-
-</TabItem>
-</Tabs>
-
-Note that handling the event forks the control flow and makes script harder to follow. Your scenario might end while you are downloading a file since your main control flow is not awaiting for this operation to resolve.
-
-### API reference
-- [Download]
-- [page.on("download")](./api/class-page.mdx#page-event-download)
+## What's Next
+- [Generate tests with Codegen](./codegen.mdx)
+- [See a trace of your tests](./trace-viewer.mdx)
 
 [Accessibility]: ./api/class-accessibility.mdx "Accessibility"
 [APIRequest]: ./api/class-apirequest.mdx "APIRequest"
