@@ -1,85 +1,137 @@
 ---
-id: codegen
-title: "Test Generator"
+id: running-tests
+title: "Running Tests"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Playwright comes with the ability to generate tests out of the box and is a great way to quickly get started with testing. It will open two windows, a browser window where you interact with the website you wish to test and the Playwright Inspector window where you can record your tests, copy the tests, clear your tests as well as change the language of your tests.
+You can run a single test, a set of tests or all tests. Tests can be run on different browsers. By default tests are run in a headless manner meaning no browser window will be opened while running the tests and results will be seen in the terminal. If you prefer you can run your tests in headed mode by using the `headless` test run parameter.
+- Running all tests
+
+  ```bash
+  dotnet test
+  ```
+
+- Running a single test file
+
+  ```bash
+  dotnet test --filter "MyClassName"
+  ```
+
+- Run a set of test files
+
+  ```bash
+  dotnet test --filter "MyClassName1|MyClassName2"
+  ```
+
+- Run the test with the title
+
+  ```bash
+  dotnet test --filter "Name~TestMethod1"
+  ```
+
+- Running Tests on specific browsers
+
+  <Tabs
+    groupId="bash-flavor"
+    defaultValue="bash"
+    values={[
+      {label: 'Bash', value: 'bash'},
+      {label: 'PowerShell', value: 'powershell'},
+      {label: 'Batch', value: 'batch'}
+    ]
+  }>
+  <TabItem value="bash">
+  
+  ```bash
+  BROWSER=webkit dotnet test
+  ```
+  
+  </TabItem>
+  <TabItem value="powershell">
+  
+  ```powershell
+  $env:BROWSER="webkit"
+  dotnet test
+  ```
+  
+  </TabItem>
+  <TabItem value="batch">
+  
+  ```batch
+  set BROWSER=webkit
+  dotnet test
+  ```
+  
+  </TabItem>
+  </Tabs>
+- Running Tests on multiple browsers
+
+  To run your test on multiple browsers or configurations you need to invoke the `dotnet test` command multiple times. There you can then either specify the `BROWSER` environment variable (like the previous) or pass the `browser` via the runsettings file:
+
+  ```bash
+  dotnet test --settings:chromium.runsettings
+  dotnet test --settings:firefox.runsettings
+  dotnet test --settings:webkit.runsettings
+  ```
+
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <RunSettings>
+    <TestRunParameters>
+      <Parameter name="browser" value="chromium" />
+      <Parameter name="headless" value="false" />
+    </TestRunParameters>
+  </RunSettings>
+  ```
+
+For more information see [selective unit tests](https://docs.microsoft.com/en-us/dotnet/core/testing/selective-unit-tests?pivots=mstest) in the Microsoft docs.
+
+## Debugging Tests
+
+Since Playwright runs in .NET, you can debug it with your debugger of choice in e.g. Visual Studio Code or Visual Studio. Playwright comes with the Playwright Inspector which allows you to step through Playwright API calls, see their debug logs and explore [selectors](./selectors.mdx).
+
+<Tabs
+  groupId="bash-flavor"
+  defaultValue="bash"
+  values={[
+    {label: 'Bash', value: 'bash'},
+    {label: 'PowerShell', value: 'powershell'},
+    {label: 'Batch', value: 'batch'}
+  ]
+}>
+<TabItem value="bash">
 
 ```bash
-pwsh bin\Debug\netX\playwright.ps1 codegen playwright.dev
+PWDEBUG=1 dotnet test
 ```
 
-Run `codegen` and perform actions in the browser. Playwright will generate the code for the user interactions. `codegen` will attempt to generate resilient text-based selectors.
+</TabItem>
+<TabItem value="powershell">
 
-<img width="1183" alt="Screenshot 2022-07-30 at 00 19 06" src="https://user-images.githubusercontent.com/13063165/181852815-971c10da-0b55-4e54-8a73-77e1e825193c.png" />
-
-## Preserve authenticated state
-
-Run `codegen` with `--save-storage` to save [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) and [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) at the end of the session. This is useful to separately record authentication step and reuse it later in the tests.
-
-```bash
-pwsh bin\Debug\netX\playwright.ps1 codegen --save-storage=auth.json
-# Perform authentication and exit.
-# auth.json will contain the storage state.
+```powershell
+$env:PWDEBUG=1
+dotnet test
 ```
 
-Run with `--load-storage` to consume previously loaded storage. This way, all [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) and [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) will be restored, bringing most web apps to the authenticated state.
+</TabItem>
+<TabItem value="batch">
 
-```bash
-pwsh bin\Debug\netX\playwright.ps1 open --load-storage=auth.json my.web.app
-pwsh bin\Debug\netX\playwright.ps1 codegen --load-storage=auth.json my.web.app
-# Perform actions in authenticated state.
+```batch
+set PWDEBUG=1
+dotnet test
 ```
 
-## Record using custom setup
+</TabItem>
+</Tabs>
 
-If you would like to use codegen in some non-standard setup (for example, use [BrowserContext.RouteAsync(url, handler, options)](./api/class-browsercontext.mdx#browser-context-route)), it is possible to call [Page.PauseAsync()](./api/class-page.mdx#page-pause) that will open a separate window with codegen controls.
+<img width="712" alt="Playwright Inspector" src="https://user-images.githubusercontent.com/883973/108614092-8c478a80-73ac-11eb-9597-67dfce110e00.png"></img>
 
-```csharp
-using Microsoft.Playwright;
+Check out our [debugging guide](./debug.mdx) to learn more about the [Playwright Inspector](./debug.mdx#playwright-inspector) as well as debugging with [Browser Developer tools](./debug.mdx#browser-developer-tools).
 
-using var playwright = await Playwright.CreateAsync();
-var chromium = playwright.Chromium;
-// Make sure to run headed.
-var browser = await chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
-
-// Setup context however you like.
-var context = await browser.NewContextAsync(); // Pass any options
-await context.RouteAsync('**/*', route => route.ContinueAsync());
-
-// Pause the page, and start recording manually.
-var page = await context.NewPageAsync();
-await page.PauseAsync();
-```
-
-## Emulate devices
-
-You can record scripts and tests while emulating a device.
-
-```bash
-# Emulate iPhone 11.
-pwsh bin\Debug\netX\playwright.ps1 codegen --device="iPhone 11" wikipedia.org
-```
-
-## Emulate color scheme and viewport size
-
-You can also record scripts and tests while emulating various browser properties.
-
-```bash
-# Emulate screen size and color scheme.
-pwsh bin\Debug\netX\playwright.ps1 codegen --viewport-size=800,600 --color-scheme=dark twitter.com
-```
-
-## Emulate geolocation, language and timezone
-
-```bash
-# Emulate timezone, language & location
-# Once page opens, click the "my location" button to see geolocation in action
-pwsh bin\Debug\netX\playwright.ps1 codegen --timezone="Europe/Rome" --geolocation="41.890221,12.492348" --lang="it-IT" maps.google.com
-```
-
+## What's Next
+- [Generate tests with Codegen](./codegen.mdx)
+- [See a trace of your tests](./trace-viewer.mdx)
 
 [Accessibility]: ./api/class-accessibility.mdx "Accessibility"
 [APIRequest]: ./api/class-apirequest.mdx "APIRequest"

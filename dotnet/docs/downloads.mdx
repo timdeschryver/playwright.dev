@@ -26,7 +26,9 @@ var waitForDownloadTask = page.WaitForDownloadAsync();
 await page.Locator("#downloadButton").ClickAsync();
 // Wait for the download process to complete
 var download = await waitForDownloadTask;
-var path = await download.PathAsync();
+Console.WriteLine(await download.PathAsync());
+// Save downloaded file somewhere
+await download.SaveAsAsync("/path/to/save/download/at.txt");
 ```
 
 #### Variations

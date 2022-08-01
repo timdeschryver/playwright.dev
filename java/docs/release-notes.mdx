@@ -5,6 +5,7 @@ title: "Release notes"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+- [Version 1.24](#version-124)
 - [Version 1.23](#version-123)
 - [Version 1.22](#version-122)
 - [Version 1.21](#version-121)
@@ -22,6 +23,20 @@ import TabItem from '@theme/TabItem';
 - [Version 1.9](#version-19)
 - [Version 1.8](#version-18)
 - [Version 1.7](#version-17)
+
+## Version 1.24
+
+### 🐂 Debian 11 Bullseye Support
+
+Playwright now supports Debian 11 Bullseye on x86_64 for Chromium, Firefox and WebKit. Let us know if you encounter any issues!
+
+Linux support looks like this:
+
+|          | Ubuntu 18.04 | Ubuntu 20.04 | Ubuntu 22.04 | Debian 11
+| :--- | :---: | :---: | :---: | :---: | 
+| Chromium | ✅ | ✅ | ✅ | ✅ |
+| WebKit | ✅ | ✅ | ✅ | ✅ |
+| Firefox | ✅ | ✅ | ✅ | ✅ |
 
 ## Version 1.23
 
@@ -570,12 +585,12 @@ This version of Playwright was also tested against the following stable channels
 - [`browserType.launch()`](./api/class-browsertype#browsertypelaunchoptions) now accepts the new `'channel'` option. Read more in [our documentation](./browsers).
 
 ## Version 1.9
-- [Playwright Inspector](./inspector.mdx) is a **new GUI tool** to author and debug your tests.
+- [Playwright Inspector](./debug.mdx) is a **new GUI tool** to author and debug your tests.
   - **Line-by-line debugging** of your Playwright scripts, with play, pause and step-through.
   - Author new scripts by **recording user actions**.
   - **Generate element selectors** for your script by hovering over elements.
   - Set the `PWDEBUG=1` environment variable to launch the Inspector
-- **Pause script execution** with [Page.pause()](./api/class-page.mdx#page-pause) in headed mode. Pausing the page launches [Playwright Inspector](./inspector.mdx) for debugging.
+- **Pause script execution** with [Page.pause()](./api/class-page.mdx#page-pause) in headed mode. Pausing the page launches [Playwright Inspector](./debug.mdx) for debugging.
 - **New has-text pseudo-class** for CSS selectors. `:has-text("example")` matches any element containing `"example"` somewhere inside, possibly in a child or a descendant element. See [more examples](./selectors.mdx#text-selector).
 - **Page dialogs are now auto-dismissed** during execution, unless a listener for `dialog` event is configured. [Learn more](./dialogs.mdx) about this.
 - [Playwright for Python](https://github.com/microsoft/playwright-python) is **now stable** with an idiomatic snake case API and pre-built [Docker image](./docker.mdx) to run tests in CI/CD.

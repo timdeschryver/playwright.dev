@@ -1,120 +1,100 @@
 ---
-id: codegen
-title: "Test Generator"
+id: running-tests
+title: "Running Tests"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Playwright comes with the ability to generate tests out of the box and is a great way to quickly get started with testing. It will open two windows, a browser window where you interact with the website you wish to test and the Playwright Inspector window where you can record your tests, copy the tests, clear your tests as well as change the language of your tests.
+You can run a single test, a set of tests or all tests. Tests can be run on one browser or multiple browsers. By default tests are run in a headless manner meaning no browser window will be opened while running the tests and results will be seen in the terminal. If you prefer you can run your tests in headed mode by using the `--headed` flag.
+- Running tests on Chromium
 
-```bash
-playwright codegen playwright.dev
-```
+  ```bash
+  pytest
+  ```
 
-Run `codegen` and perform actions in the browser. Playwright will generate the code for the user interactions. `codegen` will attempt to generate resilient text-based selectors.
+- Running a single test file
 
-<img width="1183" alt="Screenshot 2022-07-30 at 00 19 06" src="https://user-images.githubusercontent.com/13063165/181852815-971c10da-0b55-4e54-8a73-77e1e825193c.png" />
+  ```bash
+  pytest test_login.py
+  ```
 
-## Preserve authenticated state
+- Run a set of test files
 
-Run `codegen` with `--save-storage` to save [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) and [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) at the end of the session. This is useful to separately record authentication step and reuse it later in the tests.
+  ```bash
+  pytest tests/todo-page/ tests/landing-page/
+  ```
 
-```bash
-playwright codegen --save-storage=auth.json
-# Perform authentication and exit.
-# auth.json will contain the storage state.
-```
+- Run the test with the function name
 
-Run with `--load-storage` to consume previously loaded storage. This way, all [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) and [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) will be restored, bringing most web apps to the authenticated state.
+  ```bash
+  pytest -k "test_add_a_todo_item"
+  ```
 
-```bash
-playwright open --load-storage=auth.json my.web.app
-playwright codegen --load-storage=auth.json my.web.app
-# Perform actions in authenticated state.
-```
+- Running tests in headed mode
 
-## Record using custom setup
+  ```bash
+  pytest --headed test_login.py
+  ```
 
-If you would like to use codegen in some non-standard setup (for example, use [browser_context.route(url, handler, **kwargs)](./api/class-browsercontext.mdx#browser-context-route)), it is possible to call [page.pause()](./api/class-page.mdx#page-pause) that will open a separate window with codegen controls.
+- Running Tests on specific browsers
+
+  ```bash
+  pytest test_login.py --browser webkit
+  ```
+
+- Running Tests on multiple browsers
+
+  ```bash
+  pytest test_login.py --browser webkit --browser firefox
+  ```
+
+For more information see [Playwright Pytest usage](./test-runners.mdx) or the Pytest documentation for [general CLI usage](https://docs.pytest.org/en/stable/usage.html).
+
+## Running Tests
+
+Since Playwright runs in Python, you can debug it with your debugger of choice with e.g. the [Python extension](https://code.visualstudio.com/docs/python/python-tutorial) in Visual Studio Code. Playwright comes with the Playwright Inspector which allows you to step through Playwright API calls, see their debug logs and explore [selectors](./selectors.mdx).
 
 <Tabs
-  groupId="python-flavor"
-  defaultValue="sync"
+  groupId="bash-flavor"
+  defaultValue="bash"
   values={[
-    {label: 'Sync', value: 'sync'},
-    {label: 'Async', value: 'async'}
+    {label: 'Bash', value: 'bash'},
+    {label: 'PowerShell', value: 'powershell'},
+    {label: 'Batch', value: 'batch'}
   ]
 }>
-<TabItem value="sync">
+<TabItem value="bash">
 
-```py
-from playwright.sync_api import sync_playwright
-
-with sync_playwright() as p:
-    # Make sure to run headed.
-    browser = p.chromium.launch(headless=False)
-
-    # Setup context however you like.
-    context = browser.new_context() # Pass any options
-    context.route('**/*', lambda route: route.continue_())
-
-    # Pause the page, and start recording manually.
-    page = context.new_page()
-    page.pause()
+```bash
+PWDEBUG=1 pytest -s
 ```
 
 </TabItem>
-<TabItem value="async">
+<TabItem value="powershell">
 
-```py
-import asyncio
-from playwright.async_api import async_playwright
+```powershell
+$env:PWDEBUG=1
+pytest -s
+```
 
-async def main():
-    async with async_playwright() as p:
-        # Make sure to run headed.
-        browser = await p.chromium.launch(headless=False)
+</TabItem>
+<TabItem value="batch">
 
-        # Setup context however you like.
-        context = await browser.new_context() # Pass any options
-        await context.route('**/*', lambda route: route.continue_())
-
-        # Pause the page, and start recording manually.
-        page = await context.new_page()
-        await page.pause()
-
-asyncio.run(main())
+```batch
+set PWDEBUG=1
+pytest -s
 ```
 
 </TabItem>
 </Tabs>
 
-## Emulate devices
+<img width="712" alt="Playwright Inspector" src="https://user-images.githubusercontent.com/883973/108614092-8c478a80-73ac-11eb-9597-67dfce110e00.png"></img>
 
-You can record scripts and tests while emulating a device.
+Check out our [debugging guide](./debug.mdx) to learn more about the [Playwright Inspector](./debug.mdx#playwright-inspector) as well as debugging with [Browser Developer tools](./debug.mdx#browser-developer-tools).
 
-```bash
-# Emulate iPhone 11.
-playwright codegen --device="iPhone 11" wikipedia.org
-```
-
-## Emulate color scheme and viewport size
-
-You can also record scripts and tests while emulating various browser properties.
-
-```bash
-# Emulate screen size and color scheme.
-playwright codegen --viewport-size=800,600 --color-scheme=dark twitter.com
-```
-
-## Emulate geolocation, language and timezone
-
-```bash
-# Emulate timezone, language & location
-# Once page opens, click the "my location" button to see geolocation in action
-playwright codegen --timezone="Europe/Rome" --geolocation="41.890221,12.492348" --lang="it-IT" maps.google.com
-```
-
+## What's Next
+- [Generate tests with Codegen](./codegen.mdx)
+- [See a trace of your tests](./trace-viewer.mdx)
 
 [Accessibility]: ./api/class-accessibility.mdx "Accessibility"
 [APIRequest]: ./api/class-apirequest.mdx "APIRequest"

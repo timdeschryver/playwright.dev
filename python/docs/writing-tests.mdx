@@ -1,120 +1,109 @@
 ---
-id: codegen
-title: "Test Generator"
+id: writing-tests
+title: "Writing Tests"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Playwright comes with the ability to generate tests out of the box and is a great way to quickly get started with testing. It will open two windows, a browser window where you interact with the website you wish to test and the Playwright Inspector window where you can record your tests, copy the tests, clear your tests as well as change the language of your tests.
+Playwright assertions are created specifically for the dynamic web. Checks are automatically retried until the necessary conditions are met. Playwright comes with [auto-wait](./actionability.mdx) built in meaning it waits for elements to be actionable prior to performing actions. Playwright provides an [expect](./test-assertions.mdx) function to write assertions.
 
-```bash
-playwright codegen playwright.dev
-```
-
-Run `codegen` and perform actions in the browser. Playwright will generate the code for the user interactions. `codegen` will attempt to generate resilient text-based selectors.
-
-<img width="1183" alt="Screenshot 2022-07-30 at 00 19 06" src="https://user-images.githubusercontent.com/13063165/181852815-971c10da-0b55-4e54-8a73-77e1e825193c.png" />
-
-## Preserve authenticated state
-
-Run `codegen` with `--save-storage` to save [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) and [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) at the end of the session. This is useful to separately record authentication step and reuse it later in the tests.
-
-```bash
-playwright codegen --save-storage=auth.json
-# Perform authentication and exit.
-# auth.json will contain the storage state.
-```
-
-Run with `--load-storage` to consume previously loaded storage. This way, all [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) and [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) will be restored, bringing most web apps to the authenticated state.
-
-```bash
-playwright open --load-storage=auth.json my.web.app
-playwright codegen --load-storage=auth.json my.web.app
-# Perform actions in authenticated state.
-```
-
-## Record using custom setup
-
-If you would like to use codegen in some non-standard setup (for example, use [browser_context.route(url, handler, **kwargs)](./api/class-browsercontext.mdx#browser-context-route)), it is possible to call [page.pause()](./api/class-page.mdx#page-pause) that will open a separate window with codegen controls.
-
-<Tabs
-  groupId="python-flavor"
-  defaultValue="sync"
-  values={[
-    {label: 'Sync', value: 'sync'},
-    {label: 'Async', value: 'async'}
-  ]
-}>
-<TabItem value="sync">
+Take a look at the example test below to see how to write a test using web first assertions, locators and selectors.
 
 ```py
-from playwright.sync_api import sync_playwright
+import re
+from playwright.sync_api import Page, expect
 
-with sync_playwright() as p:
-    # Make sure to run headed.
-    browser = p.chromium.launch(headless=False)
 
-    # Setup context however you like.
-    context = browser.new_context() # Pass any options
-    context.route('**/*', lambda route: route.continue_())
+def test_homepage_has_Playwright_in_title_and_get_started_link_linking_to_the_intro_page(
+    page: Page, foo
+):
+    page.goto("https://playwright.dev/")
 
-    # Pause the page, and start recording manually.
-    page = context.new_page()
-    page.pause()
+    # Expect a title "to contain" a substring.
+    expect(page).to_have_title(re.compile("Playwright"))
+
+    # create a locator
+    get_started = page.locator("text=Get Started")
+
+    # Expect an attribute "to be strictly equal" to the value.
+    expect(get_started).to_have_attribute("href", "/docs/intro")
+
+    # Click the get started link.
+    get_started.click()
+
+    # Expects the URL to contain intro.
+    expect(page).to_have_url(re.compile(".*intro"))
 ```
 
-</TabItem>
-<TabItem value="async">
+### Assertions
+
+Playwright provides the [`expect`](./test-assertions.mdx) function which will wait until the expected condition is met.
 
 ```py
-import asyncio
-from playwright.async_api import async_playwright
+import re
+from playwright.sync_api import expect
 
-async def main():
-    async with async_playwright() as p:
-        # Make sure to run headed.
-        browser = await p.chromium.launch(headless=False)
-
-        # Setup context however you like.
-        context = await browser.new_context() # Pass any options
-        await context.route('**/*', lambda route: route.continue_())
-
-        # Pause the page, and start recording manually.
-        page = await context.new_page()
-        await page.pause()
-
-asyncio.run(main())
+expect(page).to_have_title(re.compile("Playwright"))
 ```
 
-</TabItem>
-</Tabs>
+### Locators
 
-## Emulate devices
+[Locators](./locators.mdx) are the central piece of Playwright's auto-waiting and retry-ability. Locators represent a way to find element(s) on the page at any moment and are used to perform actions on elements such as `.click` `.fill` etc. Custom locators can be created with the [page.locator(selector, **kwargs)](./api/class-page.mdx#page-locator) method.
 
-You can record scripts and tests while emulating a device.
+```py
+from playwright.sync_api import expect
 
-```bash
-# Emulate iPhone 11.
-playwright codegen --device="iPhone 11" wikipedia.org
+get_started = page.locator("text=Get Started")
+
+expect(get_started).to_have_attribute("href", "/docs/installation")
+get_started.click()
 ```
 
-## Emulate color scheme and viewport size
+[Selectors](./selectors.mdx) are strings that are used to create Locators. Playwright supports many different selectors like [Text](./selectors.mdx#text-selector), [CSS](./selectors.mdx#css-selector), [XPath](./selectors.mdx#xpath-selectors) and many more. Learn more about available selectors and how to pick one in this [in-depth guide](./selectors.mdx).
 
-You can also record scripts and tests while emulating various browser properties.
+```py
+from playwright.sync_api import expect
 
-```bash
-# Emulate screen size and color scheme.
-playwright codegen --viewport-size=800,600 --color-scheme=dark twitter.com
+expect(page.locator("text=Installation")).to_be_visible()
 ```
 
-## Emulate geolocation, language and timezone
+### Test Isolation
 
-```bash
-# Emulate timezone, language & location
-# Once page opens, click the "my location" button to see geolocation in action
-playwright codegen --timezone="Europe/Rome" --geolocation="41.890221,12.492348" --lang="it-IT" maps.google.com
+The Playwright Pytest plugin is based on the concept of test fixtures such as the [built in page fixture](./test-runners.mdx), which is passed into your test. Pages are isolated between tests due to the Browser Context, which is equivalent to a brand new browser profile, where every test gets a fresh environment, even when multiple tests run in a single Browser.
+
+```py
+from playwright.sync_api import Page
+
+def test_basic_test(page: Page):
+  # ...
 ```
 
+### Using Test Hooks
+
+You can use various [fixtures](https://docs.pytest.org/en/6.2.x/fixture.html#autouse-fixtures-fixtures-you-don-t-have-to-request) to execute code before or after your tests and to share objects between them. A `function` scoped fixture e.g. with autouse behaves like a beforeEach/afterEach. And a `module` scoped fixture with autouse behaves like a beforeAll/afterAll which runs before all and after all the tests.
+
+```py
+import pytest
+from playwright.sync_api import Page
+
+
+@pytest.fixture(scope="function", autouse=True)
+def before_each_after_each(page: Page):
+    print("beforeEach")
+    # Go to the starting url before each test.
+    page.goto("https://playwright.dev/")
+    yield
+    print("afterEach")
+
+def test_main_navigation(page: Page):
+    # Assertions use the expect API.
+    expect(page).to_have_url("https://playwright.dev/")
+```
+
+## What's Next
+- [Run single tests, multiple tests, headed mode](./running-tests.mdx)
+- [Generate tests with Codegen](./codegen.mdx)
+- [See a trace of your tests](./trace-viewer.mdx)
 
 [Accessibility]: ./api/class-accessibility.mdx "Accessibility"
 [APIRequest]: ./api/class-apirequest.mdx "APIRequest"

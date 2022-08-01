@@ -1,120 +1,41 @@
 ---
-id: codegen
-title: "Test Generator"
+id: troubleshooting
+title: "Troubleshooting"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Playwright comes with the ability to generate tests out of the box and is a great way to quickly get started with testing. It will open two windows, a browser window where you interact with the website you wish to test and the Playwright Inspector window where you can record your tests, copy the tests, clear your tests as well as change the language of your tests.
+## Browser dependencies
 
-```bash
-playwright codegen playwright.dev
-```
+Playwright does self-inspection every time it runs to make sure the browsers can be launched successfully. If there are missing dependencies, playwright will print instructions to acquire them.
 
-Run `codegen` and perform actions in the browser. Playwright will generate the code for the user interactions. `codegen` will attempt to generate resilient text-based selectors.
+See also in the [Command line tools](./cli.mdx#install-system-dependencies) which has a command to install all necessary dependencies automatically for Ubuntu LTS releases.
 
-<img width="1183" alt="Screenshot 2022-07-30 at 00 19 06" src="https://user-images.githubusercontent.com/13063165/181852815-971c10da-0b55-4e54-8a73-77e1e825193c.png" />
+## Python requirements
 
-## Preserve authenticated state
+Playwright requires **Python 3.7** or newer.
 
-Run `codegen` with `--save-storage` to save [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) and [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) at the end of the session. This is useful to separately record authentication step and reuse it later in the tests.
+## System requirements
 
-```bash
-playwright codegen --save-storage=auth.json
-# Perform authentication and exit.
-# auth.json will contain the storage state.
-```
+The browser binaries for Chromium, Firefox and WebKit work across the 3 platforms (Windows, macOS, Linux):
 
-Run with `--load-storage` to consume previously loaded storage. This way, all [cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies) and [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) will be restored, bringing most web apps to the authenticated state.
+### Windows
 
-```bash
-playwright open --load-storage=auth.json my.web.app
-playwright codegen --load-storage=auth.json my.web.app
-# Perform actions in authenticated state.
-```
+Works with Windows and Windows Subsystem for Linux (WSL).
 
-## Record using custom setup
+### macOS
 
-If you would like to use codegen in some non-standard setup (for example, use [browser_context.route(url, handler, **kwargs)](./api/class-browsercontext.mdx#browser-context-route)), it is possible to call [page.pause()](./api/class-page.mdx#page-pause) that will open a separate window with codegen controls.
+Requires 11 (Big Sur) or above.
 
-<Tabs
-  groupId="python-flavor"
-  defaultValue="sync"
-  values={[
-    {label: 'Sync', value: 'sync'},
-    {label: 'Async', value: 'async'}
-  ]
-}>
-<TabItem value="sync">
+### Linux
 
-```py
-from playwright.sync_api import sync_playwright
+Depending on your Linux distribution, you might need to install additional dependencies to run the browsers.
 
-with sync_playwright() as p:
-    # Make sure to run headed.
-    browser = p.chromium.launch(headless=False)
+:::note
+Only Ubuntu 18.04, 20.04, and 22.04 are officially supported.
+:::
 
-    # Setup context however you like.
-    context = browser.new_context() # Pass any options
-    context.route('**/*', lambda route: route.continue_())
-
-    # Pause the page, and start recording manually.
-    page = context.new_page()
-    page.pause()
-```
-
-</TabItem>
-<TabItem value="async">
-
-```py
-import asyncio
-from playwright.async_api import async_playwright
-
-async def main():
-    async with async_playwright() as p:
-        # Make sure to run headed.
-        browser = await p.chromium.launch(headless=False)
-
-        # Setup context however you like.
-        context = await browser.new_context() # Pass any options
-        await context.route('**/*', lambda route: route.continue_())
-
-        # Pause the page, and start recording manually.
-        page = await context.new_page()
-        await page.pause()
-
-asyncio.run(main())
-```
-
-</TabItem>
-</Tabs>
-
-## Emulate devices
-
-You can record scripts and tests while emulating a device.
-
-```bash
-# Emulate iPhone 11.
-playwright codegen --device="iPhone 11" wikipedia.org
-```
-
-## Emulate color scheme and viewport size
-
-You can also record scripts and tests while emulating various browser properties.
-
-```bash
-# Emulate screen size and color scheme.
-playwright codegen --viewport-size=800,600 --color-scheme=dark twitter.com
-```
-
-## Emulate geolocation, language and timezone
-
-```bash
-# Emulate timezone, language & location
-# Once page opens, click the "my location" button to see geolocation in action
-playwright codegen --timezone="Europe/Rome" --geolocation="41.890221,12.492348" --lang="it-IT" maps.google.com
-```
-
+See also in the [Command line tools](./cli.mdx#install-system-dependencies) which has a command to install all necessary dependencies automatically for Ubuntu LTS releases.
 
 [Accessibility]: ./api/class-accessibility.mdx "Accessibility"
 [APIRequest]: ./api/class-apirequest.mdx "APIRequest"
