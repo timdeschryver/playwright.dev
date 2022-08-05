@@ -1,69 +1,106 @@
 ---
-id: intro
-title: "Installation"
+id: running-tests
+title: "Running Tests"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Playwright was created specifically to accommodate the needs of end-to-end testing. Playwright supports all modern rendering engines including Chromium, WebKit, and Firefox. Test on Windows, Linux, and macOS, locally or on CI, headless or headed with native mobile emulation. 
+You can run a single test, a set of tests or all tests. Tests can be run on one browser or multiple browsers. By default tests are run in a headless manner meaning no browser window will be opened while running the tests and results will be seen in the terminal. If you prefer you can run your tests in headed mode by using the `--headed` flag.
+- Running tests on Chromium
 
-Playwright recommends using the official [Playwright Pytest plugin](./test-runners.mdx) to write end-to-end tests. It provides context isolation, running it on multiple browser configurations out of the box. Alternatively you can use the [library](./library.mdx) to manually write the testing infrastructure with your preferred test-runner. The Pytest plugin utilizes the sync version of Playwright, there is also an async version accessible via the library.
+  ```bash
+  pytest
+  ```
 
-Get started by installing Playwright and running the example test to see it in action.
+- Running a single test file
 
-Install the [Pytest plugin](https://pypi.org/project/pytest-playwright/):
+  ```bash
+  pytest test_login.py
+  ```
+
+- Run a set of test files
+
+  ```bash
+  pytest tests/todo-page/ tests/landing-page/
+  ```
+
+- Run the test with the function name
+
+  ```bash
+  pytest -k "test_add_a_todo_item"
+  ```
+
+- Running tests in headed mode
+
+  ```bash
+  pytest --headed test_login.py
+  ```
+
+- Running Tests on specific browsers
+
+  ```bash
+  pytest test_login.py --browser webkit
+  ```
+
+- Running Tests on multiple browsers
+
+  ```bash
+  pytest test_login.py --browser webkit --browser firefox
+  ```
+
+- Running Tests in parallel
+
+  ```bash
+  pytest --numprocesses auto
+  ```
+
+  (This assumes `pytest-xdist` is installed. For more information see [here](./test-runners.mdx#parallelism-running-multiple-tests-at-once).)
+
+For more information see [Playwright Pytest usage](./test-runners.mdx) or the Pytest documentation for [general CLI usage](https://docs.pytest.org/en/stable/usage.html).
+
+## Running Tests
+
+Since Playwright runs in Python, you can debug it with your debugger of choice with e.g. the [Python extension](https://code.visualstudio.com/docs/python/python-tutorial) in Visual Studio Code. Playwright comes with the Playwright Inspector which allows you to step through Playwright API calls, see their debug logs and explore [selectors](./selectors.mdx).
+
+<Tabs
+  groupId="bash-flavor"
+  defaultValue="bash"
+  values={[
+    {label: 'Bash', value: 'bash'},
+    {label: 'PowerShell', value: 'powershell'},
+    {label: 'Batch', value: 'batch'}
+  ]
+}>
+<TabItem value="bash">
 
 ```bash
-pip install pytest-playwright
+PWDEBUG=1 pytest -s
 ```
 
-Install the required browsers:
+</TabItem>
+<TabItem value="powershell">
 
-```bash
-playwright install
+```powershell
+$env:PWDEBUG=1
+pytest -s
 ```
 
-## Add Example Test
+</TabItem>
+<TabItem value="batch">
 
-Create a `test_my_application.py` file inside the current working directory or in a sub-directory with the code below:
-
-```py
-import re
-from playwright.sync_api import Page, expect
-
-
-def test_homepage_has_Playwright_in_title_and_get_started_link_linking_to_the_intro_page(page: Page):
-    page.goto("https://playwright.dev/")
-
-    # Expect a title "to contain" a substring.
-    expect(page).to_have_title(re.compile("Playwright"))
-
-    # create a locator
-    get_started = page.locator("text=Get Started")
-
-    # Expect an attribute "to be strictly equal" to the value.
-    expect(get_started).to_have_attribute("href", "/docs/intro")
-
-    # Click the get started link.
-    get_started.click()
-
-    # Expects the URL to contain intro.
-    expect(page).to_have_url(re.compile(".*intro"))
+```batch
+set PWDEBUG=1
+pytest -s
 ```
 
-## Running the Example Test
+</TabItem>
+</Tabs>
 
-By default tests will be run on chromium. This can be configured via the CLI options. Tests are run in headless mode meaning no browser UI will open up when running the tests. Results of the tests and test logs will be shown in the terminal.
+<img width="712" alt="Playwright Inspector" src="https://user-images.githubusercontent.com/883973/108614092-8c478a80-73ac-11eb-9597-67dfce110e00.png"></img>
 
-```bash
-pytest
-```
+Check out our [debugging guide](./debug.mdx) to learn more about the [Playwright Inspector](./debug.mdx#playwright-inspector) as well as debugging with [Browser Developer tools](./debug.mdx#browser-developer-tools).
 
-See our doc on [Running Tests](./running-tests.mdx) to learn more about running tests in headed mode, running multiple tests, running specific tests etc.
-
-## What's next
-- [Write tests using web first assertions, page fixtures and locators](./writing-tests.mdx)
-- [Run single tests, multiple tests, headed mode](./running-tests.mdx)
+## What's Next
 - [Generate tests with Codegen](./codegen.mdx)
 - [See a trace of your tests](./trace-viewer.mdx)
 

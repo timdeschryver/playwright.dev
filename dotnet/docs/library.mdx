@@ -1,97 +1,78 @@
 ---
-id: docker
-title: "Docker"
+id: library
+title: "Getting started - Library"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[Dockerfile.focal] can be used to run Playwright scripts in Docker environment. These image includes all the dependencies needed to run browsers in a Docker container, and also include the browsers themselves.
-
-- [Usage](#usage)
-- [Image tags](#image-tags)
+Playwright can either be used with the [NUnit](./test-runners.mdx#nunit) or [MSTest](./test-runners.mdx#mstest), or as a Playwright Library (this guide). If you are working on an application that utilizes Playwright capabilities or you are using Playwright with another test runner, read on.
 
 ## Usage
 
-This image is published on [Docker Hub].
-
-### Pull the image
+Create a console project and add the Playwright dependency.
 
 ```bash
-docker pull mcr.microsoft.com/playwright/dotnet:v1.25.0-focal
+# Create project
+dotnet new console -n PlaywrightDemo
+cd PlaywrightDemo
+
+# Add project dependency
+dotnet add package Microsoft.Playwright
+# Build the project
+dotnet build
+# Install required browsers - replace netX with actual output folder name, e.g. net6.0.
+pwsh bin\Debug\netX\playwright.ps1 install
+
+# If the pwsh command does not work (throws TypeNotFound), make sure to use an up-to-date version of PowerShell.
+dotnet tool update --global PowerShell
 ```
 
-### Run the image
+Create a `Program.cs` that will navigate to `https://playwright.dev/dotnet` and take a screenshot in Chromium.
 
-By default, the Docker image will use the `root` user to run the browsers. This will disable the Chromium sandbox which is not available with root. If you run trusted code (e.g. End-to-end tests) and want to avoid the hassle of managing separate user then the root user may be fine. For web scraping or crawling, we recommend to create a separate user inside the Docker container and use the seccomp profile.
+```csharp
+using Microsoft.Playwright;
 
-#### End-to-end tests
+using var playwright = await Playwright.CreateAsync();
+await using var browser = await playwright.Chromium.LaunchAsync();
+var page = await browser.NewPageAsync();
+await page.GotoAsync("https://playwright.dev/dotnet");
+await page.ScreenshotAsync(new PageScreenshotOptions { Path = "screenshot.png" });
+```
 
-On trusted websites, you can avoid creating a separate user and use root for it since you trust the code which will run on the browsers.
+Now run it.
 
 ```bash
-docker run -it --rm --ipc=host mcr.microsoft.com/playwright/dotnet:v1.25.0-focal /bin/bash
+dotnet run
 ```
 
-#### Crawling and scraping
+By default, Playwright runs the browsers in headless mode. To see the browser UI, pass the `Headless = false` flag while launching the browser. You can also use `slowMo` to slow down execution. Learn more in the debugging tools [section](./debug.mdx).
 
-On untrusted websites, it's recommended to use a separate user for launching the browsers in combination with the seccomp profile. Inside the container or if you are using the Docker image as a base image you have to use `adduser` for it.
-
-```bash
-docker run -it --rm --ipc=host --user pwuser --security-opt seccomp=seccomp_profile.json mcr.microsoft.com/playwright/dotnet:v1.25.0-focal /bin/bash
+```csharp
+await using var browser = await playwright.Firefox.LaunchAsync(new()
+{
+    Headless = false,
+    SlowMo = 50,
+});
 ```
 
-[`seccomp_profile.json`](https://github.com/microsoft/playwright/blob/main/utils/docker/seccomp_profile.json) is needed to run Chromium with sandbox. This is a [default Docker seccomp profile](https://github.com/docker/engine/blob/d0d99b04cf6e00ed3fc27e81fc3d94e7eda70af3/profiles/seccomp/default.json) with extra user namespace cloning permissions:
+## Bundle drivers for different platforms
 
-```json
-[
-  {
-    "comment": "Allow create user namespaces",
-    "names": [
-      "clone",
-      "setns",
-      "unshare"
-    ],
-    "action": "SCMP_ACT_ALLOW",
-    "args": [],
-    "includes": {},
-    "excludes": {}
-  }
-]
+Playwright by default does bundle only the driver for the .NET publish target runtime. If you want to bundle for additional platforms, you can override this behavior by using either `all`, `none` or `linux`, `win`, `osx` in your project file.
+
+```xml
+<PropertyGroup>
+  <PlaywrightPlatform>all</PlaywrightPlatform>
+</PropertyGroup>
 ```
 
-:::note
-Using `--ipc=host` is recommended when using Chrome ([Docker docs](https://docs.docker.com/engine/reference/run/#ipc-settings---ipc)). Chrome can run out of memory without this flag.
-:::
+or:
 
-### Using on CI
+```xml
+<PropertyGroup>
+  <PlaywrightPlatform>osx;linux</PlaywrightPlatform>
+</PropertyGroup>
+```
 
-See our [Continuous Integration guides](./ci.mdx) for sample configs.
-
-## Image tags
-
-See [all available image tags].
-
-Docker images are published automatically by GitHub Actions. We currently publish images with the following tags (`v1.20.0` in this case is an example:):
-- `:next` - tip-of-tree image version based on Ubuntu 20.04 LTS (Focal Fossa).
-- `:next-focal` - tip-of-tree image version based on Ubuntu 20.04 LTS (Focal Fossa).
-- `:v1.20.0` - Playwright v1.20.0 release docker image based on Ubuntu 20.04 LTS (Focal Fossa).
-- `:v1.20.0-focal` - Playwright v1.20.0 release docker image based on Ubuntu 20.04 LTS (Focal Fossa).
-- `:sha-XXXXXXX` - docker image for every commit that changed docker files or browsers, marked with a [short sha](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection#Short-SHA-1) (first 7 digits of the SHA commit).
-
-:::note
-It is recommended to always pin your Docker image to a specific version if possible. If the Playwright version in your Docker image does not match the version in your project/tests, Playwright will be unable to locate browser executables.
-:::
-
-### Base images
-
-We currently publish images based on the following [Ubuntu](https://hub.docker.com/_/ubuntu) versions:
-- **Ubuntu 22.04 LTS** (Jammy Jellyfish), image tags include `jammy` (not published for Java and .NET)
-- **Ubuntu 20.04 LTS** (Focal Fossa), image tags include `focal`
-- **Ubuntu 18.04 LTS** (Bionic Beaver), image tags include `bionic` (not published for Java and .NET)
-
-#### Alpine
-
-Browser builds for Firefox and WebKit are built for the [glibc](https://en.wikipedia.org/wiki/Glibc) library. Alpine Linux and other distributions that are based on the [musl](https://en.wikipedia.org/wiki/Musl) standard library are not supported.
 
 [Accessibility]: ./api/class-accessibility.mdx "Accessibility"
 [APIRequest]: ./api/class-apirequest.mdx "APIRequest"
