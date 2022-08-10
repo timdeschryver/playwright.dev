@@ -1,158 +1,42 @@
 ---
-id: mock
-title: "Mock APIs"
+id: canary-releases
+title: "Canary Releases"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Playwright provides native support for most of the browser features. However, there are some experimental APIs and APIs which are not (yet) fully supported by all browsers. Playwright usually doesn't provide dedicated atomation APIs in such cases. You can use mocks to test behavior of your application in such cases. This guide gives a few examples.
+Playwright for Node.js has a canary releases system.
 
-- [Introduction](#introduction)
-- [Creating mocks](#creating-mocks)
-- [Verifying API calls](#verifying-api-calls)
-- [Updating mock](#updating-mock)
+It permits you to **test new unreleased features** instead of waiting for a full release. They get released daily on the `next` NPM tag of Playwright.
 
-## Introduction
+It is a good way to **give feedback to maintainers**, ensuring the newly implemented feature works as intended.
 
-Let's consider a web app that uses [battery API](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getBattery) to show your device's battery status. We'll mock the battery API and check that the page correctly displays the battery status.
-
-## Creating mocks
-
-Since the page may be calling the API very early while loading it's important to setup all the mocks before the 
-
-page started loading. The easiest way to achieve that is to call [page.addInitScript(script[, arg])](/api/class-page.mdx#page-add-init-script):
-
-```js
-await page.addInitScript(() => {
-  const mockBattery = {
-    level: 0.75,
-    charging: true,
-    chargingTime: 1800,
-    dischargingTime: Infinity,
-    addEventListener: () => { }
-  };
-  // Override the method to always return mock battery info.
-  window.navigator.getBattery = async () => mockBattery;
-});
-```
-
-Once this is done you can navigate the page and check its UI state:
-
-```js
-// Configure mock API before each test.
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => {
-    const mockBattery = {
-      level: 0.90,
-      charging: true,
-      chargingTime: 1800, // seconds
-      dischargingTime: Infinity,
-      addEventListener: () => { }
-    };
-    // Override the method to always return mock battery info.
-    window.navigator.getBattery = async () => mockBattery;
-  });
-});
-
-test('show battery status', async ({ page }) => {
-  await page.goto('/');
-  await expect(page.locator('.battery-percentage')).toHaveText('90%');
-  await expect(page.locator('.battery-status')).toHaveText('Adapter');
-  await expect(page.locator('.battery-fully')).toHaveText('00:30');
-});
+:::note
+ Using a canary release in production might seem risky, but in practice, it's not.  A canary release passes all automated tests and is used to test e.g. the HTML report, Trace Viewer, or Playwright Inspector with end-to-end tests. 
+:::
 
 ```
-
-## Verifying API calls
-
-Sometimes it is useful to check if the page made all expected APIs calls. You can record all API method invocations and then compare them with golden result. [page.exposeFunction(name, callback)](/api/class-page.mdx#page-expose-function) may come in handy for passing message from the page back to the test code:
-
-```js
-test('log battery calls', async ({ page }) => {
-  const log = [];
-  // Expose function for pushing messages to the Node.js script.
-  await page.exposeFunction('logCall', msg => log.push(msg));
-  await page.addInitScript(() => {
-    const mockBattery = {
-      level: 0.75,
-      charging: true,
-      chargingTime: 1800,
-      dischargingTime: Infinity,
-      // Log addEventListener calls.
-      addEventListener: (name, cb) => logCall(`addEventListener:${name}`)
-    };
-    // Override the method to always return mock battery info.
-    window.navigator.getBattery = async () => {
-      logCall('getBattery');
-      return mockBattery;
-    };
-  });
-
-  await page.goto('/');
-  await expect(page.locator('.battery-percentage')).toHaveText('75%');
-
-  // Compare actual calls with golden.
-  expect(log).toEqual([
-    'getBattery',
-    'addEventListener:chargingchange',
-    'addEventListener:levelchange'
-  ]);
-});
+npm install -D @playwright/test@next
 ```
 
-## Updating mock
+## Next npm Dist Tag
 
-To test that the app correctly reflects battery status updates it's important to make sure that the mock battery object fires same events that the browser implementation would. The following test demonstrates how to achieve that:
+For any code-related commit on `main`, the continuous integration will publish a daily canary release under the `@next` npm dist tag.
 
-```js
-test('update battery status (no golden)', async ({ page }) => {
-  await page.addInitScript(() => {
-    // Mock class that will notify corresponding listeners when battery status changes.
-    class BatteryMock {
-      level = 0.10;
-      charging = false;
-      chargingTime = 1800;
-      dischargingTime = Infinity;
-      _chargingListeners = [];
-      _levelListeners = [];
-      addEventListener(eventName, listener) {
-        if (eventName === 'chargingchange')
-          this._chargingListeners.push(listener);
-        if (eventName === 'levelchange')
-          this._levelListeners.push(listener);
-      }
-      // Will be called by the test.
-      _setLevel(value) {
-        this.level = value;
-        this._levelListeners.forEach(cb => cb());
-      }
-      _setCharging(value) {
-        this.charging = value;
-        this._chargingListeners.forEach(cb => cb());
-      }
-    };
-    const mockBattery = new BatteryMock();
-    // Override the method to always return mock battery info.
-    window.navigator.getBattery = async () => mockBattery;
-    // Save the mock object on window for easier access.
-    window.mockBattery = mockBattery;
-  });
+You can see on [npm](https://www.npmjs.com/package/@playwright/test?activeTab=versions) the current dist tags:
+- `latest`: stable releases
+- `next`: next releases, published daily
+- `beta`: after a release-branch was cut, usually a week before a stable release each commit gets published under this tag
 
-  await page.goto('/');
-  await expect(page.locator('.battery-percentage')).toHaveText('10%');
+## Using a Canary Release
 
-  // Update level to 27.5%
-  await page.evaluate(() => window.mockBattery._setLevel(0.275));
-  await expect(page.locator('.battery-percentage')).toHaveText('27.5%');
-  await expect(page.locator('.battery-status')).toHaveText('Battery');
-
-  // Emulate connected adapter
-  await page.evaluate(() => window.mockBattery._setCharging(true));
-  await expect(page.locator('.battery-status')).toHaveText('Adapter');
-  await expect(page.locator('.battery-fully')).toHaveText('00:30');
-});
+```
+npm install -D @playwright/test@next
 ```
 
+## Documentation
+
+The stable and the `next` documentation is published on [playwright.dev](https://playwright.dev). To see the `next` documentation, press <kbd>Shift</kbd> on the keyboard `5` times.
 
 [Accessibility]: /api/class-accessibility.mdx "Accessibility"
 [Android]: /api/class-android.mdx "Android"
