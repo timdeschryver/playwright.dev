@@ -1,54 +1,35 @@
 ---
-id: class-accessibility
-title: "Accessibility"
+id: codegen-intro
+title: "Test Generator"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-**DEPRECATED** This class is deprecated. Please use other libraries such as [Axe](https://www.deque.com/axe/) if you need to test page accessibility. See our Node.js [guide](https://playwright.dev/docs/accessibility-testing) for integration with Axe.
+Playwright comes with the ability to generate tests out of the box and is a great way to quickly get started with testing. It will open two windows, a browser window where you interact with the website you wish to test and the Playwright Inspector window where you can record your tests, copy the tests, clear your tests as well as change the language of your tests.
 
-The Accessibility class provides methods for inspecting Chromium's accessibility tree. The accessibility tree is used by assistive technology such as [screen readers](https://en.wikipedia.org/wiki/Screen_reader) or [switches](https://en.wikipedia.org/wiki/Switch_access).
+**You will learn**
+- [How to generate tests with Codegen](/codegen.mdx#running-codegen)
 
-Accessibility is a very platform-specific thing. On different platforms, there are different screen readers that might have wildly different output.
+## Running Codegen
 
-Rendering engines of Chromium, Firefox and WebKit have a concept of "accessibility tree", which is then translated into different platform-specific APIs. Accessibility namespace gives access to this Accessibility Tree.
-
-Most of the accessibility tree gets filtered out when converting from internal browser AX Tree to Platform-specific AX-Tree or by assistive technologies themselves. By default, Playwright tries to approximate this filtering, exposing only the "interesting" nodes of the tree.
-
-
-- [Accessibility.SnapshotAsync(options)](/api/class-accessibility.mdx#accessibility-snapshot)
-
-## Accessibility.SnapshotAsync(options) {#accessibility-snapshot}
-
-<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.8</font>
-
-- `options` &#60;`AccessibilitySnapshotOptions?`&#62;
-  - `InterestingOnly`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="accessibility-snapshot-option-interesting-only"/> &#60;[bool]?&#62; Prune uninteresting nodes from the tree. Defaults to `true`.<a href="#accessibility-snapshot-option-interesting-only" class="list-anchor">#</a>
-  - `Root`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="accessibility-snapshot-option-root"/> &#60;[ElementHandle]?&#62; The root DOM element for the snapshot. Defaults to the whole page.<a href="#accessibility-snapshot-option-root" class="list-anchor">#</a>
-- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="accessibility-snapshot-return"/> &#60;[JsonElement]?&#62;<a href="#accessibility-snapshot-return" class="list-anchor">#</a>
-
-**DEPRECATED** This method is deprecated. Please use other libraries such as [Axe](https://www.deque.com/axe/) if you need to test page accessibility. See our Node.js [guide](https://playwright.dev/docs/accessibility-testing) for integration with Axe.
-
-Captures the current state of the accessibility tree. The returned object represents the root accessible node of the page.
-
-:::note
-The Chromium accessibility tree contains nodes that go unused on most platforms and by most screen readers. Playwright will discard them as well for an easier to process tree, unless `interestingOnly` is set to `false`.
-:::
-
-An example of dumping the entire accessibility tree:
-
-```csharp
-var accessibilitySnapshot = await page.Accessibility.SnapshotAsync();
-Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(accessibilitySnapshot));
+```bash
+pwsh bin\Debug\netX\playwright.ps1 codegen playwright.dev
 ```
 
-An example of logging the focused node's name:
+Run `codegen` and perform actions in the browser. Playwright will generate the code for the user interactions. `Codegen` will attempt to generate resilient text-based selectors.
 
-```csharp
-var accessibilitySnapshot = await page.Accessibility.SnapshotAsync();
-Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(accessibilitySnapshot));
-```
+<img width="1183" alt="Codegen generating code for tests for playwright.dev website" src="https://user-images.githubusercontent.com/13063165/181852815-971c10da-0b55-4e54-8a73-77e1e825193c.png" />
 
+When you have finished interacting with the page, press the **record** button to stop the recording and use the **copy** button to copy the generated code to your editor. 
+
+<img width="1266" alt="Codegen generating code for tests for playwright.dev" src="https://user-images.githubusercontent.com/13063165/183905981-003c4173-0d5e-4960-8190-50e6ca71b2c3.png" />
+
+Use the **clear** button to clear the code to start recording again. Once finished close the Playwright inspector window or stop the terminal command.
+
+To learn more about generating tests check out or detailed guide on [Codegen](./codegen.mdx).
+
+## What's Next
+- [See a trace of your tests](./trace-viewer.mdx)
 
 [Accessibility]: /api/class-accessibility.mdx "Accessibility"
 [APIRequest]: /api/class-apirequest.mdx "APIRequest"

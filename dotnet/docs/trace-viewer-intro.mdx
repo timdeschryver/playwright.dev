@@ -1,54 +1,60 @@
 ---
-id: class-accessibility
-title: "Accessibility"
+id: trace-viewer-intro
+title: "Trace Viewer"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-**DEPRECATED** This class is deprecated. Please use other libraries such as [Axe](https://www.deque.com/axe/) if you need to test page accessibility. See our Node.js [guide](https://playwright.dev/docs/accessibility-testing) for integration with Axe.
+Playwright Trace Viewer is a GUI tool that lets you explore recorded Playwright traces of your tests meaning you can go back and forward though each action of your test and visually see what was happening during each action.
 
-The Accessibility class provides methods for inspecting Chromium's accessibility tree. The accessibility tree is used by assistive technology such as [screen readers](https://en.wikipedia.org/wiki/Screen_reader) or [switches](https://en.wikipedia.org/wiki/Switch_access).
+**You will learn**
+- How to record a trace
+- How to open the HTML report
+- How to open the trace viewer
 
-Accessibility is a very platform-specific thing. On different platforms, there are different screen readers that might have wildly different output.
+## Recording a trace
 
-Rendering engines of Chromium, Firefox and WebKit have a concept of "accessibility tree", which is then translated into different platform-specific APIs. Accessibility namespace gives access to this Accessibility Tree.
-
-Most of the accessibility tree gets filtered out when converting from internal browser AX Tree to Platform-specific AX-Tree or by assistive technologies themselves. By default, Playwright tries to approximate this filtering, exposing only the "interesting" nodes of the tree.
-
-
-- [Accessibility.SnapshotAsync(options)](/api/class-accessibility.mdx#accessibility-snapshot)
-
-## Accessibility.SnapshotAsync(options) {#accessibility-snapshot}
-
-<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.8</font>
-
-- `options` &#60;`AccessibilitySnapshotOptions?`&#62;
-  - `InterestingOnly`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="accessibility-snapshot-option-interesting-only"/> &#60;[bool]?&#62; Prune uninteresting nodes from the tree. Defaults to `true`.<a href="#accessibility-snapshot-option-interesting-only" class="list-anchor">#</a>
-  - `Root`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="accessibility-snapshot-option-root"/> &#60;[ElementHandle]?&#62; The root DOM element for the snapshot. Defaults to the whole page.<a href="#accessibility-snapshot-option-root" class="list-anchor">#</a>
-- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="accessibility-snapshot-return"/> &#60;[JsonElement]?&#62;<a href="#accessibility-snapshot-return" class="list-anchor">#</a>
-
-**DEPRECATED** This method is deprecated. Please use other libraries such as [Axe](https://www.deque.com/axe/) if you need to test page accessibility. See our Node.js [guide](https://playwright.dev/docs/accessibility-testing) for integration with Axe.
-
-Captures the current state of the accessibility tree. The returned object represents the root accessible node of the page.
-
-:::note
-The Chromium accessibility tree contains nodes that go unused on most platforms and by most screen readers. Playwright will discard them as well for an easier to process tree, unless `interestingOnly` is set to `false`.
-:::
-
-An example of dumping the entire accessibility tree:
+Traces can be recorded using the [BrowserContext.Tracing](/api/class-browsercontext.mdx#browser-context-tracing) API as follows:
 
 ```csharp
-var accessibilitySnapshot = await page.Accessibility.SnapshotAsync();
-Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(accessibilitySnapshot));
+await using var browser = playwright.Chromium.LaunchAsync();
+await using var context = await browser.NewContextAsync();
+
+// Start tracing before creating / navigating a page.
+await context.Tracing.StartAsync(new()
+{
+  Screenshots = true,
+  Snapshots = true,
+  Sources = true
+});
+
+var page = context.NewPageAsync();
+await page.GotoAsync("https://playwright.dev");
+
+// Stop tracing and export it into a zip archive.
+await context.Tracing.StopAsync(new()
+{
+  Path = "trace.zip"
+});
 ```
 
-An example of logging the focused node's name:
+This will record the trace and place it into the file named `trace.zip`.
 
-```csharp
-var accessibilitySnapshot = await page.Accessibility.SnapshotAsync();
-Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(accessibilitySnapshot));
+## Opening the trace
+
+You can open the saved trace using Playwright CLI or in your browser on [`trace.playwright.dev`](https://trace.playwright.dev).
+
+```bash
+pwsh bin\Debug\netX\playwright.ps1 show-trace trace.zip
 ```
 
+## Viewing the trace
+
+View traces of your test by clicking through each action or hovering using the timeline and see the state of the page before and after the action. Inspect the log, source and network during each step of the test. The trace viewer creates a DOM snapshot so you can fully interact with it, open devtools etc.
+
+<img width="941" alt="image" src="https://user-images.githubusercontent.com/13063165/182618490-3340cfbf-7ac9-46e2-8157-6a8ce52dca28.png" />
+
+To learn more check out our detailed guide on [Trace Viewer](/trace-viewer.mdx).
 
 [Accessibility]: /api/class-accessibility.mdx "Accessibility"
 [APIRequest]: /api/class-apirequest.mdx "APIRequest"
