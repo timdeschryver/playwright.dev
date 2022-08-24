@@ -1,136 +1,80 @@
 ---
-id: debug-selectors
-title: "Debugging Selectors"
+id: trace-viewer-intro
+title: "Trace Viewer"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Playwright will throw a timeout exception like `locator.click: Timeout 30000ms exceeded` when an element does not exist on the page. There are multiple ways of debugging selectors:
-- [Playwright Inspector](#using-playwright-inspector) to step over each Playwright API call to inspect the page.
-- [Browser DevTools](#using-devtools) to inspect selectors with the DevTools element panel.
-- [Trace Viewer](./trace-viewer.mdx) to see what the page looked like during the test run.
-- [Verbose API logs](#verbose-api-logs) shows [actionability checks](./actionability.mdx) when locating the element.
+Playwright Trace Viewer is a GUI tool that lets you explore recorded Playwright traces of your tests meaning you can go back and forward though each action of your test and visually see what was happening during each action.
 
-## Using Playwright Inspector
+**You will learn**
+- How to record a trace
+- How to open the HTML report
+- How to open the trace viewer
 
-Open the [Playwright Inspector](./debug.mdx) and click the `Explore` button to hover over elements in the screen and click them to automatically generate selectors for those elements. To verify where selector points, paste it into the inspector input field:
+## Recording a trace
 
-<img width="602" alt="Selectors toolbar" src="https://user-images.githubusercontent.com/883973/108614696-ad5eaa00-73b1-11eb-81f5-9eebe62543a2.png"></img>
-
-## Using DevTools
-
-You can also use the following API inside the Developer Tools Console of any browser.
-
-When running in Debug Mode with `PWDEBUG=console`, a `playwright` object is available in Developer tools console.
-1. Run with `PWDEBUG=console`
-1. Setup a breakpoint to pause the execution
-1. Open the console panel in browser developer tools
-
-<img src="https://user-images.githubusercontent.com/284612/92536317-37dd9380-f1ee-11ea-875d-daf1b206dd56.png"></img>
-
-### playwright.$(selector)
-
-Query Playwright selector, using the actual Playwright query engine, for example:
-
-```txt
-> playwright.$('.auth-form >> text=Log in');
-
-<button>Log in</button>
-```
-
-### playwright.$$(selector)
-
-Same as `playwright.$`, but returns all matching elements.
-
-```txt
-> playwright.$$('li >> text=John')
-
-> [<li>, <li>, <li>, <li>]
-```
-
-### playwright.inspect(selector)
-
-Reveal element in the Elements panel (if DevTools of the respective browser supports it).
-
-```txt
-> playwright.inspect('text=Log in')
-```
-
-### playwright.locator(selector)
-
-Query Playwright element using the actual Playwright query engine, for example:
-
-```txt
-> playwright.locator('.auth-form', { hasText: 'Log in' });
-
-> Locator ()
->   - element: button
->   - elements: [button]
-```
-
-### playwright.highlight(selector)
-
-Highlight the first occurrence of the locator:
-
-```txt
-> playwright.highlight('.auth-form');
-```
-
-### playwright.clear()
-
-```txt
-> playwright.clear()
-```
-
-Clear existing highlights.
-
-### playwright.selector(element)
-
-Generates selector for the given element.
-
-```txt
-> playwright.selector($0)
-
-"div[id="glow-ingress-block"] >> text=/.*Hello.*/"
-```
-
-## Verbose API logs
-
-Playwright supports verbose logging with the `DEBUG` environment variable.
+Traces can be recorded using the [browser_context.tracing](/api/class-browsercontext.mdx#browser-context-tracing) API as follows:
 
 <Tabs
-  groupId="bash-flavor"
-  defaultValue="bash"
+  groupId="python-flavor"
+  defaultValue="sync"
   values={[
-    {label: 'Bash', value: 'bash'},
-    {label: 'PowerShell', value: 'powershell'},
-    {label: 'Batch', value: 'batch'}
+    {label: 'Sync', value: 'sync'},
+    {label: 'Async', value: 'async'}
   ]
 }>
-<TabItem value="bash">
+<TabItem value="sync">
 
-```bash
-DEBUG=pw:api pytest -s
+```py
+browser = chromium.launch()
+context = browser.new_context()
+
+# Start tracing before creating / navigating a page.
+context.tracing.start(screenshots=True, snapshots=True, sources=True)
+
+page.goto("https://playwright.dev")
+
+# Stop tracing and export it into a zip archive.
+context.tracing.stop(path = "trace.zip")
 ```
 
 </TabItem>
-<TabItem value="powershell">
+<TabItem value="async">
 
-```powershell
-$env:DEBUG="pw:api"
-pytest -s
-```
+```py
+browser = await chromium.launch()
+context = await browser.new_context()
 
-</TabItem>
-<TabItem value="batch">
+# Start tracing before creating / navigating a page.
+await context.tracing.start(screenshots=True, snapshots=True, sources=True)
 
-```batch
-set DEBUG=pw:api
-pytest -s
+await page.goto("https://playwright.dev")
+
+# Stop tracing and export it into a zip archive.
+await context.tracing.stop(path = "trace.zip")
 ```
 
 </TabItem>
 </Tabs>
+
+This will record the trace and place it into the file named `trace.zip`.
+
+## Opening the trace
+
+You can open the saved trace using Playwright CLI or in your browser on [`trace.playwright.dev`](https://trace.playwright.dev).
+
+```bash
+playwright show-trace trace.zip
+```
+
+## Viewing the trace
+
+View traces of your test by clicking through each action or hovering using the timeline and see the state of the page before and after the action. Inspect the log, source and network during each step of the test. The trace viewer creates a DOM snapshot so you can fully interact with it, open devtools etc.
+
+<img width="941" alt="image" src="https://user-images.githubusercontent.com/13063165/182618490-3340cfbf-7ac9-46e2-8157-6a8ce52dca28.png" />
+
+To learn more check out our detailed guide on [Trace Viewer](/trace-viewer.mdx).
 
 [Accessibility]: /api/class-accessibility.mdx "Accessibility"
 [APIRequest]: /api/class-apirequest.mdx "APIRequest"

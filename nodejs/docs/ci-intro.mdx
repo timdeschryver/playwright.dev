@@ -1,181 +1,113 @@
 ---
-id: test-components
-title: "Experimental: components"
+id: ci-intro
+title: "CI Github Actions"
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Playwright Test can now test your components.
+When installing Playwright you are given the option to add a [GitHub Actions](https://docs.github.com/en/actions). This creates a `playwright.yml` file inside a `.github/workflows` folder containing everything you need so that your tests run on each push and pull request into the main/master branch.
 
-- [Example](#example)
-- [How to get started](#how-to-get-started)
-- [Hooks](#hooks)
-- [Under the hood](#under-the-hood)
-- [Known issues and limitations](#known-issues-and-limitations)
-- [Planned work](#planned-work)
+**What you will learn:**
+- [How to use GitHub Actions to run your tests](#github-actions)
+- [How to create a repo and push to GitHub](#create-a-repo-and-push-to-github)
+- [How to open the workflows](#opening-the-workflows)
+- [How to view the test logs](#viewing-test-logs)
+- [How to download the report from GitHub](#downloading-the-html-report)
+- [How to view the report](#viewing-the-html-report)
+- [How to view the trace](#viewing-the-trace)
 
-<div className="embed-youtube">
+## GitHub Actions
 
-<iframe src="https://www.youtube.com/embed/y3YxX4sFJbM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" width="750" height="563" allowfullscreen></iframe>
+Tests will run on push or pull request on branches main/master. The [workflow](https://docs.github.com/en/actions/using-workflows/about-workflows) will install all dependencies, install Playwright and then run the tests. It will also create the HTML report.
 
-</div>
-
-## Example
-
-Here is what a typical component test looks like:
-
-```js
-test('event should work', async ({ mount }) => {
-  let clicked = false;
-
-  // Mount a component. Returns locator pointing to the component.
-  const component = await mount(<Button title='Submit'
-    onClick={() => clicked = true}>
-  </Button>);
-
-  // As with any Playwright test, assert locator text.
-  await expect(component).toContainText('Submit');
-
-  // Perform locator click. This will trigger the event.
-  await component.click();
-
-  // Assert that respective events have been fired.
-  expect(clicked).toBeTruthy();
-});
+```yaml
+name: Playwright Tests
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
 ```
 
-## How to get started
+### Create a Repo and Push to GitHub
 
-Adding Playwright Test to an existing React, Vue or Svelte project is easy. Below are the steps to enable Playwright Test for a sample create-react-app with TypeScript template.
+[Create a repo on GitHub](https://docs.github.com/en/get-started/quickstart/create-a-repo) and create a new repository or push an existing repository. Follow the instructions on GitHub and don't forget to [initialize a git repository](https://github.com/git-guides/git-init) using the `git init` command so you can [add](https://github.com/git-guides/git-add), [commit](https://github.com/git-guides/git-commit) and [push](https://github.com/git-guides/git-push) your code.
 
-### Step 1: Install Playwright Test for components for your respective framework
+<img width="861" alt="Create a Repo and Push to GitHub" src="https://user-images.githubusercontent.com/13063165/183423254-d2735278-a2ab-4d63-bb99-48d8e5e447bc.png"/>
 
-```sh
-npm init playwright@latest -- --ct
+### Opening the Workflows
+
+Click on the **Actions** tab to see the workflows. Here you will see if your tests have passed or failed.
+
+<img width="847" alt="Opening the Workflows" src="https://user-images.githubusercontent.com/13063165/183423584-2ea18038-cd49-4daa-a20c-2205352f0933.png"/>
+
+On Pull Requests you can also click on the **Details** link in the [PR status check](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks).
+
+<img width="645" alt="pr status checked" src="https://user-images.githubusercontent.com/13063165/183722462-17a985db-0e10-4205-b16c-8aaac36117b9.png" />
+
+### Viewing Test Logs
+
+Clicking on the workflow run will show you the all the actions that GitHub performed and clicking on **Run Playwright tests** will show the error messages, what was expected and what was received as well as the call log.
+
+<img width="839" alt="Viewing Test Logs" src="https://user-images.githubusercontent.com/13063165/183423783-58bf2008-514e-4f96-9c12-c9a55703960c.png"/>
+
+## HTML Report
+
+The HTML Report shows you a full report of your tests. You can filter the report by browsers, passed tests, failed tests, skipped tests and flaky tests.
+
+### Downloading the HTML Report
+
+In the Artifacts section click on the **playwright-report** to download your report in the format of a zip file.
+
+<img width="972" alt="Downloading the HTML Report" src="https://user-images.githubusercontent.com/13063165/183437023-524f1803-84e4-4862-9ce3-1d55af0e023e.png" />
+
+### Viewing the HTML Report
+
+Locally opening the report will not work as expected as you need a web server in order for everything to work correctly. First, extract the zip, preferably in a folder that already has Playwright installed. Using the command line change into the directory where the report is and use `npx playwright show-report` followed by the name of the extracted folder. This will serve up the report and enable you to view it in your browser.
+
+```bash
+npx playwright show-report name-of-my-extracted-playwright-report
 ```
 
-or with Yarn:
+<img width="752" alt="Viewing the HTML Report" src="https://user-images.githubusercontent.com/13063165/183437645-b47dd175-2e07-4ecc-a469-27d5b150b7ed.png" />
 
-```sh
-yarn create playwright --ct
-```
+To learn more about reports check out our detailed guide on [HTML Reporter](/test-reporters.mdx#html-reporter)
 
-This step creates several files in your workspace:
+### Viewing the Trace
 
-#### `playwright/index.html`
+Once you have served the report using `npx playwright show-report`, click on the trace icon next to the test's file name as seen in the image above. You can then view the trace of your tests and inspect each action to try to find out why the tests are failing.
 
-This file defines an html file that will be used to render components during testing. It must contain element with `id="root"`, that's where components are mounted. It must also link the script called `playwright/index.[tj]s`.
+<img width="1907" alt="Viewing the Trace" src="https://user-images.githubusercontent.com/13063165/183879653-d442e6b4-14f5-4d0e-99f3-9ba19f82c7cf.png"/>
 
-```html
-<html lang="en">
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/playwright/index.ts"></script>
-  </body>
-</html>
-```
+To learn more about traces check out our detailed guide on [Trace Viewer](/trace-viewer.mdx).
 
-#### `playwright/index.ts`
+To learn more about running tests on CI check out our detailed guide on [Continuous Integration](/ci.mdx).
 
-You can include stylesheets, apply theme and inject code into the page where component is mounted using this script. It can be either `.js` or `.ts` file.
-
-```js
-// Apply theme here, add anything your component needs at runtime here.
-```
-
-### Step 2. Create a test file `src/App.spec.tsx`
-
-```js
-import { test, expect } from '@playwright/experimental-ct-react';
-import App from './App';
-
-test.use({ viewport: { width: 500, height: 500 } });
-
-test('should work', async ({ mount }) => {
-  const component = await mount(<App></App>);
-  await expect(component).toContainText('Learn React');
-});
-```
-
-### Step 3. Run the tests
-
-```sh
-npm run test-ct
-```
-
-### Further reading: configure reporting, browsers, tracing
-
-Refer to [Playwright config](./test-configuration.mdx) for configuring your project.
-
-## Hooks
-
-You can use `beforeMount` and `afterMount` hooks to configure your app. This lets you setup things like your app router, fake server etc. giving you the flexibility you need. You can also pass custom configuration from the `mount` call from a test, which is accessible from the `hooksConfig` fixture.
-
-#### `playwright/index.ts`
-
-This includes any config that needs to be run before/after mounting the component. Here's an example of how to setup `miragejs` mocking library:
-
-```js
-import { beforeMount } from '@playwright/experimental-ct-react/hooks';
-import { createServer } from "miragejs"
-
-beforeMount(async ({ hooksConfig }) => {
-  // Setting default values if custom config is not provided
-  const users = hooksConfig.users ?? [
-    { id: "1", name: "Luke" },
-    { id: "2", name: "Leia" },
-    { id: "3", name: "Han" },
-  ];
-  createServer({
-    routes() {
-      this.get("/api/users", () => users)
-    },
-  });
-});
-```
-
-#### In your test file:
-
-```js
-// src/Users.spec.tsx
-import { test, expect } from "@playwright/experimental-ct-react";
-import React from "react";
-import { Users } from "./Users";
-
-test("should work", async ({ mount }) => {
-  const component = await mount(<Users />, {
-    hooksConfig: {
-      users: [
-        { id: "4", name: "Anakin" },
-        { id: "5", name: "Padme" },
-      ]
-    }
-  });
-  await expect(component.locator("li")).toContainText([
-    "Anakin",
-    "Padme",
-  ]);
-});
-```
-
-## Under the hood
-
-When Playwright Test is used to test web components, tests run in Node.js, while components run in the real browser. This brings together the best of both worlds: components run in the real browser environment, real clicks are triggered, real layout is executed, visual regression is possible. At the same time, test can use all the powers of Node.js as well as all the Playwright Test features. As a result, the same parallel, parametrized tests with the same post-mortem Tracing story are available during component testing.
-
-Here is how this is achieved:
-- Once the tests are executed, Playwright creates a list of components that the tests need.
-- It then compiles a bundle that includes these components and serves it using a local static web server.
-- Upon the `mount` call within the test, Playwright navigates to the facade page `/playwright/index.html` of this bundle and tells it to render the component.
-- Events are marshalled back to the Node.js environment to allow verification.
-
-Playwright is using [Vite](https://vitejs.dev/) to create the components bundle and serve it.
-
-## Known issues and limitations
-
-Please refer to [this issue](https://github.com/microsoft/playwright/issues/14298) for the list of known issues and limitations.
-
-## Planned work
-- Watch mode: watch mode is highly anticipated and should be relatively straightforward in implementation.
+## What's Next
+- [Learn how to use Web First Assertions](/test-assertions.mdx)
+- [Learn how to use Selectors](/selectors.mdx)
+- [Learn how to use Locators](/locators.mdx)
 
 [Accessibility]: /api/class-accessibility.mdx "Accessibility"
 [Android]: /api/class-android.mdx "Android"

@@ -642,11 +642,6 @@ page.dispatchEvent("#source", "dragstart", arg);
 - `options` &#60;`Page.EmulateMediaOptions`&#62;
   - `setColorScheme`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-emulate-media-option-color-scheme"/> &#60;[null]|`enum ColorScheme { LIGHT, DARK, NO_PREFERENCE }`&#62; Emulates `'prefers-colors-scheme'` media feature, supported values are `'light'`, `'dark'`, `'no-preference'`. Passing `null` disables color scheme emulation. <font size="2">Added in: v1.9</font><a href="#page-emulate-media-option-color-scheme" class="list-anchor">#</a>
   - `setForcedColors`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-emulate-media-option-forced-colors"/> &#60;[null]|`enum ForcedColors { ACTIVE, NONE }`&#62; Emulates `'forced-colors'` media feature, supported values are `'active'` and `'none'`. Passing `null` disables forced colors emulation. <font size="2">Added in: v1.15</font><a href="#page-emulate-media-option-forced-colors" class="list-anchor">#</a>
-
-    :::note
-    It's not supported in WebKit, see [here](https://bugs.webkit.org/show_bug.cgi?id=225281) in their issue tracker.
-    :::
-
   - `setMedia`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-emulate-media-option-media"/> &#60;[null]|`enum Media { SCREEN, PRINT }`&#62; Changes the CSS media type of the page. The only allowed values are `'screen'`, `'print'` and `null`. Passing `null` disables CSS media emulation. <font size="2">Added in: v1.9</font><a href="#page-emulate-media-option-media" class="list-anchor">#</a>
   - `setReducedMotion`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-emulate-media-option-reduced-motion"/> &#60;[null]|`enum ReducedMotion { REDUCE, NO_PREFERENCE }`&#62; Emulates `'prefers-reduced-motion'` media feature, supported values are `'reduce'`, `'no-preference'`. Passing `null` disables reduced motion emulation. <font size="2">Added in: v1.12</font><a href="#page-emulate-media-option-reduced-motion" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-emulate-media-return"/> &#60;[void]&#62;<a href="#page-emulate-media-return" class="list-anchor">#</a>
@@ -1582,7 +1577,7 @@ Playwright will not serve requests intercepted by Service Worker from the HAR fi
     - `setWidth` &#60;[double]&#62; width of clipping area
     - `setHeight` &#60;[double]&#62; height of clipping area
   - `setFullPage`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-full-page"/> &#60;[boolean]&#62; When true, takes a screenshot of the full scrollable page, instead of the currently visible viewport. Defaults to `false`.<a href="#page-screenshot-option-full-page" class="list-anchor">#</a>
-  - `setMask`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-mask"/> &#60;[List]<[Locator]>&#62; Specify locators that should be masked when the screenshot is taken. Masked elements will be overlayed with a pink box `#FF00FF` that completely covers its bounding box.<a href="#page-screenshot-option-mask" class="list-anchor">#</a>
+  - `setMask`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-mask"/> &#60;[List]<[Locator]>&#62; Specify locators that should be masked when the screenshot is taken. Masked elements will be overlaid with a pink box `#FF00FF` that completely covers its bounding box.<a href="#page-screenshot-option-mask" class="list-anchor">#</a>
   - `setOmitBackground`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-omit-background"/> &#60;[boolean]&#62; Hides default white background and allows capturing screenshots with transparency. Not applicable to `jpeg` images. Defaults to `false`.<a href="#page-screenshot-option-omit-background" class="list-anchor">#</a>
   - `setPath`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-path"/> &#60;[Path]&#62; The file path to save the image to. The screenshot type will be inferred from file extension. If `path` is a relative path, then it is resolved relative to the current working directory. If no path is provided, the image won't be saved to the disk.<a href="#page-screenshot-option-path" class="list-anchor">#</a>
   - `setQuality`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-quality"/> &#60;[int]&#62; The quality of the image, between 0-100. Not applicable to `png` images.<a href="#page-screenshot-option-quality" class="list-anchor">#</a>
@@ -2144,7 +2139,7 @@ Response response = page.waitForResponse(response -> "https://example.com".equal
 Returns when element specified by selector satisfies `state` option. Returns `null` if waiting for `hidden` or `detached`.
 
 :::note
-Playwright automatically waits for element to be ready before performing an action. Using [Locator] objects and web-first assertions make the code wait-for-selector-free.
+Playwright automatically waits for element to be ready before performing an action. Using [Locator] objects and web-first assertions makes the code wait-for-selector-free.
 :::
 
 Wait for the `selector` to satisfy `state` option (either appear/disappear from dom, or become visible/hidden). If at the moment of calling the method `selector` already satisfies the condition, the method will return immediately. If the selector doesn't satisfy the condition for the `timeout` milliseconds, the function will throw.
