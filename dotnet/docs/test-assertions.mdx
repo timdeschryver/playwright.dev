@@ -39,7 +39,8 @@ By default, the timeout for assertions is set to 5 seconds.
 - [Expect(Locator).ToBeHiddenAsync(options)](/test-assertions.mdx#locator-assertions-to-be-hidden)
 - [Expect(Locator).ToBeVisibleAsync(options)](/test-assertions.mdx#locator-assertions-to-be-visible)
 - [Expect(Locator).ToContainTextAsync(expected, options)](/test-assertions.mdx#locator-assertions-to-contain-text)
-- [Expect(Locator).ToHaveAttributeAsync(name, value, options)](/test-assertions.mdx#locator-assertions-to-have-attribute)
+- [Expect(Locator).ToHaveAttributeAsync(name, value, options)](/test-assertions.mdx#locator-assertions-to-have-attribute-1)
+- [Expect(Locator).ToHaveAttributeAsync(name, options)](/test-assertions.mdx#locator-assertions-to-have-attribute-2)
 - [Expect(Locator).ToHaveClassAsync(expected, options)](/test-assertions.mdx#locator-assertions-to-have-class)
 - [Expect(Locator).ToHaveCountAsync(count, options)](/test-assertions.mdx#locator-assertions-to-have-count)
 - [Expect(Locator).ToHaveCSSAsync(name, value, options)](/test-assertions.mdx#locator-assertions-to-have-css)
@@ -52,7 +53,6 @@ By default, the timeout for assertions is set to 5 seconds.
 - [Expect(Page).ToHaveTitleAsync(titleOrRegExp, options)](/test-assertions.mdx#page-assertions-to-have-title)
 - [Expect(Page).ToHaveURLAsync(urlOrRegExp, options)](/test-assertions.mdx#page-assertions-to-have-url)
 - [Expect(Page).Not](/test-assertions.mdx#page-assertions-not)
-- [Expect(ApiResponse).NotToBeOKAsync()](/test-assertions.mdx#api-response-assertions-not-to-be-ok)
 - [Expect(ApiResponse).ToBeOKAsync()](/test-assertions.mdx#api-response-assertions-to-be-ok)
 - [Expect(ApiResponse).Not](/test-assertions.mdx#api-response-assertions-not)
 
@@ -208,28 +208,70 @@ await Expect(locator).ToContainTextAsync("substring");
 await Expect(locator).ToContainTextAsync(new Regex("\\d messages"));
 ```
 
-Note that if array is passed as an expected value, entire lists of elements can be asserted:
+If you pass an array as an expected value, the expectations are:
+1. Locator resolves to a list of elements.
+1. Elements from a **subset** of this list contain text from the expected array, respectively.
+1. The matching subset of elements has the same order as the expected array.
+1. Each text value from the expected array is matched by some element from the list.
 
-```csharp
-var locator = Page.Locator("list > .list-item");
-await Expect(locator).ToContainTextAsync(new string[] { "Text 1", "Text 4", "Text 5" });
+For example, consider the following list:
+
+```html
+<ul>
+  <li>Item Text 1</li>
+  <li>Item Text 2</li>
+  <li>Item Text 3</li>
+</ul>
 ```
 
-## Expect(Locator).ToHaveAttributeAsync(name, value, options) {#locator-assertions-to-have-attribute}
+Let's see how we can use the assertion:
 
-<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.20</font>
+```csharp
+// ✓ Contains the right items in the right order
+await Expect(Page.Locator("ul > li")).ToContainTextAsync(new string[] {"Text 1", "Text 3", "Text 4"});
 
-- `name`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-have-attribute-option-name"/> &#60;[string]&#62; Attribute name. <font size="2">Added in: v1.18</font><a href="#locator-assertions-to-have-attribute-option-name" class="list-anchor">#</a>
-- `value`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-have-attribute-option-value"/> &#60;[string]|[Regex]&#62; Expected attribute value. <font size="2">Added in: v1.18</font><a href="#locator-assertions-to-have-attribute-option-value" class="list-anchor">#</a>
+// ✖ Wrong order
+await Expect(Page.Locator("ul > li")).ToContainTextAsync(new string[] {"Text 3", "Text 2"});
+
+// ✖ No item contains this text
+await Expect(Page.Locator("ul > li")).ToContainTextAsync(new string[] {"Some 33"});
+
+// ✖ Locator points to the outer list element, not to the list items
+await Expect(Page.Locator("ul")).ToContainTextAsync(new string[] {"Text 3"});
+```
+
+## Expect(Locator).ToHaveAttributeAsync(name, value, options) {#locator-assertions-to-have-attribute-1}
+
+<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.18</font>
+
+- `name`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-have-attribute-1-option-name"/> &#60;[string]&#62; Attribute name.<a href="#locator-assertions-to-have-attribute-1-option-name" class="list-anchor">#</a>
+- `value`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-have-attribute-1-option-value"/> &#60;[string]|[Regex]&#62; Expected attribute value.<a href="#locator-assertions-to-have-attribute-1-option-value" class="list-anchor">#</a>
 - `options` &#60;`LocatorAssertionsToHaveAttributeOptions?`&#62;
-  - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-have-attribute-option-timeout"/> &#60;[double]?&#62; Time to retry the assertion for. <font size="2">Added in: v1.18</font><a href="#locator-assertions-to-have-attribute-option-timeout" class="list-anchor">#</a>
-- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-have-attribute-return"/> &#60;[void]&#62;<a href="#locator-assertions-to-have-attribute-return" class="list-anchor">#</a>
+  - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-have-attribute-1-option-timeout"/> &#60;[double]?&#62; Time to retry the assertion for.<a href="#locator-assertions-to-have-attribute-1-option-timeout" class="list-anchor">#</a>
+- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-have-attribute-1-return"/> &#60;[void]&#62;<a href="#locator-assertions-to-have-attribute-1-return" class="list-anchor">#</a>
 
-Ensures the [Locator] points to an element with given attribute.
+Ensures the [Locator] points to an element with given attribute value.
 
 ```csharp
 var locator = Page.Locator("input");
 await Expect(locator).ToHaveAttributeAsync("type", "text");
+```
+
+## Expect(Locator).ToHaveAttributeAsync(name, options) {#locator-assertions-to-have-attribute-2}
+
+<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.26</font>
+
+- `name`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-have-attribute-2-option-name"/> &#60;[string]&#62; Attribute name.<a href="#locator-assertions-to-have-attribute-2-option-name" class="list-anchor">#</a>
+- `options` &#60;`LocatorAssertionsToHaveAttributeOptions?`&#62;
+  - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-have-attribute-2-option-timeout"/> &#60;[double]?&#62; Time to retry the assertion for.<a href="#locator-assertions-to-have-attribute-2-option-timeout" class="list-anchor">#</a>
+- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-have-attribute-2-return"/> &#60;[void]&#62;<a href="#locator-assertions-to-have-attribute-2-return" class="list-anchor">#</a>
+
+Ensures the [Locator] points to an element with given attribute. The method will assert attribute presence.
+
+```csharp
+var locator = Page.Locator("input");
+await Expect(locator).ToHaveAttributeAsync("disabled");
+await Expect(locator).Not.ToHaveAttributeAsync("open");
 ```
 
 ## Expect(Locator).ToHaveClassAsync(expected, options) {#locator-assertions-to-have-class}
@@ -345,11 +387,35 @@ await Expect(locator).ToHaveTextAsync(new Regex("Welcome, Test User"));
 await Expect(locator).ToHaveTextAsync(new Regex("Welcome, .*"));
 ```
 
-Note that if array is passed as an expected value, entire lists of elements can be asserted:
+If you pass an array as an expected value, the expectations are:
+1. Locator resolves to a list of elements.
+1. The number of elements equals the number of expected values in the array.
+1. Elements from the list have text matching expected array values, one by one, in order.
+
+For example, consider the following list:
+
+```html
+<ul>
+  <li>Text 1</li>
+  <li>Text 2</li>
+  <li>Text 3</li>
+</ul>
+```
+
+Let's see how we can use the assertion:
 
 ```csharp
-var locator = Page.Locator("list > .component");
-await Expect(locator).toHaveTextAsync(new string[]{ "Text 1", "Text 2", "Text 3" });
+// ✓ Has the right items in the right order
+await Expect(Page.Locator("ul > li")).ToHaveTextAsync(new string[] {"Text 1", "Text 2", "Text 3"});
+
+// ✖ Wrong order
+await Expect(Page.Locator("ul > li")).ToHaveTextAsync(new string[] {"Text 3", "Text 2", "Text 1"});
+
+// ✖ Last item does not match
+await Expect(Page.Locator("ul > li")).ToHaveTextAsync(new string[] {"Text 1", "Text 2", "Text"});
+
+// ✖ Locator points to the outer list element, not to the list items
+await Expect(Page.Locator("ul")).ToHaveTextAsync(new string[] {"Text 1", "Text 2", "Text 3"});
 ```
 
 ## Expect(Locator).ToHaveValueAsync(value, options) {#locator-assertions-to-have-value}
@@ -445,26 +511,19 @@ await Expect(page).ToHaveURL(new Regex(".*checkout"));
 
 Makes the assertion check for the opposite condition. For example, this code tests that the response status is not successful:
 
-## Expect(ApiResponse).NotToBeOKAsync() {#api-response-assertions-not-to-be-ok}
-
-<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.19</font>
-
-- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="api-response-assertions-not-to-be-ok-return"/> &#60;[void]&#62;<a href="#api-response-assertions-not-to-be-ok-return" class="list-anchor">#</a>
-
-The opposite of [`method: APIResponseAssertions.toBeOK`].
-
 ## Expect(ApiResponse).ToBeOKAsync() {#api-response-assertions-to-be-ok}
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.18</font>
 
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="api-response-assertions-to-be-ok-return"/> &#60;[void]&#62;<a href="#api-response-assertions-to-be-ok-return" class="list-anchor">#</a>
 
-Ensures the response status code is within [200..299] range.
+Ensures the response status code is within `200..299` range.
 
 [Accessibility]: /api/class-accessibility.mdx "Accessibility"
 [APIRequest]: /api/class-apirequest.mdx "APIRequest"
 [APIRequestContext]: /api/class-apirequestcontext.mdx "APIRequestContext"
 [APIResponse]: /api/class-apiresponse.mdx "APIResponse"
+[APIResponseAssertions]: /test-assertions.mdx "APIResponseAssertions"
 [Browser]: /api/class-browser.mdx "Browser"
 [BrowserContext]: /api/class-browsercontext.mdx "BrowserContext"
 [BrowserType]: /api/class-browsertype.mdx "BrowserType"
