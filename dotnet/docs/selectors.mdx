@@ -26,6 +26,7 @@ Writing good selectors is part art, part science so be sure to checkout the [Bes
 - [Role selector](#role-selector)
 - [id, data-testid, data-test-id, data-test selectors](#id-data-testid-data-test-id-data-test-selectors)
 - [Pick n-th match from the query result](#pick-n-th-match-from-the-query-result)
+- [Parent selector](#parent-selector)
 - [Chaining selectors](#chaining-selectors)
 - [Best practices](#best-practices)
 
@@ -578,6 +579,16 @@ Unlike [`:nth-child()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-ch
 It is usually possible to distinguish elements by some attribute or text content. In this case, prefer using [text] or [css] selectors over the `:nth-match()`.
 :::
 
+## Parent selector
+
+The parent could be selected with `..`, which is a short form for `xpath=..`.
+
+For example:
+
+```csharp
+var parentLocator = elementLocator.Locator("..");
+```
+
 ## Chaining selectors
 
 Selectors defined as `engine=body` or in short-form can be combined with the `>>` token, e.g. `selector1 >> selector2 >> selectors3`. When selectors are chained, the next one is queried relative to the previous one's result.
@@ -670,6 +681,7 @@ await page.Locator("//*[@id='tsf']/div[2]/div[1]/div[1]/div/div[2]/input").Click
 [APIRequest]: /api/class-apirequest.mdx "APIRequest"
 [APIRequestContext]: /api/class-apirequestcontext.mdx "APIRequestContext"
 [APIResponse]: /api/class-apiresponse.mdx "APIResponse"
+[APIResponseAssertions]: /test-assertions.mdx "APIResponseAssertions"
 [Browser]: /api/class-browser.mdx "Browser"
 [BrowserContext]: /api/class-browsercontext.mdx "BrowserContext"
 [BrowserType]: /api/class-browsertype.mdx "BrowserType"

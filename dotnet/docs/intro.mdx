@@ -63,8 +63,10 @@ dotnet build
 4. Install required browsers by replacing `netX` with the actual output folder name, e.g. `net6.0`:
 
 ```bash
-pwsh bin\Debug\netX\playwright.ps1 install
+pwsh bin/Debug/netX/playwright.ps1 install
 ```
+
+If `pwsh` is not available, you have to [install PowerShell](https://docs.microsoft.com/powershell/scripting/install/installing-powershell). 
 
 ## Add Example Tests
 
@@ -86,7 +88,7 @@ namespace PlaywrightTests;
 public class Tests : PageTest
 {
     [Test]
-    async public Task HomepageHasPlaywrightInTitleAndGetStartedLinkLinkingtoTheIntroPage()
+    public async Task HomepageHasPlaywrightInTitleAndGetStartedLinkLinkingtoTheIntroPage()
     {
         await Page.GotoAsync("https://playwright.dev");
 
@@ -118,10 +120,11 @@ using Microsoft.Playwright.MSTest;
 
 namespace PlaywrightTests;
 
+[TestClass]
 public class UnitTest1 : PageTest
 {
     [TestMethod]
-    async public Task HomepageHasPlaywrightInTitleAndGetStartedLinkLinkingtoTheIntroPage()
+    public async Task HomepageHasPlaywrightInTitleAndGetStartedLinkLinkingtoTheIntroPage()
     {
         await Page.GotoAsync("https://playwright.dev");
 
@@ -178,13 +181,14 @@ See our doc on [Test Runners](./test-runners.mdx) to learn more about running te
 - [Run single tests, multiple tests, headed mode](./running-tests.mdx)
 - [Learn more about the NUnit and MSTest base classes](./test-runners.mdx)
 - [Generate tests with Codegen](./codegen.mdx)
-- [See a trace of your tests](./trace-viewer.mdx)
+- [See a trace of your tests](./trace-viewer-intro.mdx)
 - [Using Playwright as library](./library.mdx)
 
 [Accessibility]: /api/class-accessibility.mdx "Accessibility"
 [APIRequest]: /api/class-apirequest.mdx "APIRequest"
 [APIRequestContext]: /api/class-apirequestcontext.mdx "APIRequestContext"
 [APIResponse]: /api/class-apiresponse.mdx "APIResponse"
+[APIResponseAssertions]: /test-assertions.mdx "APIResponseAssertions"
 [Browser]: /api/class-browser.mdx "Browser"
 [BrowserContext]: /api/class-browsercontext.mdx "BrowserContext"
 [BrowserType]: /api/class-browsertype.mdx "BrowserType"
