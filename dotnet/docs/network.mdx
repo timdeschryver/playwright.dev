@@ -233,7 +233,7 @@ Open the browser with [Playwright CLI](./cli.mdx) and pass `--save-har` option t
 
 ```bash
 # Save API requests from example.com as "example.har" archive.
-pwsh bin\Debug\netX\playwright.ps1 open --save-har=example.har --save-har-glob="**/api/**" https://example.com
+pwsh bin/Debug/netX/playwright.ps1 open --save-har=example.har --save-har-glob="**/api/**" https://example.com
 ```
 
 ### Recording HAR with a script
@@ -304,6 +304,7 @@ Playwright's built-in [BrowserContext.RouteAsync(url, handler, options)](/api/cl
 [APIRequest]: /api/class-apirequest.mdx "APIRequest"
 [APIRequestContext]: /api/class-apirequestcontext.mdx "APIRequestContext"
 [APIResponse]: /api/class-apiresponse.mdx "APIResponse"
+[APIResponseAssertions]: /test-assertions.mdx "APIResponseAssertions"
 [Browser]: /api/class-browser.mdx "Browser"
 [BrowserContext]: /api/class-browsercontext.mdx "BrowserContext"
 [BrowserType]: /api/class-browsertype.mdx "BrowserType"
