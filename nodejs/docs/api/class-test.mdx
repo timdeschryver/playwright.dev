@@ -504,7 +504,7 @@ test('runs second', async ({ page }) => {});
 - `callback`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-describe-fixme-option-callback"/> &#60;[function]&#62; A callback that is run immediately when calling [test.describe.fixme(title, callback)](/api/class-test.mdx#test-describe-fixme). Any tests added in this callback will belong to the group, and will not be run.<a href="#test-describe-fixme-option-callback" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-describe-fixme-return"/> &#60;[void]&#62;<a href="#test-describe-fixme-return" class="list-anchor">#</a>
 
-Declares a test group similarly to [test.describe(title, callback)](/api/class-test.mdx#test-describe-1). Tests in this group are maked as "fixme" and will not be executed.
+Declares a test group similarly to [test.describe(title, callback)](/api/class-test.mdx#test-describe-1). Tests in this group are marked as "fixme" and will not be executed.
 
 <Tabs
   groupId="js-flavor"
@@ -1930,7 +1930,7 @@ test('slow in WebKit 2', async ({ page }) => {
 
 - `title`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-step-option-title"/> &#60;[string]&#62; Step name.<a href="#test-step-option-title" class="list-anchor">#</a>
 - `body`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-step-option-body"/> &#60;[function]\([]\):[Promise]<[Object]>&#62; Step body.<a href="#test-step-option-body" class="list-anchor">#</a>
-- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-step-return"/> &#60;[Promise]<[void]>&#62;<a href="#test-step-return" class="list-anchor">#</a>
+- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-step-return"/> &#60;[Promise]<[Object]>&#62;<a href="#test-step-return" class="list-anchor">#</a>
 
 Declares a test step.
 
@@ -1964,6 +1964,48 @@ test('test', async ({ page }) => {
   await test.step('Log in', async () => {
     // ...
   });
+});
+```
+
+</TabItem>
+</Tabs>
+
+The method returns value retuned by the step callback.
+
+<Tabs
+  groupId="js-flavor"
+  defaultValue="ts"
+  values={[
+    {label: 'TypeScript', value: 'ts'},
+    {label: 'JavaScript', value: 'js'}
+  ]
+}>
+<TabItem value="ts">
+
+```js
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  const user = await test.step('Log in', async () => {
+    // ...
+    return 'john';
+  });
+  expect(user).toBe('john');
+});
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+const { test, expect } = require('@playwright/test');
+
+test('test', async ({ page }) => {
+  const user = await test.step('Log in', async () => {
+    // ...
+    return 'john';
+  });
+  expect(user).toBe('john');
 });
 ```
 
