@@ -247,6 +247,21 @@ await element.DispatchEventAsync("dragstart", new Dictionary<string, object>
   - `Trial`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-drag-to-option-trial"/> &#60;[bool]?&#62; When set, this method only performs the [actionability](../actionability.mdx) checks and skips the action. Defaults to `false`. Useful to wait until the element is ready for the action without performing it.<a href="#locator-drag-to-option-trial" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-drag-to-return"/> &#60;[void]&#62;<a href="#locator-drag-to-return" class="list-anchor">#</a>
 
+This method drags the locator to another target locator or target position. It will first move to the source element, perform a `mousedown`, then move to the target element or position and perform a `mouseup`.
+
+```csharp
+var source = Page.Locator("#source");
+var target = Page.Locator("#target");
+
+await source.DragToAsync(target);
+// or specify exact positions relative to the top-left corners of the elements:
+await source.DragToAsync(target, new()
+{
+    SourcePosition = new() { X = 34, Y = 7 },
+    TargetPosition = new() { X = 10, Y = 20 },
+});
+```
+
 ## Locator.ElementHandleAsync(options) {#locator-element-handle}
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.14</font>
@@ -269,7 +284,7 @@ Resolves given locator to all matching DOM elements.
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.14</font>
 
-- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If it looks like a function declaration, it is interpreted as a function. Otherwise, evaluated as an expression.<a href="#locator-evaluate-option-expression" class="list-anchor">#</a>
+- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If the expresion evaluates to a function, the function is automatically invoked.<a href="#locator-evaluate-option-expression" class="list-anchor">#</a>
 - `arg`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-option-arg"/> &#60;[EvaluationArgument]?&#62; Optional argument to pass to `expression`.<a href="#locator-evaluate-option-arg" class="list-anchor">#</a>
 - `options` &#60;`LocatorEvaluateOptions?`&#62;
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#locator-evaluate-option-timeout" class="list-anchor">#</a>
@@ -292,7 +307,7 @@ Assert.AreEqual("10 retweets", await tweets.EvaluateAsync("node => node.innerTex
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.14</font>
 
-- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-all-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If it looks like a function declaration, it is interpreted as a function. Otherwise, evaluated as an expression.<a href="#locator-evaluate-all-option-expression" class="list-anchor">#</a>
+- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-all-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If the expresion evaluates to a function, the function is automatically invoked.<a href="#locator-evaluate-all-option-expression" class="list-anchor">#</a>
 - `arg`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-all-option-arg"/> &#60;[EvaluationArgument]?&#62; Optional argument to pass to `expression`.<a href="#locator-evaluate-all-option-arg" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-all-return"/> &#60;[object]&#62;<a href="#locator-evaluate-all-return" class="list-anchor">#</a>
 
@@ -311,7 +326,7 @@ var divsCount = await elements.EvaluateAll<bool>("(divs, min) => divs.length >= 
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.14</font>
 
-- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-handle-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If it looks like a function declaration, it is interpreted as a function. Otherwise, evaluated as an expression.<a href="#locator-evaluate-handle-option-expression" class="list-anchor">#</a>
+- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-handle-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If the expresion evaluates to a function, the function is automatically invoked.<a href="#locator-evaluate-handle-option-expression" class="list-anchor">#</a>
 - `arg`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-handle-option-arg"/> &#60;[EvaluationArgument]?&#62; Optional argument to pass to `expression`.<a href="#locator-evaluate-handle-option-arg" class="list-anchor">#</a>
 - `options` &#60;`LocatorEvaluateHandleOptions?`&#62;
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-evaluate-handle-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#locator-evaluate-handle-option-timeout" class="list-anchor">#</a>
@@ -610,7 +625,7 @@ Shortcuts such as `key: "Control+o"` or `key: "Control+Shift+T"` are supported a
 
     Defaults to `"allow"` that leaves animations untouched.
   - `Caret`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-screenshot-option-caret"/> &#60;`enum ScreenshotCaret { Hide, Initial }?`&#62; When set to `"hide"`, screenshot will hide text caret. When set to `"initial"`, text caret behavior will not be changed.  Defaults to `"hide"`.<a href="#locator-screenshot-option-caret" class="list-anchor">#</a>
-  - `Mask`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-screenshot-option-mask"/> &#60;[IEnumerable]?<[Locator]>&#62; Specify locators that should be masked when the screenshot is taken. Masked elements will be overlayed with a pink box `#FF00FF` that completely covers its bounding box.<a href="#locator-screenshot-option-mask" class="list-anchor">#</a>
+  - `Mask`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-screenshot-option-mask"/> &#60;[IEnumerable]?<[Locator]>&#62; Specify locators that should be masked when the screenshot is taken. Masked elements will be overlaid with a pink box `#FF00FF` that completely covers its bounding box.<a href="#locator-screenshot-option-mask" class="list-anchor">#</a>
   - `OmitBackground`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-screenshot-option-omit-background"/> &#60;[bool]?&#62; Hides default white background and allows capturing screenshots with transparency. Not applicable to `jpeg` images. Defaults to `false`.<a href="#locator-screenshot-option-omit-background" class="list-anchor">#</a>
   - `Path`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-screenshot-option-path"/> &#60;[string]?&#62; The file path to save the image to. The screenshot type will be inferred from file extension. If `path` is a relative path, then it is resolved relative to the current working directory. If no path is provided, the image won't be saved to the disk.<a href="#locator-screenshot-option-path" class="list-anchor">#</a>
   - `Quality`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-screenshot-option-quality"/> &#60;[int]?&#62; The quality of the image, between 0-100. Not applicable to `png` images.<a href="#locator-screenshot-option-quality" class="list-anchor">#</a>
@@ -785,7 +800,7 @@ To press a special key, like `Control` or `ArrowDown`, use [Locator.PressAsync(k
 
 ```csharp
 await element.TypeAsync("Hello"); // Types instantly
-await element.TypeAsync("World", delay: 100); // Types slower, like a user
+await element.TypeAsync("World", new() { Delay = 100 }); // Types slower, like a user
 ```
 
 An example of typing into a text field and then submitting the form:
@@ -849,6 +864,7 @@ orderSent.WaitForAsync();
 [APIRequest]: /api/class-apirequest.mdx "APIRequest"
 [APIRequestContext]: /api/class-apirequestcontext.mdx "APIRequestContext"
 [APIResponse]: /api/class-apiresponse.mdx "APIResponse"
+[APIResponseAssertions]: /test-assertions.mdx "APIResponseAssertions"
 [Browser]: /api/class-browser.mdx "Browser"
 [BrowserContext]: /api/class-browsercontext.mdx "BrowserContext"
 [BrowserType]: /api/class-browsertype.mdx "BrowserType"

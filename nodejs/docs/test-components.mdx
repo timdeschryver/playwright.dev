@@ -7,12 +7,6 @@ import TabItem from '@theme/TabItem';
 
 Playwright Test can now test your components.
 
-- [Example](#example)
-- [How to get started](#how-to-get-started)
-- [Under the hood](#under-the-hood)
-- [Known issues and limitations](#known-issues-and-limitations)
-- [Planned work](#planned-work)
-
 <div className="embed-youtube">
 
 <iframe src="https://www.youtube.com/embed/y3YxX4sFJbM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" width="750" height="563" allowfullscreen></iframe>
@@ -49,15 +43,25 @@ Adding Playwright Test to an existing React, Vue or Svelte project is easy. Belo
 
 ### Step 1: Install Playwright Test for components for your respective framework
 
-```sh
+<Tabs defaultValue="npm" values={[ {label: 'npm', value: 'npm'}, {label: 'yarn', value: 'yarn'}, ] }>
+
+<TabItem value="npm">
+
+```bash
 npm init playwright@latest -- --ct
 ```
 
-or with Yarn:
+</TabItem>
 
-```sh
+<TabItem value="yarn">
+
+```bash
 yarn create playwright --ct
 ```
+
+</TabItem>
+
+</Tabs>
 
 This step creates several files in your workspace:
 
@@ -76,13 +80,17 @@ This file defines an html file that will be used to render components during tes
 
 #### `playwright/index.ts`
 
-You can include stylesheets, apply theme and inject code into the page where component is mounted using this script. It can be either `.js` or `.ts` file.
+You can include stylesheets, apply theme and inject code into the page where component is mounted using this script. It can be either a `.js` or `.ts` file.
 
 ```js
 // Apply theme here, add anything your component needs at runtime here.
 ```
 
-### Step 2. Create a test file `src/App.spec.tsx`
+### Step 2. Create a test file `src/App.spec.{ts,tsx}`
+
+<Tabs defaultValue="react" values={[ {label: 'React', value: 'react'}, {label: 'Vue', value: 'vue'}, {label: 'Svelte', value: 'svelte'}, ] }>
+
+<TabItem value="react">
 
 ```js
 import { test, expect } from '@playwright/experimental-ct-react';
@@ -96,7 +104,51 @@ test('should work', async ({ mount }) => {
 });
 ```
 
+</TabItem>
+
+<TabItem value="vue">
+
+```js
+import { test, expect } from '@playwright/experimental-ct-vue';
+import App from './App.vue';
+
+test.use({ viewport: { width: 500, height: 500 } });
+
+test('should work', async ({ mount }) => {
+  const component = await mount(<App></App>);
+  await expect(component).toContainText('Vite + Vue');
+});
+```
+
+If using TypeScript and Vue make sure to add a `vue.d.ts` file to your project:
+
+```ts
+declare module '*.vue';
+```
+
+</TabItem>
+
+<TabItem value="svelte">
+
+```js
+import { test, expect } from '@playwright/experimental-ct-svelte';
+import App from './App.svelte';
+
+test.use({ viewport: { width: 500, height: 500 } });
+
+test('should work', async ({ mount }) => {
+  const component = await mount(App);
+  await expect(component).toContainText('Vite + Svelte');
+});
+```
+
+</TabItem>
+
+</Tabs>
+
 ### Step 3. Run the tests
+
+You can run tests using the [VS Code extension](./getting-started-vscode.mdx) or the command line.
 
 ```sh
 npm run test-ct
@@ -105,6 +157,57 @@ npm run test-ct
 ### Further reading: configure reporting, browsers, tracing
 
 Refer to [Playwright config](./test-configuration.mdx) for configuring your project.
+
+## Hooks
+
+You can use `beforeMount` and `afterMount` hooks to configure your app. This lets you setup things like your app router, fake server etc. giving you the flexibility you need. You can also pass custom configuration from the `mount` call from a test, which is accessible from the `hooksConfig` fixture.
+
+#### `playwright/index.ts`
+
+This includes any config that needs to be run before/after mounting the component. Here's an example of how to setup `miragejs` mocking library:
+
+```js
+import { beforeMount } from '@playwright/experimental-ct-react/hooks';
+import { createServer } from "miragejs"
+
+beforeMount(async ({ hooksConfig }) => {
+  // Setting default values if custom config is not provided
+  const users = hooksConfig.users ?? [
+    { id: "1", name: "Luke" },
+    { id: "2", name: "Leia" },
+    { id: "3", name: "Han" },
+  ];
+  createServer({
+    routes() {
+      this.get("/api/users", () => users)
+    },
+  });
+});
+```
+
+#### In your test file:
+
+```js
+// src/Users.spec.tsx
+import { test, expect } from "@playwright/experimental-ct-react";
+import React from "react";
+import { Users } from "./Users";
+
+test("should work", async ({ mount }) => {
+  const component = await mount(<Users />, {
+    hooksConfig: {
+      users: [
+        { id: "4", name: "Anakin" },
+        { id: "5", name: "Padme" },
+      ]
+    }
+  });
+  await expect(component.locator("li")).toContainText([
+    "Anakin",
+    "Padme",
+  ]);
+});
+```
 
 ## Under the hood
 
