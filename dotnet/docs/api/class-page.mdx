@@ -93,7 +93,11 @@ page.Load -= PageLoadHandler;
 - [Page.FrameByUrl(url)](/api/class-page.mdx#page-frame-by-url)
 - [Page.FrameLocator(selector)](/api/class-page.mdx#page-frame-locator)
 - [Page.Frames](/api/class-page.mdx#page-frames)
+- [Page.Get(selector, options)](/api/class-page.mdx#page-get)
 - [Page.GetAttributeAsync(selector, name, options)](/api/class-page.mdx#page-get-attribute)
+- [Page.GetByRole(role, options)](/api/class-page.mdx#page-get-by-role)
+- [Page.GetByTestId(testId)](/api/class-page.mdx#page-get-by-test-id)
+- [Page.GetByText(text, options)](/api/class-page.mdx#page-get-by-text)
 - [Page.GoBackAsync(options)](/api/class-page.mdx#page-go-back)
 - [Page.GoForwardAsync(options)](/api/class-page.mdx#page-go-forward)
 - [Page.GotoAsync(url, options)](/api/class-page.mdx#page-goto)
@@ -468,7 +472,7 @@ Brings page to front (activates tab).
   - `Position`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-check-option-position"/> &#60;Position?&#62; A point to use relative to the top-left corner of element padding box. If not specified, uses some visible point of the element. <font size="2">Added in: v1.11</font><a href="#page-check-option-position" class="list-anchor">#</a>
     - `X` &#60;[double]&#62;
     - `Y` &#60;[double]&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-check-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-check-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-check-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-check-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-check-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-check-option-timeout" class="list-anchor">#</a>
   - `Trial`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-check-option-trial"/> &#60;[bool]?&#62; When set, this method only performs the [actionability](../actionability.mdx) checks and skips the action. Defaults to `false`. Useful to wait until the element is ready for the action without performing it. <font size="2">Added in: v1.11</font><a href="#page-check-option-trial" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-check-return"/> &#60;[void]&#62;<a href="#page-check-return" class="list-anchor">#</a>
@@ -501,7 +505,7 @@ Shortcut for main frame's [Frame.CheckAsync(selector, options)](/api/class-frame
   - `Position`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-click-option-position"/> &#60;Position?&#62; A point to use relative to the top-left corner of element padding box. If not specified, uses some visible point of the element.<a href="#page-click-option-position" class="list-anchor">#</a>
     - `X` &#60;[double]&#62;
     - `Y` &#60;[double]&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-click-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-click-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-click-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-click-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-click-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-click-option-timeout" class="list-anchor">#</a>
   - `Trial`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-click-option-trial"/> &#60;[bool]?&#62; When set, this method only performs the [actionability](../actionability.mdx) checks and skips the action. Defaults to `false`. Useful to wait until the element is ready for the action without performing it. <font size="2">Added in: v1.11</font><a href="#page-click-option-trial" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-click-return"/> &#60;[void]&#62;<a href="#page-click-return" class="list-anchor">#</a>
@@ -563,7 +567,7 @@ Get the browser context that the page belongs to.
   - `Position`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dblclick-option-position"/> &#60;Position?&#62; A point to use relative to the top-left corner of element padding box. If not specified, uses some visible point of the element.<a href="#page-dblclick-option-position" class="list-anchor">#</a>
     - `X` &#60;[double]&#62;
     - `Y` &#60;[double]&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dblclick-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-dblclick-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dblclick-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-dblclick-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dblclick-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-dblclick-option-timeout" class="list-anchor">#</a>
   - `Trial`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dblclick-option-trial"/> &#60;[bool]?&#62; When set, this method only performs the [actionability](../actionability.mdx) checks and skips the action. Defaults to `false`. Useful to wait until the element is ready for the action without performing it. <font size="2">Added in: v1.11</font><a href="#page-dblclick-option-trial" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dblclick-return"/> &#60;[void]&#62;<a href="#page-dblclick-return" class="list-anchor">#</a>
@@ -591,7 +595,7 @@ Shortcut for main frame's [Frame.DblClickAsync(selector, options)](/api/class-fr
 - `type`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dispatch-event-option-type"/> &#60;[string]&#62; DOM event type: `"click"`, `"dragstart"`, etc.<a href="#page-dispatch-event-option-type" class="list-anchor">#</a>
 - `eventInit`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dispatch-event-option-event-init"/> &#60;[EvaluationArgument]?&#62; Optional event-specific initialization properties.<a href="#page-dispatch-event-option-event-init" class="list-anchor">#</a>
 - `options` &#60;`PageDispatchEventOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dispatch-event-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-dispatch-event-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dispatch-event-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-dispatch-event-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dispatch-event-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-dispatch-event-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-dispatch-event-return"/> &#60;[void]&#62;<a href="#page-dispatch-event-return" class="list-anchor">#</a>
 
@@ -631,13 +635,25 @@ await page.DispatchEventAsync("#source", "dragstart", new { dataTransfer });
   - `SourcePosition`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-drag-and-drop-option-source-position"/> &#60;SourcePosition?&#62; Clicks on the source element at this point relative to the top-left corner of the element's padding box. If not specified, some visible point of the element is used. <font size="2">Added in: v1.14</font><a href="#page-drag-and-drop-option-source-position" class="list-anchor">#</a>
     - `X` &#60;[double]&#62;
     - `Y` &#60;[double]&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-drag-and-drop-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-drag-and-drop-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-drag-and-drop-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-drag-and-drop-option-strict" class="list-anchor">#</a>
   - `TargetPosition`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-drag-and-drop-option-target-position"/> &#60;TargetPosition?&#62; Drops on the target element at this point relative to the top-left corner of the element's padding box. If not specified, some visible point of the element is used. <font size="2">Added in: v1.14</font><a href="#page-drag-and-drop-option-target-position" class="list-anchor">#</a>
     - `X` &#60;[double]&#62;
     - `Y` &#60;[double]&#62;
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-drag-and-drop-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-drag-and-drop-option-timeout" class="list-anchor">#</a>
   - `Trial`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-drag-and-drop-option-trial"/> &#60;[bool]?&#62; When set, this method only performs the [actionability](../actionability.mdx) checks and skips the action. Defaults to `false`. Useful to wait until the element is ready for the action without performing it.<a href="#page-drag-and-drop-option-trial" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-drag-and-drop-return"/> &#60;[void]&#62;<a href="#page-drag-and-drop-return" class="list-anchor">#</a>
+
+This method drags the source element to the target element. It will first move to the source element, perform a `mousedown`, then move to the target element and perform a `mouseup`.
+
+```csharp
+await Page.DragAndDropAsync("#source", "#target");
+// or specify exact positions relative to the top-left corners of the elements:
+await Page.DragAndDropAsync("#source", "#target", new()
+{
+    SourcePosition = new() { X = 34, Y = 7 },
+    TargetPosition = new() { X = 10, Y = 20 },
+});
+```
 
 ## Page.EmulateMediaAsync(options) {#page-emulate-media}
 
@@ -686,10 +702,10 @@ await page.EvaluateAsync("matchMedia('(prefers-color-scheme: no-preference)').ma
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.9</font>
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-option-selector"/> &#60;[string]&#62; A selector to query for. See [working with selectors](../selectors.mdx) for more details.<a href="#page-eval-on-selector-option-selector" class="list-anchor">#</a>
-- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If it looks like a function declaration, it is interpreted as a function. Otherwise, evaluated as an expression.<a href="#page-eval-on-selector-option-expression" class="list-anchor">#</a>
+- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If the expresion evaluates to a function, the function is automatically invoked.<a href="#page-eval-on-selector-option-expression" class="list-anchor">#</a>
 - `arg`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-option-arg"/> &#60;[EvaluationArgument]?&#62; Optional argument to pass to `expression`.<a href="#page-eval-on-selector-option-arg" class="list-anchor">#</a>
 - `options` &#60;`PageEvalOnSelectorOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-eval-on-selector-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-eval-on-selector-option-strict" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-return"/> &#60;[object]&#62;<a href="#page-eval-on-selector-return" class="list-anchor">#</a>
 
 :::caution
@@ -715,7 +731,7 @@ Shortcut for main frame's [Frame.EvalOnSelectorAsync(selector, expression, arg, 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.9</font>
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-all-option-selector"/> &#60;[string]&#62; A selector to query for. See [working with selectors](../selectors.mdx) for more details.<a href="#page-eval-on-selector-all-option-selector" class="list-anchor">#</a>
-- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-all-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If it looks like a function declaration, it is interpreted as a function. Otherwise, evaluated as an expression.<a href="#page-eval-on-selector-all-option-expression" class="list-anchor">#</a>
+- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-all-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If the expresion evaluates to a function, the function is automatically invoked.<a href="#page-eval-on-selector-all-option-expression" class="list-anchor">#</a>
 - `arg`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-all-option-arg"/> &#60;[EvaluationArgument]?&#62; Optional argument to pass to `expression`.<a href="#page-eval-on-selector-all-option-arg" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-eval-on-selector-all-return"/> &#60;[object]&#62;<a href="#page-eval-on-selector-all-return" class="list-anchor">#</a>
 
@@ -737,7 +753,7 @@ var divsCount = await page.EvalOnSelectorAllAsync<bool>("div", "(divs, min) => d
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.8</font>
 
-- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-evaluate-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If it looks like a function declaration, it is interpreted as a function. Otherwise, evaluated as an expression.<a href="#page-evaluate-option-expression" class="list-anchor">#</a>
+- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-evaluate-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If the expresion evaluates to a function, the function is automatically invoked.<a href="#page-evaluate-option-expression" class="list-anchor">#</a>
 - `arg`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-evaluate-option-arg"/> &#60;[EvaluationArgument]?&#62; Optional argument to pass to `expression`.<a href="#page-evaluate-option-arg" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-evaluate-return"/> &#60;[object]&#62;<a href="#page-evaluate-return" class="list-anchor">#</a>
 
@@ -774,7 +790,7 @@ Shortcut for main frame's [Frame.EvaluateAsync(expression, arg)](/api/class-fram
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.8</font>
 
-- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-evaluate-handle-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If it looks like a function declaration, it is interpreted as a function. Otherwise, evaluated as an expression.<a href="#page-evaluate-handle-option-expression" class="list-anchor">#</a>
+- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-evaluate-handle-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If the expresion evaluates to a function, the function is automatically invoked.<a href="#page-evaluate-handle-option-expression" class="list-anchor">#</a>
 - `arg`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-evaluate-handle-option-arg"/> &#60;[EvaluationArgument]?&#62; Optional argument to pass to `expression`.<a href="#page-evaluate-handle-option-arg" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-evaluate-handle-return"/> &#60;[JSHandle]&#62;<a href="#page-evaluate-handle-return" class="list-anchor">#</a>
 
@@ -940,7 +956,7 @@ class PageExamples
 - `options` &#60;`PageFillOptions?`&#62;
   - `Force`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-fill-option-force"/> &#60;[bool]?&#62; Whether to bypass the [actionability](../actionability.mdx) checks. Defaults to `false`. <font size="2">Added in: v1.13</font><a href="#page-fill-option-force" class="list-anchor">#</a>
   - `NoWaitAfter`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-fill-option-no-wait-after"/> &#60;[bool]?&#62; Actions that initiate navigations are waiting for these navigations to happen and for pages to start loading. You can opt out of waiting via setting this flag. You would only need this option in the exceptional cases such as navigating to inaccessible pages. Defaults to `false`.<a href="#page-fill-option-no-wait-after" class="list-anchor">#</a>
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-fill-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-fill-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-fill-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-fill-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-fill-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-fill-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-fill-return"/> &#60;[void]&#62;<a href="#page-fill-return" class="list-anchor">#</a>
 
@@ -958,7 +974,7 @@ Shortcut for main frame's [Frame.FillAsync(selector, value, options)](/api/class
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-focus-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-focus-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageFocusOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-focus-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-focus-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-focus-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-focus-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-focus-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-focus-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-focus-return"/> &#60;[void]&#62;<a href="#page-focus-return" class="list-anchor">#</a>
 
@@ -1014,6 +1030,22 @@ await locator.ClickAsync();
 
 An array of all frames attached to the page.
 
+## Page.Get(selector, options) {#page-get}
+
+<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.27</font>
+
+- `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-option-selector"/> &#60;[string]&#62; A selector to use when resolving DOM element. See [working with selectors](../selectors.mdx) for more details.<a href="#page-get-option-selector" class="list-anchor">#</a>
+- `options` &#60;`PageGetOptions?`&#62;
+  - `Has`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-option-has"/> &#60;[Locator]?&#62; Matches elements containing an element that matches an inner locator. Inner locator is queried against the outer one. For example, `article` that has `text=Playwright` matches `<article><div>Playwright</div></article>`.<a href="#page-get-option-has" class="list-anchor">#</a>
+
+    Note that outer and inner locators must belong to the same frame. Inner locator must not contain [FrameLocator]s.
+  - `HasText`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-option-has-text"/> &#60;[string]?|[Regex]?&#62; Matches elements containing specified text somewhere inside, possibly in a child or a descendant element. When passed a [string], matching is case-insensitive and searches for a substring. For example, `"Playwright"` matches `<article><div>Playwright</div></article>`.<a href="#page-get-option-has-text" class="list-anchor">#</a>
+- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-return"/> &#60;[Locator]&#62;<a href="#page-get-return" class="list-anchor">#</a>
+
+The method returns an element locator that can be used to perform actions on this page / frame. Locator is resolved to the element immediately before performing an action, so a series of actions on the same locator can in fact be performed on different DOM elements. That would happen if the DOM structure between those actions has changed.
+
+[Learn more about locators](../locators.mdx).
+
 ## Page.GetAttributeAsync(selector, name, options) {#page-get-attribute}
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.8</font>
@@ -1021,11 +1053,70 @@ An array of all frames attached to the page.
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-attribute-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-get-attribute-option-selector" class="list-anchor">#</a>
 - `name`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-attribute-option-name"/> &#60;[string]&#62; Attribute name to get the value for.<a href="#page-get-attribute-option-name" class="list-anchor">#</a>
 - `options` &#60;`PageGetAttributeOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-attribute-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-get-attribute-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-attribute-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-get-attribute-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-attribute-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-get-attribute-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-attribute-return"/> &#60;[string]?&#62;<a href="#page-get-attribute-return" class="list-anchor">#</a>
 
 Returns element attribute value.
+
+## Page.GetByRole(role, options) {#page-get-by-role}
+
+<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.27</font>
+
+- `role`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-role-option-role"/> &#60;[string]&#62; Required aria role.<a href="#page-get-by-role-option-role" class="list-anchor">#</a>
+- `options` &#60;`PageGetByRoleOptions?`&#62;
+  - `Checked`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-role-option-checked"/> &#60;[bool]?&#62; An attribute that is usually set by `aria-checked` or native `<input type=checkbox>` controls. Available values for checked are `true`, `false` and `"mixed"`.<a href="#page-get-by-role-option-checked" class="list-anchor">#</a>
+
+    Learn more about [`aria-checked`](https://www.w3.org/TR/wai-aria-1.2/#aria-checked).
+  - `Disabled`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-role-option-disabled"/> &#60;[bool]?&#62; A boolean attribute that is usually set by `aria-disabled` or `disabled`.<a href="#page-get-by-role-option-disabled" class="list-anchor">#</a>
+
+    :::note
+    Unlike most other attributes, `disabled` is inherited through the DOM hierarchy. Learn more about [`aria-disabled`](https://www.w3.org/TR/wai-aria-1.2/#aria-disabled).
+    :::
+
+  - `Expanded`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-role-option-expanded"/> &#60;[bool]?&#62; A boolean attribute that is usually set by `aria-expanded`.<a href="#page-get-by-role-option-expanded" class="list-anchor">#</a>
+
+    Learn more about [`aria-expanded`](https://www.w3.org/TR/wai-aria-1.2/#aria-expanded).
+  - `IncludeHidden`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-role-option-include-hidden"/> &#60;[bool]?&#62; A boolean attribute that controls whether hidden elements are matched. By default, only non-hidden elements, as [defined by ARIA](https://www.w3.org/TR/wai-aria-1.2/#tree_exclusion), are matched by role selector.<a href="#page-get-by-role-option-include-hidden" class="list-anchor">#</a>
+
+    Learn more about [`aria-hidden`](https://www.w3.org/TR/wai-aria-1.2/#aria-hidden).
+  - `Level`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-role-option-level"/> &#60;[int]?&#62; A number attribute that is usually present for roles `heading`, `listitem`, `row`, `treeitem`, with default values for `<h1>-<h6>` elements.<a href="#page-get-by-role-option-level" class="list-anchor">#</a>
+
+    Learn more about [`aria-level`](https://www.w3.org/TR/wai-aria-1.2/#aria-level).
+  - `Name`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-role-option-name"/> &#60;[string]?|[Regex]?&#62; A string attribute that matches [accessible name](https://w3c.github.io/accname/#dfn-accessible-name).<a href="#page-get-by-role-option-name" class="list-anchor">#</a>
+
+    Learn more about [accessible name](https://w3c.github.io/accname/#dfn-accessible-name).
+  - `Pressed`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-role-option-pressed"/> &#60;[bool]?&#62; An attribute that is usually set by `aria-pressed`. Available values for pressed are `true`, `false` and `"mixed"`.<a href="#page-get-by-role-option-pressed" class="list-anchor">#</a>
+
+    Learn more about [`aria-pressed`](https://www.w3.org/TR/wai-aria-1.2/#aria-pressed).
+  - `Selected`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-role-option-selected"/> &#60;[bool]?&#62; A boolean attribute that is usually set by `aria-selected`.<a href="#page-get-by-role-option-selected" class="list-anchor">#</a>
+
+    Learn more about [`aria-selected`](https://www.w3.org/TR/wai-aria-1.2/#aria-selected).
+- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-role-return"/> &#60;[Locator]&#62;<a href="#page-get-by-role-return" class="list-anchor">#</a>
+
+Allows locating elements by their [ARIA role](https://www.w3.org/TR/wai-aria-1.2/#roles), [ARIA attributes](https://www.w3.org/TR/wai-aria-1.2/#aria-attributes) and [accessible name](https://w3c.github.io/accname/#dfn-accessible-name). Note that role selector **does not replace** accessibility audits and conformance tests, but rather gives early feedback about the ARIA guidelines.
+
+Note that many html elements have an implicitly [defined role](https://w3c.github.io/html-aam/#html-element-role-mappings) that is recognized by the role selector. You can find all the [supported roles here](https://www.w3.org/TR/wai-aria-1.2/#role_definitions). ARIA guidelines **do not recommend** duplicating implicit roles and attributes by setting `role` and/or `aria-*` attributes to default values.
+
+## Page.GetByTestId(testId) {#page-get-by-test-id}
+
+<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.27</font>
+
+- `testId`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-test-id-option-test-id"/> &#60;[string]&#62; Id to locate the element by.<a href="#page-get-by-test-id-option-test-id" class="list-anchor">#</a>
+- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-test-id-return"/> &#60;[Locator]&#62;<a href="#page-get-by-test-id-return" class="list-anchor">#</a>
+
+Locate element by the test id. By default, the `data-testid` attribute is used as a test id. Use [Selectors.SetTestIdAttribute(attributeName)](/api/class-selectors.mdx#selectors-set-test-id-attribute) to configure a different test id attribute if necessary.
+
+## Page.GetByText(text, options) {#page-get-by-text}
+
+<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.27</font>
+
+- `text`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-text-option-text"/> &#60;[string]|[Regex]&#62; Text to locate the element for.<a href="#page-get-by-text-option-text" class="list-anchor">#</a>
+- `options` &#60;`PageGetByTextOptions?`&#62;
+  - `Exact`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-text-option-exact"/> &#60;[bool]?&#62; Whether to find an exact match: case-sensitive and whole-string. Default to false.<a href="#page-get-by-text-option-exact" class="list-anchor">#</a>
+- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-get-by-text-return"/> &#60;[Locator]&#62;<a href="#page-get-by-text-return" class="list-anchor">#</a>
+
+Allows locating elements that contain given text.
 
 ## Page.GoBackAsync(options) {#page-go-back}
 
@@ -1108,7 +1199,7 @@ Shortcut for main frame's [Frame.GotoAsync(url, options)](/api/class-frame.mdx#f
   - `Position`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-hover-option-position"/> &#60;Position?&#62; A point to use relative to the top-left corner of element padding box. If not specified, uses some visible point of the element.<a href="#page-hover-option-position" class="list-anchor">#</a>
     - `X` &#60;[double]&#62;
     - `Y` &#60;[double]&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-hover-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-hover-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-hover-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-hover-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-hover-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-hover-option-timeout" class="list-anchor">#</a>
   - `Trial`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-hover-option-trial"/> &#60;[bool]?&#62; When set, this method only performs the [actionability](../actionability.mdx) checks and skips the action. Defaults to `false`. Useful to wait until the element is ready for the action without performing it. <font size="2">Added in: v1.11</font><a href="#page-hover-option-trial" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-hover-return"/> &#60;[void]&#62;<a href="#page-hover-return" class="list-anchor">#</a>
@@ -1130,7 +1221,7 @@ Shortcut for main frame's [Frame.HoverAsync(selector, options)](/api/class-frame
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-inner-html-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-inner-html-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageInnerHTMLOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-inner-html-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-inner-html-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-inner-html-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-inner-html-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-inner-html-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-inner-html-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-inner-html-return"/> &#60;[string]&#62;<a href="#page-inner-html-return" class="list-anchor">#</a>
 
@@ -1142,7 +1233,7 @@ Returns `element.innerHTML`.
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-inner-text-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-inner-text-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageInnerTextOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-inner-text-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-inner-text-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-inner-text-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-inner-text-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-inner-text-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-inner-text-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-inner-text-return"/> &#60;[string]&#62;<a href="#page-inner-text-return" class="list-anchor">#</a>
 
@@ -1154,7 +1245,7 @@ Returns `element.innerText`.
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-input-value-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-input-value-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageInputValueOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-input-value-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-input-value-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-input-value-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-input-value-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-input-value-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-input-value-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-input-value-return"/> &#60;[string]&#62;<a href="#page-input-value-return" class="list-anchor">#</a>
 
@@ -1168,7 +1259,7 @@ Throws for non-input elements. However, if the element is inside the `<label>` e
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-checked-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-is-checked-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageIsCheckedOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-checked-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-checked-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-checked-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-checked-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-checked-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-is-checked-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-checked-return"/> &#60;[bool]&#62;<a href="#page-is-checked-return" class="list-anchor">#</a>
 
@@ -1188,7 +1279,7 @@ Indicates that the page has been closed.
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-disabled-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-is-disabled-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageIsDisabledOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-disabled-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-disabled-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-disabled-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-disabled-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-disabled-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-is-disabled-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-disabled-return"/> &#60;[bool]&#62;<a href="#page-is-disabled-return" class="list-anchor">#</a>
 
@@ -1200,7 +1291,7 @@ Returns whether the element is disabled, the opposite of [enabled](../actionabil
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-editable-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-is-editable-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageIsEditableOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-editable-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-editable-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-editable-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-editable-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-editable-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-is-editable-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-editable-return"/> &#60;[bool]&#62;<a href="#page-is-editable-return" class="list-anchor">#</a>
 
@@ -1212,7 +1303,7 @@ Returns whether the element is [editable](../actionability.mdx#editable).
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-enabled-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-is-enabled-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageIsEnabledOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-enabled-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-enabled-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-enabled-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-enabled-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-enabled-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-is-enabled-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-enabled-return"/> &#60;[bool]&#62;<a href="#page-is-enabled-return" class="list-anchor">#</a>
 
@@ -1224,7 +1315,7 @@ Returns whether the element is [enabled](../actionability.mdx#enabled).
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-hidden-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-is-hidden-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageIsHiddenOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-hidden-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-hidden-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-hidden-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-hidden-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-hidden-option-timeout"/> &#60;[double]?&#62; **DEPRECATED** This option is ignored. [Page.IsHiddenAsync(selector, options)](/api/class-page.mdx#page-is-hidden) does not wait for the element to become hidden and returns immediately.<a href="#page-is-hidden-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-hidden-return"/> &#60;[bool]&#62;<a href="#page-is-hidden-return" class="list-anchor">#</a>
 
@@ -1236,7 +1327,7 @@ Returns whether the element is hidden, the opposite of [visible](../actionabilit
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-visible-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-is-visible-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageIsVisibleOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-visible-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-visible-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-visible-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-is-visible-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-visible-option-timeout"/> &#60;[double]?&#62; **DEPRECATED** This option is ignored. [Page.IsVisibleAsync(selector, options)](/api/class-page.mdx#page-is-visible) does not wait for the element to become visible and returns immediately.<a href="#page-is-visible-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-is-visible-return"/> &#60;[bool]&#62;<a href="#page-is-visible-return" class="list-anchor">#</a>
 
@@ -1254,11 +1345,9 @@ Returns whether the element is [visible](../actionability.mdx#visible). `selecto
   - `HasText`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-locator-option-has-text"/> &#60;[string]?|[Regex]?&#62; Matches elements containing specified text somewhere inside, possibly in a child or a descendant element. When passed a [string], matching is case-insensitive and searches for a substring. For example, `"Playwright"` matches `<article><div>Playwright</div></article>`.<a href="#page-locator-option-has-text" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-locator-return"/> &#60;[Locator]&#62;<a href="#page-locator-return" class="list-anchor">#</a>
 
-The method returns an element locator that can be used to perform actions on the page. Locator is resolved to the element immediately before performing an action, so a series of actions on the same locator can in fact be performed on different DOM elements. That would happen if the DOM structure between those actions has changed.
+The method returns an element locator that can be used to perform actions on this page / frame. Locator is resolved to the element immediately before performing an action, so a series of actions on the same locator can in fact be performed on different DOM elements. That would happen if the DOM structure between those actions has changed.
 
 [Learn more about locators](../locators.mdx).
-
-Shortcut for main frame's [Frame.Locator(selector, options)](/api/class-frame.mdx#frame-locator).
 
 ## Page.MainFrame {#page-main-frame}
 
@@ -1376,7 +1465,7 @@ The `format` options are:
 - `options` &#60;`PagePressOptions?`&#62;
   - `Delay`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-press-option-delay"/> &#60;[double]?&#62; Time to wait between `keydown` and `keyup` in milliseconds. Defaults to 0.<a href="#page-press-option-delay" class="list-anchor">#</a>
   - `NoWaitAfter`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-press-option-no-wait-after"/> &#60;[bool]?&#62; Actions that initiate navigations are waiting for these navigations to happen and for pages to start loading. You can opt out of waiting via setting this flag. You would only need this option in the exceptional cases such as navigating to inaccessible pages. Defaults to `false`.<a href="#page-press-option-no-wait-after" class="list-anchor">#</a>
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-press-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-press-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-press-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-press-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-press-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-press-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-press-return"/> &#60;[void]&#62;<a href="#page-press-return" class="list-anchor">#</a>
 
@@ -1411,7 +1500,7 @@ await page.ScreenshotAsync(new PageScreenshotOptions { Path = "O.png" });
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-query-selector-option-selector"/> &#60;[string]&#62; A selector to query for. See [working with selectors](../selectors.mdx) for more details.<a href="#page-query-selector-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageQuerySelectorOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-query-selector-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-query-selector-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-query-selector-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-query-selector-option-strict" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-query-selector-return"/> &#60;[ElementHandle]?&#62;<a href="#page-query-selector-return" class="list-anchor">#</a>
 
 :::caution
@@ -1856,7 +1945,7 @@ Performs action and waits for a new [Worker]. If predicate is provided, it passe
     - `Width` &#60;[double]&#62; width of clipping area
     - `Height` &#60;[double]&#62; height of clipping area
   - `FullPage`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-full-page"/> &#60;[bool]?&#62; When true, takes a screenshot of the full scrollable page, instead of the currently visible viewport. Defaults to `false`.<a href="#page-screenshot-option-full-page" class="list-anchor">#</a>
-  - `Mask`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-mask"/> &#60;[IEnumerable]?<[Locator]>&#62; Specify locators that should be masked when the screenshot is taken. Masked elements will be overlayed with a pink box `#FF00FF` that completely covers its bounding box.<a href="#page-screenshot-option-mask" class="list-anchor">#</a>
+  - `Mask`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-mask"/> &#60;[IEnumerable]?<[Locator]>&#62; Specify locators that should be masked when the screenshot is taken. Masked elements will be overlaid with a pink box `#FF00FF` that completely covers its bounding box.<a href="#page-screenshot-option-mask" class="list-anchor">#</a>
   - `OmitBackground`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-omit-background"/> &#60;[bool]?&#62; Hides default white background and allows capturing screenshots with transparency. Not applicable to `jpeg` images. Defaults to `false`.<a href="#page-screenshot-option-omit-background" class="list-anchor">#</a>
   - `Path`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-path"/> &#60;[string]?&#62; The file path to save the image to. The screenshot type will be inferred from file extension. If `path` is a relative path, then it is resolved relative to the current working directory. If no path is provided, the image won't be saved to the disk.<a href="#page-screenshot-option-path" class="list-anchor">#</a>
   - `Quality`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-screenshot-option-quality"/> &#60;[int]?&#62; The quality of the image, between 0-100. Not applicable to `png` images.<a href="#page-screenshot-option-quality" class="list-anchor">#</a>
@@ -1881,7 +1970,7 @@ Returns the buffer with the captured screenshot.
 - `options` &#60;`PageSelectOptionOptions?`&#62;
   - `Force`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-select-option-option-force"/> &#60;[bool]?&#62; Whether to bypass the [actionability](../actionability.mdx) checks. Defaults to `false`. <font size="2">Added in: v1.13</font><a href="#page-select-option-option-force" class="list-anchor">#</a>
   - `NoWaitAfter`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-select-option-option-no-wait-after"/> &#60;[bool]?&#62; Actions that initiate navigations are waiting for these navigations to happen and for pages to start loading. You can opt out of waiting via setting this flag. You would only need this option in the exceptional cases such as navigating to inaccessible pages. Defaults to `false`.<a href="#page-select-option-option-no-wait-after" class="list-anchor">#</a>
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-select-option-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-select-option-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-select-option-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-select-option-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-select-option-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-select-option-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-select-option-return"/> &#60;[IEnumerable]<[string]>&#62;<a href="#page-select-option-return" class="list-anchor">#</a>
 
@@ -1916,7 +2005,7 @@ Shortcut for main frame's [Frame.SelectOptionAsync(selector, values, options)](/
   - `Position`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-set-checked-option-position"/> &#60;Position?&#62; A point to use relative to the top-left corner of element padding box. If not specified, uses some visible point of the element.<a href="#page-set-checked-option-position" class="list-anchor">#</a>
     - `X` &#60;[double]&#62;
     - `Y` &#60;[double]&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-set-checked-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception.<a href="#page-set-checked-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-set-checked-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception.<a href="#page-set-checked-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-set-checked-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-set-checked-option-timeout" class="list-anchor">#</a>
   - `Trial`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-set-checked-option-trial"/> &#60;[bool]?&#62; When set, this method only performs the [actionability](../actionability.mdx) checks and skips the action. Defaults to `false`. Useful to wait until the element is ready for the action without performing it.<a href="#page-set-checked-option-trial" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-set-checked-return"/> &#60;[void]&#62;<a href="#page-set-checked-return" class="list-anchor">#</a>
@@ -2006,7 +2095,7 @@ The extra HTTP headers will be sent with every request the page initiates.
   - `Buffer` &#60;[byte]&#91;&#93;&#62; File content
 - `options` &#60;`PageSetInputFilesOptions?`&#62;
   - `NoWaitAfter`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-set-input-files-option-no-wait-after"/> &#60;[bool]?&#62; Actions that initiate navigations are waiting for these navigations to happen and for pages to start loading. You can opt out of waiting via setting this flag. You would only need this option in the exceptional cases such as navigating to inaccessible pages. Defaults to `false`.<a href="#page-set-input-files-option-no-wait-after" class="list-anchor">#</a>
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-set-input-files-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-set-input-files-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-set-input-files-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-set-input-files-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-set-input-files-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-set-input-files-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-set-input-files-return"/> &#60;[void]&#62;<a href="#page-set-input-files-return" class="list-anchor">#</a>
 
@@ -2044,7 +2133,7 @@ await page.GotoAsync("https://www.microsoft.com");
   - `Position`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-tap-option-position"/> &#60;Position?&#62; A point to use relative to the top-left corner of element padding box. If not specified, uses some visible point of the element.<a href="#page-tap-option-position" class="list-anchor">#</a>
     - `X` &#60;[double]&#62;
     - `Y` &#60;[double]&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-tap-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-tap-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-tap-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-tap-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-tap-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-tap-option-timeout" class="list-anchor">#</a>
   - `Trial`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-tap-option-trial"/> &#60;[bool]?&#62; When set, this method only performs the [actionability](../actionability.mdx) checks and skips the action. Defaults to `false`. Useful to wait until the element is ready for the action without performing it. <font size="2">Added in: v1.11</font><a href="#page-tap-option-trial" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-tap-return"/> &#60;[void]&#62;<a href="#page-tap-return" class="list-anchor">#</a>
@@ -2070,7 +2159,7 @@ Shortcut for main frame's [Frame.TapAsync(selector, options)](/api/class-frame.m
 
 - `selector`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-text-content-option-selector"/> &#60;[string]&#62; A selector to search for an element. If there are multiple elements satisfying the selector, the first will be used. See [working with selectors](../selectors.mdx) for more details.<a href="#page-text-content-option-selector" class="list-anchor">#</a>
 - `options` &#60;`PageTextContentOptions?`&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-text-content-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-text-content-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-text-content-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-text-content-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-text-content-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-text-content-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-text-content-return"/> &#60;[string]?&#62;<a href="#page-text-content-return" class="list-anchor">#</a>
 
@@ -2093,7 +2182,7 @@ Returns the page's title. Shortcut for main frame's [Frame.TitleAsync()](/api/cl
 - `options` &#60;`PageTypeOptions?`&#62;
   - `Delay`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-type-option-delay"/> &#60;[double]?&#62; Time to wait between key presses in milliseconds. Defaults to 0.<a href="#page-type-option-delay" class="list-anchor">#</a>
   - `NoWaitAfter`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-type-option-no-wait-after"/> &#60;[bool]?&#62; Actions that initiate navigations are waiting for these navigations to happen and for pages to start loading. You can opt out of waiting via setting this flag. You would only need this option in the exceptional cases such as navigating to inaccessible pages. Defaults to `false`.<a href="#page-type-option-no-wait-after" class="list-anchor">#</a>
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-type-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-type-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-type-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-type-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-type-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-type-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-type-return"/> &#60;[void]&#62;<a href="#page-type-return" class="list-anchor">#</a>
 
@@ -2103,7 +2192,7 @@ To press a special key, like `Control` or `ArrowDown`, use [Keyboard.PressAsync(
 
 ```csharp
 await page.TypeAsync("#mytextarea", "hello"); // types instantly
-await page.TypeAsync("#mytextarea", "world"); // types slower, like a user
+await page.TypeAsync("#mytextarea", "world", new() { Delay = 100 }); // types slower, like a user
 ```
 
 Shortcut for main frame's [Frame.TypeAsync(selector, text, options)](/api/class-frame.mdx#frame-type).
@@ -2119,7 +2208,7 @@ Shortcut for main frame's [Frame.TypeAsync(selector, text, options)](/api/class-
   - `Position`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-uncheck-option-position"/> &#60;Position?&#62; A point to use relative to the top-left corner of element padding box. If not specified, uses some visible point of the element. <font size="2">Added in: v1.11</font><a href="#page-uncheck-option-position" class="list-anchor">#</a>
     - `X` &#60;[double]&#62;
     - `Y` &#60;[double]&#62;
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-uncheck-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-uncheck-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-uncheck-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-uncheck-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-uncheck-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-uncheck-option-timeout" class="list-anchor">#</a>
   - `Trial`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-uncheck-option-trial"/> &#60;[bool]?&#62; When set, this method only performs the [actionability](../actionability.mdx) checks and skips the action. Defaults to `false`. Useful to wait until the element is ready for the action without performing it. <font size="2">Added in: v1.11</font><a href="#page-uncheck-option-trial" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-uncheck-return"/> &#60;[void]&#62;<a href="#page-uncheck-return" class="list-anchor">#</a>
@@ -2175,7 +2264,7 @@ Video object associated with this page.
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.8</font>
 
-- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-wait-for-function-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If it looks like a function declaration, it is interpreted as a function. Otherwise, evaluated as an expression.<a href="#page-wait-for-function-option-expression" class="list-anchor">#</a>
+- `expression`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-wait-for-function-option-expression"/> &#60;[string]&#62; JavaScript expression to be evaluated in the browser context. If the expresion evaluates to a function, the function is automatically invoked.<a href="#page-wait-for-function-option-expression" class="list-anchor">#</a>
 - `arg`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-wait-for-function-option-arg"/> &#60;[EvaluationArgument]?&#62; Optional argument to pass to `expression`.<a href="#page-wait-for-function-option-arg" class="list-anchor">#</a>
 - `options` &#60;`PageWaitForFunctionOptions?`&#62;
   - `PollingInterval`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-wait-for-function-option-polling-interval"/> &#60;[double]?&#62; If specified, then it is treated as an interval in milliseconds at which the function would be executed. By default if the option is not specified `expression` is executed in `requestAnimationFrame` callback.<a href="#page-wait-for-function-option-polling-interval" class="list-anchor">#</a>
@@ -2255,14 +2344,14 @@ Shortcut for main frame's [Frame.WaitForLoadStateAsync(state, options)](/api/cla
     * `'detached'` - wait for element to not be present in DOM.
     * `'visible'` - wait for element to have non-empty bounding box and no `visibility:hidden`. Note that element without any content or with `display:none` has an empty bounding box and is not considered visible.
     * `'hidden'` - wait for element to be either detached from DOM, or have an empty bounding box or `visibility:hidden`. This is opposite to the `'visible'` option.
-  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-wait-for-selector-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more then one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-wait-for-selector-option-strict" class="list-anchor">#</a>
+  - `Strict`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-wait-for-selector-option-strict"/> &#60;[bool]?&#62; When true, the call requires selector to resolve to a single element. If given selector resolves to more than one element, the call throws an exception. <font size="2">Added in: v1.14</font><a href="#page-wait-for-selector-option-strict" class="list-anchor">#</a>
   - `Timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-wait-for-selector-option-timeout"/> &#60;[double]?&#62; Maximum time in milliseconds, defaults to 30 seconds, pass `0` to disable timeout. The default value can be changed by using the [BrowserContext.SetDefaultTimeout(timeout)](/api/class-browsercontext.mdx#browser-context-set-default-timeout) or [Page.SetDefaultTimeout(timeout)](/api/class-page.mdx#page-set-default-timeout) methods.<a href="#page-wait-for-selector-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="page-wait-for-selector-return"/> &#60;[ElementHandle]?&#62;<a href="#page-wait-for-selector-return" class="list-anchor">#</a>
 
 Returns when element specified by selector satisfies `state` option. Returns `null` if waiting for `hidden` or `detached`.
 
 :::note
-Playwright automatically waits for element to be ready before performing an action. Using [Locator] objects and web-first assertions make the code wait-for-selector-free.
+Playwright automatically waits for element to be ready before performing an action. Using [Locator] objects and web-first assertions makes the code wait-for-selector-free.
 :::
 
 Wait for the `selector` to satisfy `state` option (either appear/disappear from dom, or become visible/hidden). If at the moment of calling the method `selector` already satisfies the condition, the method will return immediately. If the selector doesn't satisfy the condition for the `timeout` milliseconds, the function will throw.
@@ -2353,6 +2442,8 @@ This does not contain ServiceWorkers
 
 - type: &#60;[Accessibility]&#62;
 
+**DEPRECATED** This property is deprecated. Please use other libraries such as [Axe](https://www.deque.com/axe/) if you need to test page accessibility. See our Node.js [guide](https://playwright.dev/docs/accessibility-testing) for integration with Axe.
+
 ## Page.APIRequest {#page-request}
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.16</font>
@@ -2383,6 +2474,7 @@ API testing helper associated with this page. This method returns the same insta
 [APIRequest]: /api/class-apirequest.mdx "APIRequest"
 [APIRequestContext]: /api/class-apirequestcontext.mdx "APIRequestContext"
 [APIResponse]: /api/class-apiresponse.mdx "APIResponse"
+[APIResponseAssertions]: /test-assertions.mdx "APIResponseAssertions"
 [Browser]: /api/class-browser.mdx "Browser"
 [BrowserContext]: /api/class-browsercontext.mdx "BrowserContext"
 [BrowserType]: /api/class-browsertype.mdx "BrowserType"
