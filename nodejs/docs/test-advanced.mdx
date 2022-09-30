@@ -5,14 +5,6 @@ title: "Advanced: configuration"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-- [Configuration object](#configuration-object)
-- [TestInfo object](#testinfo-object)
-- [Launching a development web server during the tests](#launching-a-development-web-server-during-the-tests)
-- [Global setup and teardown](#global-setup-and-teardown)
-- [Projects](#projects)
-- [WorkerInfo object](#workerinfo-object)
-- [Add custom matchers using expect.extend](#add-custom-matchers-using-expectextend)
-
 ## Configuration object
 
 Configuration file exports a single [TestConfig] object. See [TestConfig] properties for available configuration options.
@@ -528,8 +520,6 @@ test('test', async ({ page }) => {
 </TabItem>
 </Tabs>
 
-You can also have project-specific setup with [testProject.projectSetup](/api/class-testproject.mdx#test-project-project-setup). It will only be executed if at least one test from a specific project should be run, while global setup is always executed at the start of the test session.
-
 ### Capturing trace of failures during global setup
 
 In some instances, it may be useful to capture a trace of failures encountered during the global setup. In order to do this, you must [start tracing](./api/class-tracing.mdx#tracing-start) in your setup, and you must ensure that you [stop tracing](./api/class-tracing.mdx#tracing-stop) if an error occurs before that error is thrown. This can be achieved by wrapping your setup in a `try...catch` block.  Here is an example that expands the global setup example to capture a trace.
@@ -953,10 +943,14 @@ test('numeric ranges', () => {
 </TabItem>
 </Tabs>
 
-For TypeScript, also add the following to `global.d.ts`. You don't need it for JavaScript.
+For TypeScript, also add the following to your [`global.d.ts`](https://www.typescriptlang.org/docs/handbook/declaration-files/templates/global-d-ts.html). If it does not exist, you need to create it inside your repository. Make sure that your `global.d.ts` gets included inside your `tsconfig.json` via the `include` or `compilerOptions.typeRoots` option so that your IDE will pick it up.
+
+You don't need it for JavaScript.
 
 ```js
 // global.d.ts
+export {};
+
 declare global {
  namespace PlaywrightTest {
     interface Matchers<R, T> {
