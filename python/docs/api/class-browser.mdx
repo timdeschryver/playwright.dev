@@ -175,11 +175,6 @@ Returns the newly created browser session.
 - `device_scale_factor`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-context-option-device-scale-factor"/> &#60;[float]&#62; Specify device scale factor (can be thought of as dpr). Defaults to `1`.<a href="#browser-new-context-option-device-scale-factor" class="list-anchor">#</a>
 - `extra_http_headers`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-context-option-extra-http-headers"/> &#60;[Dict]\[[str], [str]\]&#62; An object containing additional HTTP headers to be sent with every request.<a href="#browser-new-context-option-extra-http-headers" class="list-anchor">#</a>
 - `forced_colors`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-context-option-forced-colors"/> &#60;"active"|"none"&#62; Emulates `'forced-colors'` media feature, supported values are `'active'`, `'none'`. See [page.emulate_media(**kwargs)](/api/class-page.mdx#page-emulate-media) for more details. Defaults to `'none'`.<a href="#browser-new-context-option-forced-colors" class="list-anchor">#</a>
-
-  :::note
-  It's not supported in WebKit, see [here](https://bugs.webkit.org/show_bug.cgi?id=225281) in their issue tracker.
-  :::
-
 - `geolocation`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-context-option-geolocation"/> &#60;[Dict]&#62;<a href="#browser-new-context-option-geolocation" class="list-anchor">#</a>
   - `latitude` &#60;[float]&#62; Latitude between -90 and 90.
   - `longitude` &#60;[float]&#62; Longitude between -180 and 180.
@@ -207,7 +202,7 @@ Returns the newly created browser session.
   For Chromium on Windows the browser needs to be launched with the global proxy for this option to work. If all contexts override the proxy, global proxy will be never used and can be any string, for example `launch({ proxy: { server: 'http://per-context' } })`.
   :::
 
-- `record_har_content`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-context-option-record-har-content"/> &#60;"omit"|"embed"|"attach"&#62; Optional setting to control resource content management. If `omit` is specified, content is not persisted. If `attach` is specified, resources are persistet as separate files and all of these files are archived along with the HAR file. Defaults to `embed`, which stores content inline the HAR file as per HAR specification.<a href="#browser-new-context-option-record-har-content" class="list-anchor">#</a>
+- `record_har_content`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-context-option-record-har-content"/> &#60;"omit"|"embed"|"attach"&#62; Optional setting to control resource content management. If `omit` is specified, content is not persisted. If `attach` is specified, resources are persisted as separate files and all of these files are archived along with the HAR file. Defaults to `embed`, which stores content inline the HAR file as per HAR specification.<a href="#browser-new-context-option-record-har-content" class="list-anchor">#</a>
 - `record_har_mode`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-context-option-record-har-mode"/> &#60;"full"|"minimal"&#62; When set to `minimal`, only record information necessary for routing from HAR. This omits sizes, timing, page, cookies, security and other types of HAR information that are not used when replaying from HAR. Defaults to `full`.<a href="#browser-new-context-option-record-har-mode" class="list-anchor">#</a>
 - `record_har_omit_content`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-context-option-record-har-omit-content"/> &#60;[bool]&#62; Optional setting to control whether to omit request content from the HAR. Defaults to `false`.<a href="#browser-new-context-option-record-har-omit-content" class="list-anchor">#</a>
 - `record_har_path`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-context-option-record-har-path"/> &#60;[Union]\[[str], [pathlib.Path]\]&#62; Enables [HAR](http://www.softwareishard.com/blog/har-12-spec) recording for all pages into the specified HAR file on the filesystem. If not specified, the HAR is not recorded. Make sure to call [browser_context.close()](/api/class-browsercontext.mdx#browser-context-close) for the HAR to be saved.<a href="#browser-new-context-option-record-har-path" class="list-anchor">#</a>
@@ -249,7 +244,7 @@ Returns the newly created browser session.
 Creates a new browser context. It won't share cookies/cache with other browser contexts.
 
 :::note
-If directly using this method to create [BrowserContext]s, it is best practice to explicilty close the returned context via [browser_context.close()](/api/class-browsercontext.mdx#browser-context-close) when your code is done with the [BrowserContext], and before calling [browser.close()](/api/class-browser.mdx#browser-close). This will ensure the `context` is closed gracefully and any artifacts—like HARs and videos—are fully flushed and saved.
+If directly using this method to create [BrowserContext]s, it is best practice to explicitly close the returned context via [browser_context.close()](/api/class-browsercontext.mdx#browser-context-close) when your code is done with the [BrowserContext], and before calling [browser.close()](/api/class-browser.mdx#browser-close). This will ensure the `context` is closed gracefully and any artifacts—like HARs and videos—are fully flushed and saved.
 :::
 
 <Tabs
@@ -308,11 +303,6 @@ await browser.close()
 - `device_scale_factor`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-page-option-device-scale-factor"/> &#60;[float]&#62; Specify device scale factor (can be thought of as dpr). Defaults to `1`.<a href="#browser-new-page-option-device-scale-factor" class="list-anchor">#</a>
 - `extra_http_headers`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-page-option-extra-http-headers"/> &#60;[Dict]\[[str], [str]\]&#62; An object containing additional HTTP headers to be sent with every request.<a href="#browser-new-page-option-extra-http-headers" class="list-anchor">#</a>
 - `forced_colors`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-page-option-forced-colors"/> &#60;"active"|"none"&#62; Emulates `'forced-colors'` media feature, supported values are `'active'`, `'none'`. See [page.emulate_media(**kwargs)](/api/class-page.mdx#page-emulate-media) for more details. Defaults to `'none'`.<a href="#browser-new-page-option-forced-colors" class="list-anchor">#</a>
-
-  :::note
-  It's not supported in WebKit, see [here](https://bugs.webkit.org/show_bug.cgi?id=225281) in their issue tracker.
-  :::
-
 - `geolocation`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-page-option-geolocation"/> &#60;[Dict]&#62;<a href="#browser-new-page-option-geolocation" class="list-anchor">#</a>
   - `latitude` &#60;[float]&#62; Latitude between -90 and 90.
   - `longitude` &#60;[float]&#62; Longitude between -180 and 180.
@@ -340,7 +330,7 @@ await browser.close()
   For Chromium on Windows the browser needs to be launched with the global proxy for this option to work. If all contexts override the proxy, global proxy will be never used and can be any string, for example `launch({ proxy: { server: 'http://per-context' } })`.
   :::
 
-- `record_har_content`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-page-option-record-har-content"/> &#60;"omit"|"embed"|"attach"&#62; Optional setting to control resource content management. If `omit` is specified, content is not persisted. If `attach` is specified, resources are persistet as separate files and all of these files are archived along with the HAR file. Defaults to `embed`, which stores content inline the HAR file as per HAR specification.<a href="#browser-new-page-option-record-har-content" class="list-anchor">#</a>
+- `record_har_content`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-page-option-record-har-content"/> &#60;"omit"|"embed"|"attach"&#62; Optional setting to control resource content management. If `omit` is specified, content is not persisted. If `attach` is specified, resources are persisted as separate files and all of these files are archived along with the HAR file. Defaults to `embed`, which stores content inline the HAR file as per HAR specification.<a href="#browser-new-page-option-record-har-content" class="list-anchor">#</a>
 - `record_har_mode`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-page-option-record-har-mode"/> &#60;"full"|"minimal"&#62; When set to `minimal`, only record information necessary for routing from HAR. This omits sizes, timing, page, cookies, security and other types of HAR information that are not used when replaying from HAR. Defaults to `full`.<a href="#browser-new-page-option-record-har-mode" class="list-anchor">#</a>
 - `record_har_omit_content`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-page-option-record-har-omit-content"/> &#60;[bool]&#62; Optional setting to control whether to omit request content from the HAR. Defaults to `false`.<a href="#browser-new-page-option-record-har-omit-content" class="list-anchor">#</a>
 - `record_har_path`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-new-page-option-record-har-path"/> &#60;[Union]\[[str], [pathlib.Path]\]&#62; Enables [HAR](http://www.softwareishard.com/blog/har-12-spec) recording for all pages into the specified HAR file on the filesystem. If not specified, the HAR is not recorded. Make sure to call [browser_context.close()](/api/class-browsercontext.mdx#browser-context-close) for the HAR to be saved.<a href="#browser-new-page-option-record-har-path" class="list-anchor">#</a>
