@@ -111,6 +111,7 @@ The opposite of [expect(locator).to_be_disabled(**kwargs)](/test-assertions.mdx#
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.20</font>
 
+- `editable`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-not-to-be-editable-option-editable"/> &#60;[bool]&#62; <font size="2">Added in: v1.26</font><a href="#locator-assertions-not-to-be-editable-option-editable" class="list-anchor">#</a>
 - `timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-not-to-be-editable-option-timeout"/> &#60;[float]&#62; Time to retry the assertion for. <font size="2">Added in: v1.18</font><a href="#locator-assertions-not-to-be-editable-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-not-to-be-editable-return"/> &#60;[NoneType]&#62;<a href="#locator-assertions-not-to-be-editable-return" class="list-anchor">#</a>
 
@@ -129,6 +130,7 @@ The opposite of [expect(locator).to_be_empty(**kwargs)](/test-assertions.mdx#loc
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.20</font>
 
+- `enabled`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-not-to-be-enabled-option-enabled"/> &#60;[bool]&#62; <font size="2">Added in: v1.26</font><a href="#locator-assertions-not-to-be-enabled-option-enabled" class="list-anchor">#</a>
 - `timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-not-to-be-enabled-option-timeout"/> &#60;[float]&#62; Time to retry the assertion for. <font size="2">Added in: v1.18</font><a href="#locator-assertions-not-to-be-enabled-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-not-to-be-enabled-return"/> &#60;[NoneType]&#62;<a href="#locator-assertions-not-to-be-enabled-return" class="list-anchor">#</a>
 
@@ -157,6 +159,7 @@ The opposite of [expect(locator).to_be_hidden(**kwargs)](/test-assertions.mdx#lo
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.20</font>
 
 - `timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-not-to-be-visible-option-timeout"/> &#60;[float]&#62; Time to retry the assertion for. <font size="2">Added in: v1.18</font><a href="#locator-assertions-not-to-be-visible-option-timeout" class="list-anchor">#</a>
+- `visible`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-not-to-be-visible-option-visible"/> &#60;[bool]&#62; <font size="2">Added in: v1.26</font><a href="#locator-assertions-not-to-be-visible-option-visible" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-not-to-be-visible-return"/> &#60;[NoneType]&#62;<a href="#locator-assertions-not-to-be-visible-return" class="list-anchor">#</a>
 
 The opposite of [expect(locator).to_be_visible(**kwargs)](/test-assertions.mdx#locator-assertions-to-be-visible).
@@ -291,7 +294,7 @@ Ensures the [Locator] points to a checked input.
 ```py
 from playwright.sync_api import expect
 
-locator = page.locator(".subscribe")
+locator = page.get_by_label("Subscribe to newsletter")
 expect(locator).to_be_checked()
 ```
 
@@ -301,7 +304,7 @@ expect(locator).to_be_checked()
 ```py
 from playwright.async_api import expect
 
-locator = page.locator(".subscribe")
+locator = page.get_by_label("Subscribe to newsletter")
 await expect(locator).to_be_checked()
 ```
 
@@ -351,6 +354,7 @@ await expect(locator).to_be_disabled()
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.20</font>
 
+- `editable`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-be-editable-option-editable"/> &#60;[bool]&#62; <font size="2">Added in: v1.26</font><a href="#locator-assertions-to-be-editable-option-editable" class="list-anchor">#</a>
 - `timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-be-editable-option-timeout"/> &#60;[float]&#62; Time to retry the assertion for. <font size="2">Added in: v1.18</font><a href="#locator-assertions-to-be-editable-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-be-editable-return"/> &#60;[NoneType]&#62;<a href="#locator-assertions-to-be-editable-return" class="list-anchor">#</a>
 
@@ -369,7 +373,7 @@ Ensures the [Locator] points to an editable element.
 ```py
 from playwright.sync_api import expect
 
-locator = page.locator(".input")
+locator = page.get_by_role("textbox")
 expect(locator).to_be_editable()
 ```
 
@@ -379,7 +383,7 @@ expect(locator).to_be_editable()
 ```py
 from playwright.async_api import expect
 
-locator = page.locator(".input")
+locator = page.get_by_role("textbox")
 await expect(locator).to_be_editable()
 ```
 
@@ -429,6 +433,7 @@ await expect(locator).to_be_empty()
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.20</font>
 
+- `enabled`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-be-enabled-option-enabled"/> &#60;[bool]&#62; <font size="2">Added in: v1.26</font><a href="#locator-assertions-to-be-enabled-option-enabled" class="list-anchor">#</a>
 - `timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-be-enabled-option-timeout"/> &#60;[float]&#62; Time to retry the assertion for. <font size="2">Added in: v1.18</font><a href="#locator-assertions-to-be-enabled-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-be-enabled-return"/> &#60;[NoneType]&#62;<a href="#locator-assertions-to-be-enabled-return" class="list-anchor">#</a>
 
@@ -486,7 +491,7 @@ Ensures the [Locator] points to a focused DOM node.
 ```py
 from playwright.sync_api import expect
 
-locator = page.locator('input')
+locator = page.get_by_role("textbox")
 expect(locator).to_be_focused()
 ```
 
@@ -496,7 +501,7 @@ expect(locator).to_be_focused()
 ```py
 from playwright.async_api import expect
 
-locator = page.locator('input')
+locator = page.get_by_role("textbox")
 await expect(locator).to_be_focused()
 ```
 
@@ -510,7 +515,7 @@ await expect(locator).to_be_focused()
 - `timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-be-hidden-option-timeout"/> &#60;[float]&#62; Time to retry the assertion for. <font size="2">Added in: v1.18</font><a href="#locator-assertions-to-be-hidden-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-be-hidden-return"/> &#60;[NoneType]&#62;<a href="#locator-assertions-to-be-hidden-return" class="list-anchor">#</a>
 
-Ensures the [Locator] points to a hidden DOM node, which is the opposite of [visible](./actionability.mdx#visible).
+Ensures that [Locator] either does not resolve to any DOM node, or resolves to a [non-visible](./actionability.mdx#visible) one.
 
 <Tabs
   groupId="python-flavor"
@@ -547,9 +552,10 @@ await expect(locator).to_be_hidden()
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.20</font>
 
 - `timeout`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-be-visible-option-timeout"/> &#60;[float]&#62; Time to retry the assertion for. <font size="2">Added in: v1.18</font><a href="#locator-assertions-to-be-visible-option-timeout" class="list-anchor">#</a>
+- `visible`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-be-visible-option-visible"/> &#60;[bool]&#62; <font size="2">Added in: v1.26</font><a href="#locator-assertions-to-be-visible-option-visible" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="locator-assertions-to-be-visible-return"/> &#60;[NoneType]&#62;<a href="#locator-assertions-to-be-visible-return" class="list-anchor">#</a>
 
-Ensures the [Locator] points to a [visible](./actionability.mdx#visible) DOM node.
+Ensures that [Locator] points to an [attached](./actionability.mdx#attached) and [visible](./actionability.mdx#visible) DOM node.
 
 <Tabs
   groupId="python-flavor"
@@ -627,7 +633,23 @@ await expect(locator).to_contain_text(re.compile(r"\d messages"))
 </TabItem>
 </Tabs>
 
-Note that if array is passed as an expected value, entire lists of elements can be asserted:
+If you pass an array as an expected value, the expectations are:
+1. Locator resolves to a list of elements.
+1. Elements from a **subset** of this list contain text from the expected array, respectively.
+1. The matching subset of elements has the same order as the expected array.
+1. Each text value from the expected array is matched by some element from the list.
+
+For example, consider the following list:
+
+```html
+<ul>
+  <li>Item Text 1</li>
+  <li>Item Text 2</li>
+  <li>Item Text 3</li>
+</ul>
+```
+
+Let's see how we can use the assertion:
 
 <Tabs
   groupId="python-flavor"
@@ -640,22 +662,38 @@ Note that if array is passed as an expected value, entire lists of elements can 
 <TabItem value="sync">
 
 ```py
-import re
 from playwright.sync_api import expect
 
-locator = page.locator("list > .list-item")
-expect(locator).to_contain_text(["Text 1", "Text 4", "Text 5"])
+# ✓ Contains the right items in the right order
+expect(page.locator("ul > li")).to_contain_text(["Text 1", "Text 3", "Text 4"])
+
+# ✖ Wrong order
+expect(page.locator("ul > li")).to_contain_text(["Text 3", "Text 2"])
+
+# ✖ No item contains this text
+expect(page.locator("ul > li")).to_contain_text(["Some 33"])
+
+# ✖ Locator points to the outer list element, not to the list items
+expect(page.locator("ul")).to_contain_text(["Text 3"])
 ```
 
 </TabItem>
 <TabItem value="async">
 
 ```py
-import re
 from playwright.async_api import expect
 
-locator = page.locator("list > .list-item")
-await expect(locator).to_contain_text(["Text 1", "Text 4", "Text 5"])
+# ✓ Contains the right items in the right order
+await expect(page.locator("ul > li")).to_contain_text(["Text 1", "Text 3", "Text 4"])
+
+# ✖ Wrong order
+await expect(page.locator("ul > li")).to_contain_text(["Text 3", "Text 2"])
+
+# ✖ No item contains this text
+await expect(page.locator("ul > li")).to_contain_text(["Some 33"])
+
+# ✖ Locator points to the outer list element, not to the list items
+await expect(page.locator("ul")).to_contain_text(["Text 3"])
 ```
 
 </TabItem>
@@ -844,7 +882,7 @@ Ensures the [Locator] resolves to an element with the given computed CSS style.
 ```py
 from playwright.sync_api import expect
 
-locator = page.locator("button")
+locator = page.get_by_role("button")
 expect(locator).to_have_css("display", "flex")
 ```
 
@@ -854,7 +892,7 @@ expect(locator).to_have_css("display", "flex")
 ```py
 from playwright.async_api import expect
 
-locator = page.locator("button")
+locator = page.get_by_role("button")
 await expect(locator).to_have_css("display", "flex")
 ```
 
@@ -884,7 +922,7 @@ Ensures the [Locator] points to an element with the given DOM Node ID.
 ```py
 from playwright.sync_api import expect
 
-locator = page.locator("input")
+locator = page.get_by_role("textbox")
 expect(locator).to_have_id("lastname")
 ```
 
@@ -894,7 +932,7 @@ expect(locator).to_have_id("lastname")
 ```py
 from playwright.async_api import expect
 
-locator = page.locator("input")
+locator = page.get_by_role("textbox")
 await expect(locator).to_have_id("lastname")
 ```
 
@@ -988,7 +1026,22 @@ await expect(locator).to_have_text(re.compile(r"Welcome, .*"))
 </TabItem>
 </Tabs>
 
-Note that if array is passed as an expected value, entire lists of elements can be asserted:
+If you pass an array as an expected value, the expectations are:
+1. Locator resolves to a list of elements.
+1. The number of elements equals the number of expected values in the array.
+1. Elements from the list have text matching expected array values, one by one, in order.
+
+For example, consider the following list:
+
+```html
+<ul>
+  <li>Text 1</li>
+  <li>Text 2</li>
+  <li>Text 3</li>
+</ul>
+```
+
+Let's see how we can use the assertion:
 
 <Tabs
   groupId="python-flavor"
@@ -1003,8 +1056,17 @@ Note that if array is passed as an expected value, entire lists of elements can 
 ```py
 from playwright.sync_api import expect
 
-locator = page.locator("list > .component")
-expect(locator).to_have_text(["Text 1", "Text 2", "Text 3"])
+# ✓ Has the right items in the right order
+await expect(page.locator("ul > li")).to_have_text(["Text 1", "Text 2", "Text 3"])
+
+# ✖ Wrong order
+await expect(page.locator("ul > li")).to_have_text(["Text 3", "Text 2", "Text 1"])
+
+# ✖ Last item does not match
+await expect(page.locator("ul > li")).to_have_text(["Text 1", "Text 2", "Text"])
+
+# ✖ Locator points to the outer list element, not to the list items
+await expect(page.locator("ul")).to_have_text(["Text 1", "Text 2", "Text 3"])
 ```
 
 </TabItem>
@@ -1013,8 +1075,17 @@ expect(locator).to_have_text(["Text 1", "Text 2", "Text 3"])
 ```py
 from playwright.async_api import expect
 
-locator = page.locator("list > .component")
-await expect(locator).to_have_text(["Text 1", "Text 2", "Text 3"])
+# ✓ Has the right items in the right order
+await expect(page.locator("ul > li")).to_have_text(["Text 1", "Text 2", "Text 3"])
+
+# ✖ Wrong order
+await expect(page.locator("ul > li")).to_have_text(["Text 3", "Text 2", "Text 1"])
+
+# ✖ Last item does not match
+await expect(page.locator("ul > li")).to_have_text(["Text 1", "Text 2", "Text"])
+
+# ✖ Locator points to the outer list element, not to the list items
+await expect(page.locator("ul")).to_have_text(["Text 1", "Text 2", "Text 3"])
 ```
 
 </TabItem>
@@ -1234,7 +1305,7 @@ The opposite of [expect(api_response).to_be_ok()](/test-assertions.mdx#api-respo
 
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="api-response-assertions-to-be-ok-return"/> &#60;[NoneType]&#62;<a href="#api-response-assertions-to-be-ok-return" class="list-anchor">#</a>
 
-Ensures the response status code is within [200..299] range.
+Ensures the response status code is within `200..299` range.
 
 <Tabs
   groupId="python-flavor"
