@@ -39,6 +39,7 @@ The following is an example of using the Playwright Library directly to launch C
 
 ```js
 import playwright, { devices } from 'playwright';
+import assert from 'node:assert';
 
 (async () => {
   // Setup
@@ -50,7 +51,7 @@ import playwright, { devices } from 'playwright';
   await context.route('**.jpg', route => route.abort());
   await page.goto('https://example.com/');
 
-  assert(await page.title() === 'Example'); // 👎 not a Web First assertion
+  assert(await page.title() === 'Example Domain'); // 👎 not a Web First assertion
 
   // Teardown
   await context.close();
@@ -62,19 +63,20 @@ import playwright, { devices } from 'playwright';
 <TabItem value="js">
 
 ```js
+const assert = require('node:assert');
 const playwright = require('playwright');
 
 (async () => {
   // Setup
   const browser = await playwright.chromium.launch();
-  const context = await browser.newContext(devices['iPhone 11']);
+  const context = await browser.newContext(playwright.devices['iPhone 11']);
   const page = await context.newPage();
 
   // The actual interesting bit
   await context.route('**.jpg', route => route.abort());
   await page.goto('https://example.com/');
 
-  assert(await page.title() === 'Example'); // 👎 not a Web First assertion
+  assert(await page.title() === 'Example Domain'); // 👎 not a Web First assertion
 
   // Teardown
   await context.close();
@@ -170,6 +172,7 @@ The key differences to note are as follows:
 | | Library | Test |
 | - | - | - |
 | Installation | `npm install playwright` | `npm init playwright@latest` (note `install` vs. `init`) |
+| Install browsers | Chromium, Firefox, WebKit are installed by default | `npx playwright install` or `npx playwright install chromium` for a single one |
 | `import`/`require` name | `playwright` | `@playwright/test` |
 | Initialization | Explicitly need to: <ol><li>Pick a browser to use (e.g. `chromium`)</li><li>Create `browser` ([browserType.launch([options])](/api/class-browsertype.mdx#browser-type-launch))</li><li>Create a `context` ([browser.newContext([options])](/api/class-browser.mdx#browser-new-context)), <em>and</em> pass any context options explcitly (e.g. `devices['iPhone 11']`</li><li>Create a `page` ([browserContext.newPage()](/api/class-browsercontext.mdx#browser-context-new-page))</li></ol> | An isolated `page` and `context` are provided to each test out-of the box (along with any other [built-in fixtures](./test-fixtures.mdx#built-in-fixtures)). No explicit creation. If referenced by the test in it's arguments, the Test Runner will create them for the test. (i.e. lazy-initialization) |
 | Assertions | No built-in Web-First Assertions | [Web-First assertions](./test-assertions.mdx) like: <ul><li>[expect(page).toHaveTitle(titleOrRegExp[, options])](/test-assertions.mdx#page-assertions-to-have-title)</li><li>[expect(page).toHaveScreenshot(name[, options])](/test-assertions.mdx#page-assertions-to-have-screenshot-1)</li></ul> which auto-wait and retry for the condition to be met.|
