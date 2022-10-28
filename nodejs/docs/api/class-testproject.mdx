@@ -132,11 +132,11 @@ module.exports = config;
 - [testProject.metadata](/api/class-testproject.mdx#test-project-metadata)
 - [testProject.name](/api/class-testproject.mdx#test-project-name)
 - [testProject.outputDir](/api/class-testproject.mdx#test-project-output-dir)
-- [testProject.projectSetup](/api/class-testproject.mdx#test-project-project-setup)
-- [testProject.projectTeardown](/api/class-testproject.mdx#test-project-project-teardown)
 - [testProject.repeatEach](/api/class-testproject.mdx#test-project-repeat-each)
 - [testProject.retries](/api/class-testproject.mdx#test-project-retries)
+- [testProject.run](/api/class-testproject.mdx#test-project-run)
 - [testProject.snapshotDir](/api/class-testproject.mdx#test-project-snapshot-dir)
+- [testProject.stage](/api/class-testproject.mdx#test-project-stage)
 - [testProject.testDir](/api/class-testproject.mdx#test-project-test-dir)
 - [testProject.testIgnore](/api/class-testproject.mdx#test-project-test-ignore)
 - [testProject.testMatch](/api/class-testproject.mdx#test-project-test-match)
@@ -261,82 +261,6 @@ test('example test', async ({}, testInfo) => {
 
 Use [testConfig.outputDir](/api/class-testconfig.mdx#test-config-output-dir) to change this option for all projects.
 
-## testProject.projectSetup {#test-project-project-setup}
-
-<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.25</font>
-
-- type: &#60;[string]&#62;
-
-Path to the project-specifc setup file. This file will be required and run before all the tests from this project. It must export a single function that takes a [`TestConfig`] argument.
-
-Project setup is similar to [testConfig.globalSetup](/api/class-testconfig.mdx#test-config-global-setup), but it is only executed if at least one test from this particular project should be run. Learn more about [global setup and teardown](../test-advanced.mdx#global-setup-and-teardown).
-
-<Tabs
-  groupId="js-flavor"
-  defaultValue="ts"
-  values={[
-    {label: 'TypeScript', value: 'ts'},
-    {label: 'JavaScript', value: 'js'}
-  ]
-}>
-<TabItem value="ts">
-
-```js
-// playwright.config.ts
-import { type PlaywrightTestConfig } from '@playwright/test';
-
-const config: PlaywrightTestConfig = {
-  projects: [
-    {
-      name: 'Admin Portal',
-      projectSetup: './setup-admin',
-    },
-    {
-      name: 'Customer Portal',
-      projectSetup: './setup-customer',
-    },
-  ],
-};
-export default config;
-```
-
-</TabItem>
-<TabItem value="js">
-
-```js
-// playwright.config.js
-// @ts-check
-
-/** @type {import('@playwright/test').PlaywrightTestConfig} */
-const config = {
-  projects: [
-    {
-      name: 'Admin Portal',
-      projectSetup: './setup-admin',
-    },
-    {
-      name: 'Customer Portal',
-      projectSetup: './setup-customer',
-    },
-  ],
-};
-
-module.exports = config;
-```
-
-</TabItem>
-</Tabs>
-
-## testProject.projectTeardown {#test-project-project-teardown}
-
-<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.25</font>
-
-- type: &#60;[string]&#62;
-
-Path to the project-specifc teardown file. This file will be required and run after all the tests from this project. It must export a single function. See also [testProject.projectSetup](/api/class-testproject.mdx#test-project-project-setup).
-
-Project teardown is similar to [testConfig.globalTeardown](/api/class-testconfig.mdx#test-config-global-teardown), but it is only executed if at least one test from this particular project did run. Learn more about [global setup and teardown](../test-advanced.mdx#global-setup-and-teardown).
-
 ## testProject.repeatEach {#test-project-repeat-each}
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.10</font>
@@ -355,7 +279,17 @@ Use [testConfig.repeatEach](/api/class-testconfig.mdx#test-config-repeat-each) t
 
 The maximum number of retry attempts given to failed tests. Learn more about [test retries](../test-retries.mdx#retries).
 
+Use [test.describe.configure([options])](/api/class-test.mdx#test-describe-configure) to change the number of retries for a specific file or a group of tests.
+
 Use [testConfig.retries](/api/class-testconfig.mdx#test-config-retries) to change this option for all projects.
+
+## testProject.run {#test-project-run}
+
+<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.28</font>
+
+- type: &#60;"default"|"always"&#62;
+
+If set to 'always' the project will always be executed regardless of previous failures in the same test run. If set to 'always' all tests from the project will run in each shard and won't be split.  If omitted or set to 'default' the project will be skipped if there are test failures in the projects from the prior [testProject.stage](/api/class-testproject.mdx#test-project-stage)'s.
 
 ## testProject.snapshotDir {#test-project-snapshot-dir}
 
@@ -368,6 +302,14 @@ The base directory, relative to the config file, for snapshot files created with
 The directory for each test can be accessed by [testInfo.snapshotDir](/api/class-testinfo.mdx#test-info-snapshot-dir) and [testInfo.snapshotPath(...pathSegments)](/api/class-testinfo.mdx#test-info-snapshot-path).
 
 This path will serve as the base directory for each test file snapshot directory. Setting `snapshotDir` to `'snapshots'`, the [testInfo.snapshotDir](/api/class-testinfo.mdx#test-info-snapshot-dir) would resolve to `snapshots/a.spec.js-snapshots`.
+
+## testProject.stage {#test-project-stage}
+
+<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.28</font>
+
+- type: &#60;[number]&#62;
+
+An integer number that defines when the project should run relative to other projects. Each project runs in exactly one stage. By default all projects run in stage 0. Stages with lower number run first. Several projects can run in each stage. Execution order between projecs in the same stage is undefined. If any test from a stage fails all tests from susequent stages are skipped, use [testProject.run](/api/class-testproject.mdx#test-project-run) to change this behavior.
 
 ## testProject.testDir {#test-project-test-dir}
 
@@ -511,7 +453,7 @@ Use [testConfig.testMatch](/api/class-testconfig.mdx#test-config-test-match) to 
 
 Timeout for each test in milliseconds. Defaults to 30 seconds.
 
-This is a base timeout for all tests. In addition, each test can configure its own timeout with [test.setTimeout(timeout)](/api/class-test.mdx#test-set-timeout).
+This is a base timeout for all tests. Each test can configure its own timeout with [test.setTimeout(timeout)](/api/class-test.mdx#test-set-timeout). Each file or a group of tests can configure the timeout with [test.describe.configure([options])](/api/class-test.mdx#test-describe-configure).
 
 Use [testConfig.timeout](/api/class-testconfig.mdx#test-config-timeout) to change this option for all projects.
 
