@@ -5,13 +5,6 @@ title: "Reporters"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-- [Using reporters](#using-reporters)
-- [Built-in reporters](#built-in-reporters)
-- [Custom reporters](#custom-reporters)
-- [Third party reporter showcase](#third-party-reporter-showcase)
-
-## Using reporters
-
 Playwright Test comes with a few built-in reporters for different needs and ability to provide custom reporters. The easiest way to try out built-in reporters is to pass `--reporter` [command line option](./test-cli.mdx).
 
 ```bash
@@ -60,7 +53,7 @@ module.exports = config;
 
 ### Multiple reporters
 
-You can use multiple reporters at the same time. For example  you can use`'list'` for nice terminal output and `'json'` to get a comprehensive json file with the test results.
+You can use multiple reporters at the same time. For example  you can use `'list'` for nice terminal output and `'json'` to get a comprehensive json file with the test results.
 
 <Tabs
   groupId="js-flavor"
@@ -206,17 +199,57 @@ Here is an example output in the middle of a test run. Failures will be listed a
 npx playwright test --reporter=list
 Running 124 tests using 6 workers
 
-  ✓ should access error in env (438ms)
-  ✓ handle long test names (515ms)
-  x 1) render expected (691ms)
-  ✓ should timeout (932ms)
-    should repeat each:
-  ✓ should respect enclosing .gitignore (569ms)
-    should teardown env after timeout:
-    should respect excluded tests:
-  ✓ should handle env beforeEach error (638ms)
-    should respect enclosing .gitignore:
+ 1  ✓ should access error in env (438ms)
+ 2  ✓ handle long test names (515ms)
+ 3  x 1) render expected (691ms)
+ 4  ✓ should timeout (932ms)
+ 5    should repeat each:
+ 6  ✓ should respect enclosing .gitignore (569ms)
+ 7    should teardown env after timeout:
+ 8    should respect excluded tests:
+ 9  ✓ should handle env beforeEach error (638ms)
+10    should respect enclosing .gitignore:
 ```
+
+You can opt into the step rendering via passing the following config option:
+
+<Tabs
+  groupId="js-flavor"
+  defaultValue="ts"
+  values={[
+    {label: 'TypeScript', value: 'ts'},
+    {label: 'JavaScript', value: 'js'}
+  ]
+}>
+<TabItem value="ts">
+
+```js
+// playwright.config.ts
+import type { PlaywrightTestConfig } from '@playwright/test';
+
+const config: PlaywrightTestConfig = {
+  reporter: [['list', { printSteps: true }],
+};
+export default config;
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+// playwright.config.js
+// @ts-check
+
+/** @type {import('@playwright/test').PlaywrightTestConfig} */
+const config = {
+  reporter: [['list', { printSteps: true }],
+};
+
+module.exports = config;
+```
+
+</TabItem>
+</Tabs>
 
 ### Line reporter
 
@@ -343,6 +376,8 @@ npx playwright test --reporter=html
 
 By default, HTML report is opened automatically if some of the tests failed. You can control this behavior via the `open` property in the Playwright config. The possible values for that property are `always`, `never` and `on-failure` (default).
 
+You can also configure `host` and `port` that are used to serve the HTML report.
+
 <Tabs
   groupId="js-flavor"
   defaultValue="ts"
@@ -358,7 +393,7 @@ By default, HTML report is opened automatically if some of the tests failed. You
 import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
-  reporter: [ ['html', { open: 'never' }] ],
+  reporter: [['html', { open: 'never' }]],
 };
 export default config;
 ```
@@ -372,7 +407,11 @@ export default config;
 
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config = {
-  reporter: [ ['html', { open: 'never' }] ],
+  reporter: [['html', {
+    open: 'never',
+    host: '0.0.0.0',
+    port: 9223,
+  }]],
 };
 
 module.exports = config;
@@ -400,7 +439,7 @@ In configuration file, pass options directly:
 import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
-  reporter: [ ['html', { outputFolder: 'my-report' }] ],
+  reporter: [['html', { outputFolder: 'my-report' }]],
 };
 export default config;
 ```
@@ -414,7 +453,7 @@ export default config;
 
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config = {
-  reporter: [ ['html', { outputFolder: 'my-report' }] ],
+  reporter: [['html', { outputFolder: 'my-report' }]],
 };
 
 module.exports = config;
@@ -494,7 +533,7 @@ In configuration file, pass options directly:
 import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
-  reporter: [ ['json', { outputFile: 'results.json' }] ],
+  reporter: [['json', { outputFile: 'results.json' }]],
 };
 export default config;
 ```
@@ -508,7 +547,7 @@ export default config;
 
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config = {
-  reporter: [ ['json', { outputFile: 'results.json' }] ],
+  reporter: [['json', { outputFile: 'results.json' }]],
 };
 
 module.exports = config;
@@ -574,7 +613,7 @@ In configuration file, pass options directly:
 import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
-  reporter: [ ['junit', { outputFile: 'results.xml' }] ],
+  reporter: [['junit', { outputFile: 'results.xml' }]],
 };
 export default config;
 ```
@@ -588,7 +627,7 @@ export default config;
 
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config = {
-  reporter: [ ['junit', { outputFile: 'results.xml' }] ],
+  reporter: [['junit', { outputFile: 'results.xml' }]],
 };
 
 module.exports = config;
@@ -597,7 +636,7 @@ module.exports = config;
 </TabItem>
 </Tabs>
 
-The JUnit reporter provides support for embedding additional information on the `testcase` elements using inner `properties`. This is based on an [evolved JUnit XML format](https://docs.getxray.app/display/XRAYCLOUD/Taking+advantage+of+JUnit+XML+reports) from Xray Test Management, but can also be used by other tools if they support this way of embedding additonal information for test results; please check it first.
+The JUnit reporter provides support for embedding additional information on the `testcase` elements using inner `properties`. This is based on an [evolved JUnit XML format](https://docs.getxray.app/display/XRAYCLOUD/Taking+advantage+of+JUnit+XML+reports) from Xray Test Management, but can also be used by other tools if they support this way of embedding additional information for test results; please check it first.
 
 In configuration file, a set of options can be used to configure this behavior. A full example, in this case for Xray, follows ahead.
 
@@ -633,7 +672,7 @@ const xrayOptions = {
 };
 
 const config: PlaywrightTestConfig = {
-  reporter: [ ['junit', xrayOptions] ]
+  reporter: [['junit', xrayOptions]]
 };
 
 export default config;
@@ -666,7 +705,7 @@ const xrayOptions = {
 };
 
 const config = {
-  reporter: [ ['junit', xrayOptions] ]
+  reporter: [['junit', xrayOptions]]
 };
 
 module.exports = config;
@@ -720,7 +759,7 @@ test('using specific annotations for passing test metadata to Xray', async ({}, 
 
 Please note that the semantics of these properties will depend on the tool that will process this evoled report format; there are no standard property names/annotations.
 
-If the configuration option `embedAttachmentsAsProperty` is defined, then a `property` with its name is created. Attachments, including their contents, will be embeded on the JUnit XML report inside `<item>` elements under this `property`. Attachments are obtained from the `TestInfo` object, using either a path or a body, and are added as base64 encoded content. Embedding attachments can be used to attach screenshots or any other relevant evidence; nevertheless, use it wisely as it affects the report size.
+If the configuration option `embedAttachmentsAsProperty` is defined, then a `property` with its name is created. Attachments, including their contents, will be embedded on the JUnit XML report inside `<item>` elements under this `property`. Attachments are obtained from the `TestInfo` object, using either a path or a body, and are added as base64 encoded content. Embedding attachments can be used to attach screenshots or any other relevant evidence; nevertheless, use it wisely as it affects the report size.
 
 The following configuration sample enables embedding attachments by using the `testrun_evidence` element on the JUnit XML report:
 
@@ -739,7 +778,7 @@ The following configuration sample enables embedding attachments by using the `t
 
 import { PlaywrightTestConfig } from '@playwright/test';
 const config: PlaywrightTestConfig = {
-  reporter: [ ['junit', { embedAttachmentsAsProperty: 'testrun_evidence', outputFile: 'results.xml' }] ],
+  reporter: [['junit', { embedAttachmentsAsProperty: 'testrun_evidence', outputFile: 'results.xml' }]],
 };
 
 export default config;
@@ -754,7 +793,7 @@ export default config;
 
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config = {
-  reporter: [ ['junit', { embedAttachmentsAsProperty: 'testrun_evidence', outputFile: 'results.xml' }] ],
+  reporter: [['junit', { embedAttachmentsAsProperty: 'testrun_evidence', outputFile: 'results.xml' }]],
 };
 
 module.exports = config;
@@ -964,7 +1003,9 @@ module.exports = config;
 
 ## Third party reporter showcase
 * [Allure](https://www.npmjs.com/package/allure-playwright)
+* [Monocart](https://github.com/cenfun/monocart-reporter)
 * [Tesults](https://www.tesults.com/docs/playwright)
+* [ReportPortal](https://github.com/reportportal/agent-js-playwright)
 
 [Accessibility]: /api/class-accessibility.mdx "Accessibility"
 [Android]: /api/class-android.mdx "Android"
