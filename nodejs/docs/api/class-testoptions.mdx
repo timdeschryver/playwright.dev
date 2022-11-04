@@ -124,6 +124,7 @@ test('my portrait test', async ({ page }) => {
 - [testOptions.screenshot](/api/class-testoptions.mdx#test-options-screenshot)
 - [testOptions.serviceWorkers](/api/class-testoptions.mdx#test-options-service-workers)
 - [testOptions.storageState](/api/class-testoptions.mdx#test-options-storage-state)
+- [testOptions.testIdAttribute](/api/class-testoptions.mdx#test-options-test-id-attribute)
 - [testOptions.timezoneId](/api/class-testoptions.mdx#test-options-timezone-id)
 - [testOptions.trace](/api/class-testoptions.mdx#test-options-trace)
 - [testOptions.userAgent](/api/class-testoptions.mdx#test-options-user-agent)
@@ -231,9 +232,9 @@ Browser distribution channel.  Supported values are "chrome", "chrome-beta", "ch
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.10</font>
 
-- type: &#60;"light"|"dark"|"no-preference"&#62;
+- type: &#60;[null]|"light"|"dark"|"no-preference"&#62;
 
-Emulates `'prefers-colors-scheme'` media feature, supported values are `'light'`, `'dark'`, `'no-preference'`. See [page.emulateMedia([options])](/api/class-page.mdx#page-emulate-media) for more details. Defaults to `'light'`.
+Emulates `'prefers-colors-scheme'` media feature, supported values are `'light'`, `'dark'`, `'no-preference'`. See [page.emulateMedia([options])](/api/class-page.mdx#page-emulate-media) for more details. Passing `null` resets emulation to system defaults. Defaults to `'light'`.
 
 ## testOptions.connectOptions {#test-options-connect-options}
 
@@ -430,6 +431,12 @@ Whether to allow sites to register Service workers. Defaults to `'allow'`.
 
 Populates context with given storage state. This option can be used to initialize context with logged-in information obtained via [browserContext.storageState([options])](/api/class-browsercontext.mdx#browser-context-storage-state). Either a path to the file with saved storage, or an object with the following fields:
 
+## testOptions.testIdAttribute {#test-options-test-id-attribute}
+
+<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.27</font>
+
+Custom attribute to be used in [page.getByTestId(testId)](/api/class-page.mdx#page-get-by-test-id). `data-testid` is used by default.
+
 ## testOptions.timezoneId {#test-options-timezone-id}
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.10</font>
@@ -543,6 +550,7 @@ Emulates consistent viewport for each page. Defaults to an 1280x720 viewport. `n
 [WebSocket]: /api/class-websocket.mdx "WebSocket"
 [Worker]: /api/class-worker.mdx "Worker"
 [Fixtures]: /api/class-fixtures.mdx "Fixtures"
+[Storage]: /api/class-storage.mdx "Storage"
 [Test]: /api/class-test.mdx "Test"
 [TestConfig]: /api/class-testconfig.mdx "TestConfig"
 [TestError]: /api/class-testerror.mdx "TestError"

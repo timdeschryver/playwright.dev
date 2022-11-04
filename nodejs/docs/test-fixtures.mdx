@@ -5,18 +5,6 @@ title: "Advanced: fixtures"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-- [Introduction to fixtures](#introduction-to-fixtures)
-- [Creating a fixture](#creating-a-fixture)
-- [Using a fixture](#using-a-fixture)
-- [Overriding fixtures](#overriding-fixtures)
-- [Worker-scoped fixtures](#worker-scoped-fixtures)
-- [Automatic fixtures](#automatic-fixtures)
-- [Fixture timeout](#fixture-timeout)
-- [Fixtures-options](#fixtures-options)
-- [Execution order](#execution-order)
-
-## Introduction to fixtures
-
 Playwright Test is based on the concept of test fixtures. Test fixtures are used to establish environment for each test, giving the test everything it needs and nothing else. Test fixtures are isolated between tests. With fixtures, you can group tests based on their meaning, instead of their common setup.
 
 ### Built-in fixtures
@@ -476,9 +464,9 @@ export const test = base.extend<{}, { account: Account }>({
     // Create the account with Playwright.
     const page = await browser.newPage();
     await page.goto('/signup');
-    await page.locator('#username').fill(username);
-    await page.locator('#password').fill(password);
-    await page.locator('text=Sign up').click();
+    await page.getByLabel('User Name').fill(username);
+    await page.getByLabel('Password').fill(password);
+    await page.getByText('Sign up').click();
     // Make sure everything is ok.
     await expect(page.locator('#result')).toHaveText('Success');
     // Do not forget to cleanup.
@@ -492,9 +480,9 @@ export const test = base.extend<{}, { account: Account }>({
     // Sign in with our account.
     const { username, password } = account;
     await page.goto('/signin');
-    await page.locator('#username').fill(username);
-    await page.locator('#password').fill(password);
-    await page.locator('text=Sign in').click();
+    await page.getByLabel('User Name').fill(username);
+    await page.getByLabel('Password').fill(password);
+    await page.getByText('Sign in').click();
     await expect(page.locator('#userinfo')).toHaveText(username);
 
     // Use signed-in page in the test.
@@ -520,9 +508,9 @@ exports.test = base.test.extend({
     // Create the account with Playwright.
     const page = await browser.newPage();
     await page.goto('/signup');
-    await page.locator('#username').fill(username);
-    await page.locator('#password').fill(password);
-    await page.locator('text=Sign up').click();
+    await page.getByLabel('User Name').fill(username);
+    await page.getByLabel('Password').fill(password);
+    await page.getByText('Sign up').click();
     // Make sure everything is ok.
     await expect(page.locator('#result')).toHaveText('Success');
     // Do not forget to cleanup.
@@ -536,9 +524,9 @@ exports.test = base.test.extend({
     // Sign in with our account.
     const { username, password } = account;
     await page.goto('/signin');
-    await page.locator('#username').fill(username);
-    await page.locator('#password').fill(password);
-    await page.locator('text=Sign in').click();
+    await page.getByLabel('User Name').fill(username);
+    await page.getByLabel('Password').fill(password);
+    await page.getByText('Sign in').click();
     await expect(page.locator('#userinfo')).toHaveText(username);
 
     // Use signed-in page in the test.
@@ -1018,6 +1006,7 @@ A few observations:
 [WebSocket]: /api/class-websocket.mdx "WebSocket"
 [Worker]: /api/class-worker.mdx "Worker"
 [Fixtures]: /api/class-fixtures.mdx "Fixtures"
+[Storage]: /api/class-storage.mdx "Storage"
 [Test]: /api/class-test.mdx "Test"
 [TestConfig]: /api/class-testconfig.mdx "TestConfig"
 [TestError]: /api/class-testerror.mdx "TestError"
