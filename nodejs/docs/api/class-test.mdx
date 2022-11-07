@@ -69,6 +69,7 @@ test('basic test', async ({ page }) => {
 - [test.fixme(callback[, description])](/api/class-test.mdx#test-fixme-4)
 - [test.info()](/api/class-test.mdx#test-info)
 - [test.only(title, testFunction)](/api/class-test.mdx#test-only)
+- [test.reset(options)](/api/class-test.mdx#test-reset)
 - [test.setTimeout(timeout)](/api/class-test.mdx#test-set-timeout)
 - [test.skip(title, testFunction)](/api/class-test.mdx#test-skip-1)
 - [test.skip()](/api/class-test.mdx#test-skip-2)
@@ -426,9 +427,11 @@ test.describe(() => {
 
 - `options?` &#60;[Object]&#62;
   - `mode?`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-describe-configure-option-mode"/> &#60;"parallel"|"serial"&#62;<a href="#test-describe-configure-option-mode" class="list-anchor">#</a>
+  - `retries?`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-describe-configure-option-retries"/> &#60;[number]&#62; <font size="2">Added in: v1.28</font><a href="#test-describe-configure-option-retries" class="list-anchor">#</a>
+  - `timeout?`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-describe-configure-option-timeout"/> &#60;[number]&#62; <font size="2">Added in: v1.28</font><a href="#test-describe-configure-option-timeout" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-describe-configure-return"/> &#60;[void]&#62;<a href="#test-describe-configure-return" class="list-anchor">#</a>
 
-Set execution mode of execution for the enclosing scope. Can be executed either on the top level or inside a describe. Configuration applies to the entire scope, regardless of whether it run before or after the test declaration.
+Configures the enclosing scope. Can be executed either on the top level or inside a describe. Configuration applies to the entire scope, regardless of whether it run before or after the test declaration.
 
 Learn more about the execution modes [here](../test-parallel.mdx).
 
@@ -496,6 +499,38 @@ test('runs second', async ({ page }) => {});
 </TabItem>
 </Tabs>
 
+Configuring retries and timeout:
+
+<Tabs
+  groupId="js-flavor"
+  defaultValue="ts"
+  values={[
+    {label: 'TypeScript', value: 'ts'},
+    {label: 'JavaScript', value: 'js'}
+  ]
+}>
+<TabItem value="ts">
+
+```js
+// All tests in the file will be retried twice and have a timeout of 20 seconds.
+test.describe.configure({ retries: 2, timeout: 20_000 });
+test('runs first', async ({ page }) => {});
+test('runs second', async ({ page }) => {});
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+// All tests in the file will be retried twice and have a timeout of 20 seconds.
+test.describe.configure({ retries: 2, timeout: 20_000 });
+test('runs first', async ({ page }) => {});
+test('runs second', async ({ page }) => {});
+```
+
+</TabItem>
+</Tabs>
+
 ## test.describe.fixme(title, callback) {#test-describe-fixme}
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.25</font>
@@ -504,7 +539,7 @@ test('runs second', async ({ page }) => {});
 - `callback`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-describe-fixme-option-callback"/> &#60;[function]&#62; A callback that is run immediately when calling [test.describe.fixme(title, callback)](/api/class-test.mdx#test-describe-fixme). Any tests added in this callback will belong to the group, and will not be run.<a href="#test-describe-fixme-option-callback" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-describe-fixme-return"/> &#60;[void]&#62;<a href="#test-describe-fixme-return" class="list-anchor">#</a>
 
-Declares a test group similarly to [test.describe(title, callback)](/api/class-test.mdx#test-describe-1). Tests in this group are maked as "fixme" and will not be executed.
+Declares a test group similarly to [test.describe(title, callback)](/api/class-test.mdx#test-describe-1). Tests in this group are marked as "fixme" and will not be executed.
 
 <Tabs
   groupId="js-flavor"
@@ -1361,6 +1396,63 @@ test.only('focus this test', async ({ page }) => {
 </TabItem>
 </Tabs>
 
+## test.reset(options) {#test-reset}
+
+<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.28</font>
+
+- `options`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-reset-option-fixtures"/> &#60;[Object]&#62; An object with options set to either `'config'` or `'default'`.<a href="#test-reset-option-fixtures" class="list-anchor">#</a>
+- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-reset-return"/> &#60;[void]&#62;<a href="#test-reset-return" class="list-anchor">#</a>
+
+Resets options that were set up in the configuration file or with [test.use(options)](/api/class-test.mdx#test-use) to their default or config-specified value.
+
+<Tabs
+  groupId="js-flavor"
+  defaultValue="ts"
+  values={[
+    {label: 'TypeScript', value: 'ts'},
+    {label: 'JavaScript', value: 'js'}
+  ]
+}>
+<TabItem value="ts">
+
+```js
+import { test, expect } from '@playwright/test';
+
+test.reset({
+  // Reset storage state to the default empty value.
+  storageStage: 'default',
+
+  // Reset locale to the value specified in the config file.
+  locale: 'config',
+});
+
+test('example', async ({ page }) => {
+  // ...
+});
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+const { test, expect } = require('@playwright/test');
+
+test.reset({
+  // Reset storage state to the default empty value.
+  storageStage: 'default',
+
+  // Reset locale to the value specified in the config file.
+  locale: 'config',
+});
+
+test('example', async ({ page }) => {
+  // ...
+});
+```
+
+</TabItem>
+</Tabs>
+
 ## test.setTimeout(timeout) {#test-set-timeout}
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.10</font>
@@ -1493,7 +1585,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('group', () => {
   // Applies to all tests in this group.
-  test.setTimeout(60000);
+  test.describe.configure({ timeout: 60000 });
 
   test('test one', async () => { /* ... */ });
   test('test two', async () => { /* ... */ });
@@ -1509,7 +1601,7 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('group', () => {
   // Applies to all tests in this group.
-  test.setTimeout(60000);
+  test.describe.configure({ timeout: 60000 });
 
   test('test one', async () => { /* ... */ });
   test('test two', async () => { /* ... */ });
@@ -1930,7 +2022,7 @@ test('slow in WebKit 2', async ({ page }) => {
 
 - `title`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-step-option-title"/> &#60;[string]&#62; Step name.<a href="#test-step-option-title" class="list-anchor">#</a>
 - `body`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-step-option-body"/> &#60;[function]\([]\):[Promise]<[Object]>&#62; Step body.<a href="#test-step-option-body" class="list-anchor">#</a>
-- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-step-return"/> &#60;[Promise]<[void]>&#62;<a href="#test-step-return" class="list-anchor">#</a>
+- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-step-return"/> &#60;[Promise]<[Object]>&#62;<a href="#test-step-return" class="list-anchor">#</a>
 
 Declares a test step.
 
@@ -1964,6 +2056,48 @@ test('test', async ({ page }) => {
   await test.step('Log in', async () => {
     // ...
   });
+});
+```
+
+</TabItem>
+</Tabs>
+
+The method returns value retuned by the step callback.
+
+<Tabs
+  groupId="js-flavor"
+  defaultValue="ts"
+  values={[
+    {label: 'TypeScript', value: 'ts'},
+    {label: 'JavaScript', value: 'js'}
+  ]
+}>
+<TabItem value="ts">
+
+```js
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  const user = await test.step('Log in', async () => {
+    // ...
+    return 'john';
+  });
+  expect(user).toBe('john');
+});
+```
+
+</TabItem>
+<TabItem value="js">
+
+```js
+const { test, expect } = require('@playwright/test');
+
+test('test', async ({ page }) => {
+  const user = await test.step('Log in', async () => {
+    // ...
+    return 'john';
+  });
+  expect(user).toBe('john');
 });
 ```
 
@@ -2120,6 +2254,7 @@ test('test with locale', async ({ page }) => {
 [WebSocket]: /api/class-websocket.mdx "WebSocket"
 [Worker]: /api/class-worker.mdx "Worker"
 [Fixtures]: /api/class-fixtures.mdx "Fixtures"
+[Storage]: /api/class-storage.mdx "Storage"
 [Test]: /api/class-test.mdx "Test"
 [TestConfig]: /api/class-testconfig.mdx "TestConfig"
 [TestError]: /api/class-testerror.mdx "TestError"

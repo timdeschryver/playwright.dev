@@ -5,18 +5,13 @@ title: "Frames"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-- [Frames](#frames)
-- [Frame objects](#frame-objects)
-
-## Frames
-
 A [Page] can have one or more [Frame] objects attached to it. Each page has a main frame and page-level interactions (like `click`) are assumed to operate in the main frame.
 
 A page can have additional frames attached with the `iframe` HTML tag. These frames can be accessed for interactions inside the frame.
 
 ```js
 // Locate element inside frame
-const username = await page.frameLocator('.frame-class').locator('#username-input');
+const username = await page.frameLocator('.frame-class').getByLabel('User Name');
 await username.fill('John');
 ```
 
@@ -83,6 +78,7 @@ await frame.fill('#username-input', 'John');
 [WebSocket]: /api/class-websocket.mdx "WebSocket"
 [Worker]: /api/class-worker.mdx "Worker"
 [Fixtures]: /api/class-fixtures.mdx "Fixtures"
+[Storage]: /api/class-storage.mdx "Storage"
 [Test]: /api/class-test.mdx "Test"
 [TestConfig]: /api/class-testconfig.mdx "TestConfig"
 [TestError]: /api/class-testerror.mdx "TestError"
