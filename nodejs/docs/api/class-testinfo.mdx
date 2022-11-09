@@ -54,6 +54,7 @@ test('basic test', async ({ page }, testInfo) => {
 - [testInfo.slow()](/api/class-testinfo.mdx#test-info-slow-1)
 - [testInfo.slow(condition[, description])](/api/class-testinfo.mdx#test-info-slow-2)
 - [testInfo.snapshotPath(...pathSegments)](/api/class-testinfo.mdx#test-info-snapshot-path)
+- [testInfo.storage()](/api/class-testinfo.mdx#test-info-storage)
 - [testInfo.annotations](/api/class-testinfo.mdx#test-info-annotations)
 - [testInfo.attachments](/api/class-testinfo.mdx#test-info-attachments)
 - [testInfo.column](/api/class-testinfo.mdx#test-info-column)
@@ -84,7 +85,7 @@ test('basic test', async ({ page }, testInfo) => {
 
 <font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.10</font>
 
-- `name`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-info-attach-option-name"/> &#60;[string]&#62; Attachment name.<a href="#test-info-attach-option-name" class="list-anchor">#</a>
+- `name`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-info-attach-option-name"/> &#60;[string]&#62; Attachment name. The name will also be sanitized and used as the prefix of file name when saving to disk.<a href="#test-info-attach-option-name" class="list-anchor">#</a>
 - `options?` &#60;[Object]&#62;
   - `body?`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-info-attach-option-body"/> &#60;[string]|[Buffer]&#62; Attachment body. Mutually exclusive with `path`.<a href="#test-info-attach-option-body" class="list-anchor">#</a>
   - `contentType?`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-info-attach-option-content-type"/> &#60;[string]&#62; Content type of this attachment to properly present in the report, for example `'application/json'` or `'image/png'`. If omitted, content type is inferred based on the `path`, or defaults to `text/plain` for [string] attachments and `application/octet-stream` for [Buffer] attachments.<a href="#test-info-attach-option-content-type" class="list-anchor">#</a>
@@ -349,6 +350,14 @@ Returns a path to a snapshot file with the given `pathSegments`. Learn more abou
 
 > Note that `pathSegments` accepts path segments to the snapshot file such as `testInfo.snapshotPath('relative', 'path', 'to', 'snapshot.png')`.
 > However, this path must stay within the snapshots directory for each test file (i.e. `a.spec.js-snapshots`), otherwise it will throw.
+
+## testInfo.storage() {#test-info-storage}
+
+<font size="2" style={{position: "relative", top: "-20px"}}>Added in: v1.28</font>
+
+- returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="test-info-storage-return"/> &#60;[Storage]&#62;<a href="#test-info-storage-return" class="list-anchor">#</a>
+
+Returns a [Storage] instance for the currently running project.
 
 ## testInfo.annotations {#test-info-annotations}
 
@@ -771,6 +780,7 @@ Also available as `process.env.TEST_WORKER_INDEX`. Learn more about [parallelism
 [WebSocket]: /api/class-websocket.mdx "WebSocket"
 [Worker]: /api/class-worker.mdx "Worker"
 [Fixtures]: /api/class-fixtures.mdx "Fixtures"
+[Storage]: /api/class-storage.mdx "Storage"
 [Test]: /api/class-test.mdx "Test"
 [TestConfig]: /api/class-testconfig.mdx "TestConfig"
 [TestError]: /api/class-testerror.mdx "TestError"
