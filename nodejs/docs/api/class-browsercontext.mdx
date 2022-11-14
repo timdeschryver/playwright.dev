@@ -323,7 +323,7 @@ const { webkit } = require('playwright');  // Or 'chromium' or 'firefox'.
     <button onclick="onClick()">Click me</button>
     <div></div>
   `);
-  await page.locator('button').click();
+  await page.getByRole('button').click();
 })();
 ```
 
@@ -376,7 +376,7 @@ const crypto = require('crypto');
     <button onclick="onClick()">Click me</button>
     <div></div>
   `);
-  await page.locator('button').click();
+  await page.getByRole('button').click();
 })();
 ```
 
@@ -500,7 +500,7 @@ Enabling routing disables http cache.
     * If set to 'fallback' falls through to the next route handler in the handler chain.
 
     Defaults to abort.
-  - `update?`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-context-route-from-har-option-update"/> &#60;[boolean]&#62; If specified, updates the given HAR with the actual network information instead of serving from file.<a href="#browser-context-route-from-har-option-update" class="list-anchor">#</a>
+  - `update?`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-context-route-from-har-option-update"/> &#60;[boolean]&#62; If specified, updates the given HAR with the actual network information instead of serving from file. The file is written to disk when [browserContext.close()](/api/class-browsercontext.mdx#browser-context-close) is called.<a href="#browser-context-route-from-har-option-update" class="list-anchor">#</a>
   - `url?`<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-context-route-from-har-option-url"/> &#60;[string]|[RegExp]&#62; A glob pattern, regular expression or predicate to match the request URL. Only requests with URL matching the pattern will be served from the HAR file. If not specified, all requests are served from the HAR file.<a href="#browser-context-route-from-har-option-url" class="list-anchor">#</a>
 - returns:<a aria-hidden="true" tabindex="-1" class="list-anchor-link" id="browser-context-route-from-har-return"/> &#60;[Promise]<[void]>&#62;<a href="#browser-context-route-from-har-return" class="list-anchor">#</a>
 
@@ -654,7 +654,7 @@ Waits for event to fire and passes its value into the predicate function. Return
 ```js
 const [page, _] = await Promise.all([
   context.waitForEvent('page'),
-  page.locator('button').click()
+  page.getByRole('button').click()
 ]);
 ```
 
@@ -719,6 +719,7 @@ API testing helper associated with this context. Requests made with this API wil
 [WebSocket]: /api/class-websocket.mdx "WebSocket"
 [Worker]: /api/class-worker.mdx "Worker"
 [Fixtures]: /api/class-fixtures.mdx "Fixtures"
+[Storage]: /api/class-storage.mdx "Storage"
 [Test]: /api/class-test.mdx "Test"
 [TestConfig]: /api/class-testconfig.mdx "TestConfig"
 [TestError]: /api/class-testerror.mdx "TestError"

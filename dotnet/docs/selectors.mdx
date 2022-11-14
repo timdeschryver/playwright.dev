@@ -9,26 +9,6 @@ Selectors are strings that are used to create [Locator]s. Locators are used to p
 
 Writing good selectors is part art, part science so be sure to checkout the [Best Practices](#best-practices) section.
 
-- [Quick guide](#quick-guide)
-- [Text selector](#text-selector)
-- [CSS selector](#css-selector)
-- [Selecting visible elements](#selecting-visible-elements)
-- [Selecting elements that contain other elements](#selecting-elements-that-contain-other-elements)
-- [Augmenting existing locators](#augmenting-existing-locators)
-- [Selecting elements matching one of the conditions](#selecting-elements-matching-one-of-the-conditions)
-- [Selecting elements in Shadow DOM](#selecting-elements-in-shadow-dom)
-- [Selecting elements based on layout](#selecting-elements-based-on-layout)
-- [Selecting elements by label text](#selecting-elements-by-label-text)
-- [XPath selectors](#xpath-selectors)
-- [N-th element selector](#n-th-element-selector)
-- [React selectors](#react-selectors)
-- [Vue selectors](#vue-selectors)
-- [Role selector](#role-selector)
-- [id, data-testid, data-test-id, data-test selectors](#id-data-testid-data-test-id-data-test-selectors)
-- [Pick n-th match from the query result](#pick-n-th-match-from-the-query-result)
-- [Chaining selectors](#chaining-selectors)
-- [Best practices](#best-practices)
-
 ## Quick guide
 - Text selector
 
@@ -120,13 +100,13 @@ await page.Locator("text=Log in").ClickAsync();
 ```
 
 Text selector has a few variations:
-- `text=Log in` - default matching is case-insensitive and searches for a substring. For example, `text=Log` matches `<button>Log in</button>`.
+- `text=Log in` - default matching is case-insensitive, trims whitespace and searches for a substring. For example, `text=Log` matches `<button>Log in</button>`.
 
   ```csharp
   await page.Locator("text=Log in").ClickAsync();
   ```
 
-- `text="Log in"` - text body can be escaped with single or double quotes to search for a text node with exact content. For example, `text="Log"` does not match `<button>Log in</button>` because `<button>` contains a single text node `"Log in"` that is not equal to `"Log"`. However, `text="Log"` matches `<button>Log<span>in</span></button>`, because `<button>` contains a text node `"Log"`. This exact mode implies case-sensitive matching, so `text="Download"` will not match `<button>download</button>`.
+- `text="Log in"` - text body can be escaped with single or double quotes to search for a text node with exact content after trimming whitespace. For example, `text="Log"` does not match `<button>Log in</button>` because `<button>` contains a single text node `"Log in"` that is not equal to `"Log"`. However, `text="Log"` matches `<button> Log <span>in</span></button>`, because `<button>` contains a text node `" Log "`. This exact mode implies case-sensitive matching, so `text="Download"` will not match `<button>download</button>`.
 
   Quoted body follows the usual escaping rules, e.g. use `\"` to escape double quote in a double-quoted string: `text="foo\"bar"`.
 
@@ -146,7 +126,7 @@ Text selector has a few variations:
   await page.Locator("text=/Log\\s*in/i").ClickAsync();
   ```
 
-- `article:has-text("Playwright")` - the `:has-text()` pseudo-class can be used inside a [css] selector. It matches any element containing specified text somewhere inside, possibly in a child or a descendant element. Matching is case-insensitive and searches for a substring. For example, `article:has-text("Playwright")` matches `<article><div>Playwright</div></article>`.
+- `article:has-text("Playwright")` - the `:has-text()` pseudo-class can be used inside a [css] selector. It matches any element containing specified text somewhere inside, possibly in a child or a descendant element. Matching is case-insensitive, trims whitestapce and searches for a substring. For example, `article:has-text("Playwright")` matches `<article><div>Playwright</div></article>`.
 
   Note that `:has-text()` should be used together with other `css` specifiers, otherwise it will match all the elements containing specified text, including the `<body>`.
 
@@ -578,6 +558,16 @@ Unlike [`:nth-child()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-ch
 It is usually possible to distinguish elements by some attribute or text content. In this case, prefer using [text] or [css] selectors over the `:nth-match()`.
 :::
 
+## Parent selector
+
+The parent could be selected with `..`, which is a short form for `xpath=..`.
+
+For example:
+
+```csharp
+var parentLocator = elementLocator.Locator("..");
+```
+
 ## Chaining selectors
 
 Selectors defined as `engine=body` or in short-form can be combined with the `>>` token, e.g. `selector1 >> selector2 >> selectors3`. When selectors are chained, the next one is queried relative to the previous one's result.
@@ -670,6 +660,7 @@ await page.Locator("//*[@id='tsf']/div[2]/div[1]/div[1]/div/div[2]/input").Click
 [APIRequest]: /api/class-apirequest.mdx "APIRequest"
 [APIRequestContext]: /api/class-apirequestcontext.mdx "APIRequestContext"
 [APIResponse]: /api/class-apiresponse.mdx "APIResponse"
+[APIResponseAssertions]: /test-assertions.mdx "APIResponseAssertions"
 [Browser]: /api/class-browser.mdx "Browser"
 [BrowserContext]: /api/class-browsercontext.mdx "BrowserContext"
 [BrowserType]: /api/class-browsertype.mdx "BrowserType"
